@@ -9,7 +9,7 @@ jobs:
   deploy-Website:
     runs-on: ubuntu-latest
 
-    setps: 
+    steps: 
       - name: Checkout respositroy
         uses: actions/checkout@v4
 
