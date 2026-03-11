@@ -5,7 +5,7 @@ on:
     branches:
       - main
 
-jobs:
+jobs: 
   deploy-Website:
     runs-on: ubuntu-latest
 
@@ -39,13 +39,13 @@ jobs:
             echo "pulling latest docker image"
             sudo docker pull mintafresh/mintarestro-website:latest
 
-            echo "Navigating to minta-restro/website" directory"
+            echo "Navigating to minta-restro/website directory"
             cd /root/minta-restro/website
 
             echo "rebuilding and restarting services..."
-            sudo docker compose up d
+            sudo docker compose up -d
 
             echo "deployment completed successfully"
 
-            "echo Cleaning up..."
-            sudo docker system purne -f
+            echo "Cleaning up..."
+            sudo docker system prune -f
