@@ -1,0 +1,8 @@
+services:
+  minta-restro-website:
+    build: .
+    container_name: minta-restro-website
+    ports:
+      - "5001:3000"
+    image: mintafresh/mintarestro-website
+    restart: unless-stopped

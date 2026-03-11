@@ -1,197 +1,94 @@
-// import Link from "next/link";
-
-//     const Footer = () => {
-//     return (
-//         <footer className="bg-[#050505] border-t border-white/10 pt-20 pb-10 relative z-10">
-//         <div className="container mx-auto px-6">
-            
-//             {/* Top Section: Grid Layout */}
-//             <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-            
-//             {/* Brand Column */}
-//             <div className="space-y-6">
-//                 <div className="flex items-center gap-3">
-//                     <i className="fa-solid fa-crown text-3xl text-[#fbc02d]"></i>
-//                     <span className="font-serif text-2xl text-white tracking-tight">Minta Restro</span>
-//                 </div>
-//                 <p className="text-gray-500 text-sm leading-relaxed font-sans">
-//                 Refining the art of gastronomy delivery. Experience the thermal-lock difference with Minta Restro.
-//                 </p>
-//             </div>
-            
-//             {/* Company Column */}
-//             <div>
-//                 <h4 className="text-white font-serif text-lg mb-6">Company</h4>
-//                 <ul className="space-y-4 text-sm text-gray-500 font-sans">
-//                 <li>
-//                     <a href="/about" className="hover:text-[#fbc02d] transition-colors duration-300">About Us</a>
-//                 </li>
-//                 <li>
-//                     <a href="/careers" className="hover:text-[#fbc02d] transition-colors duration-300">Careers</a>
-//                 </li>
-//                 <li>
-//                     <a href="/press" className="hover:text-[#fbc02d] transition-colors duration-300">Press</a>
-//                 </li>
-//                 <li>
-//                     <a href="/csr-policy" className="hover:text-[#fbc02d] transition-colors duration-300">CSR Policy</a>
-//                 </li>
-//                 </ul>
-//             </div>
-
-//             {/* Legal Column */}
-//             <div>
-//                 <h4 className="text-white font-serif text-lg mb-6">Legal</h4>
-//                 <ul className="space-y-4 text-sm text-gray-500 font-sans">
-//                 <li>
-//                     <Link href="/terms-and-condition" className="hover:text-[#fbc02d] transition-colors duration-300">Terms of Service</Link>
-//                 </li>
-//                 <li>
-//                     <Link href="/privacy-policy" className="hover:text-[#fbc02d] transition-colors duration-300">Privacy Policy</Link>
-//                 </li>
-//                 <li>
-//                     <Link href="/cancellation-policy" className="hover:text-[#fbc02d] transition-colors duration-300">Cancellation Policy</Link>
-//                 </li>
-//                 <li>
-//                     <Link href="/terms-and-condition" className="hover:text-[#fbc02d] transition-colors duration-300">Terms And Conditions</Link>
-//                 </li>
-//                 </ul>
-//             </div>
-
-//             {/* Connect Column */}
-//             <div>
-//                 <h4 className="text-white font-serif text-lg mb-6">Connect</h4>
-//                 <ul className="space-y-4 text-sm text-gray-500 font-sans">
-//                     <li>
-//                         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-[#fbc02d] transition-colors duration-300">
-//                             <i className="fa-brands fa-instagram"></i> Instagram
-//                         </a>
-//                     </li>
-//                     <li>
-//                         <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-[#fbc02d] transition-colors duration-300">
-//                             <i className="fa-brands fa-twitter"></i> Twitter
-//                         </a>
-//                     </li>
-//                     <li>
-//                         <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-[#fbc02d] transition-colors duration-300">
-//                             <i className="fa-brands fa-linkedin"></i> LinkedIn
-//                         </a>
-//                     </li>
-//                     <li>
-//                         <a href="mailto:info@mintaclub.com" className="flex items-center gap-2 hover:text-[#fbc02d] transition-colors duration-300">
-//                             <i className="fa-solid fa-envelope"></i> Contact Us
-//                         </a>
-//                     </li>
-//                 </ul>
-//             </div>
-//             </div>
-            
-//             {/* Bottom Section: Copyright */}
-//             <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center">
-//                 <p className="text-gray-700 text-xs tracking-widest uppercase font-sans">
-//                     &copy; 2026 Minta Restro. All Rights Reserved.
-//                 </p>
-//                 <p className="text-gray-800 text-xs mt-4 md:mt-0 font-sans">
-//                     Designed for Excellence
-//                 </p>
-//             </div>
-//         </div>
-//         </footer>
-//     );
-//     };
-
-//     export default Footer;
-
-
-import Link from "next/link";
+import { Facebook, Instagram } from 'lucide-react';
+import Image from 'next/image';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-[#050505] border-t border-white/10 py-10 relative z-10">
-      <div className="container mx-auto px-6">
-        
-        {/* Main Flex Container: Image jaisa layout (Horizontal) */}
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-4">
+    <footer className="w-full bg-mintaBlue py-24 px-6 md:px-12 border-t border-white/10">
+      <div className="max-w-7xl mx-auto flex flex-col gap-12">
+        {/* Main Footer Row: Branding | Policies | Socials */}
+        <div className="flex flex-col lg:flex-row justify-between items-center gap-15">
           
-          {/* 1. Left Section: Brand & Copyright */}
-          <div className="text-center lg:text-left space-y-2">
-            <div className="relative inline-block">
-              {/* Purple Dot Accent (Image style) */}
-              <div className="absolute -top-1 left-1 w-2 h-2 bg-purple-600 rounded-full"></div>
-              <h2 className="text-2xl font-bold text-white tracking-wide uppercase font-sans mt-2">
-                MINTA RESTRO
-              </h2>
-            </div>
-            <p className="text-gray-500 text-sm font-sans">
-              Minta Restro is a brand of Minta Club Pvt. Ltd
+          {/* Left: Branding */}
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left min-w-[200px]">
+            <Image 
+              src="/logo/tt2.jpeg" 
+              alt="Minta Restro" 
+              height={300}
+              width={300}
+              className="-ml-7"
+            />
+            <p className="text-white text-[14px] font-bold uppercase tracking-[0.3em]">
+              A Unit of Minta Club Pvt. Ltd
             </p>
-            <p className="text-gray-600 text-xs font-sans">
-              &copy; 2026 Minta Restro. All rights reserved.
+            <p className="text-white text-[12px] uppercase tracking-[0.3em] font-medium mt-1.5">
+              © {currentYear} Minta Restro. All rights reserved.
             </p>
           </div>
 
-          {/* 2. Center Section: Links (Horizontal List) */}
-          <ul className="flex flex-wrap justify-center gap-6 text-sm text-gray-400 font-sans">
-            <li>
-              <Link href="/terms-and-condition" className="hover:text-[#fbc02d] transition-colors duration-300">
-                Terms & Conditions
-              </Link>
-            </li>
-            <li>
-              <Link href="/privacy-policy" className="hover:text-[#fbc02d] transition-colors duration-300">
-                Privacy Policy
-              </Link>
-            </li>
-            <li>
-              <Link href="/csr-policy" className="hover:text-[#fbc02d] transition-colors duration-300">
-                CSR Policy
-              </Link>
-            </li>
-            <li>
-              <Link href="/cancellation-policy" className="hover:text-[#fbc02d] transition-colors duration-300">
-                Cancellation Policy
-              </Link>
-            </li>
-            <li>
-              <Link href="/guideline-policy" className="hover:text-[#fbc02d] transition-colors duration-300">
-                Guideline Policy
-              </Link>
-            </li>
-            <li>
-              <Link href="/terms-of-service" className="hover:text-[#fbc02d] transition-colors duration-300">
-                Terms of Service
-              </Link>
-            </li>
-          </ul>
+          {/* Center: Policy Links */}
+          <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-[13px] font-bold uppercase tracking-[0.2em] text-white lg:px-4">
+            <a href="/terms-and-condition" className="hover:text-black transition-all duration-300 whitespace-nowrap relative group">
+              Terms & Conditions
+              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-black transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <span className="w-1 h-1 bg-white/10 rounded-full"></span>
+            
+            <a href="/privacy-policy" className="hover:text-black transition-all duration-300 whitespace-nowrap relative group">
+              Privacy Policy
+              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-black transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <span className="w-1 h-1 bg-white/10 rounded-full"></span>
+            
+            <a href="/business-complince" className="hover:text-black transition-all duration-300 whitespace-nowrap relative group">
+              Business & Payment
+              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-black transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <span className="w-1 h-1 bg-white/10 rounded-full"></span>
+            
+            <a href="/partner-vendor" className="hover:text-black transition-all duration-300 whitespace-nowrap relative group">
+              Partner & Vendor
+              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-black transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <span className="w-1 h-1 bg-white/10 rounded-full"></span>
+            
+            <a href="/csr-policy" className="hover:text-black transition-all duration-300 whitespace-nowrap relative group">
+              CSR Policy
+              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-black transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <span className="w-1 h-1 bg-white/10 rounded-full"></span>
+            
+            <a href="/contact-us" className="hover:text-black transition-all duration-300 whitespace-nowrap relative group">
+              Contact Us
+              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-black transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <span className="w-1 h-1 bg-white/10 rounded-full"></span>
+            
+            <a href="#" className="hover:text-black transition-all duration-300 whitespace-nowrap relative group">
+              FAQ
+              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-black transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <span className="w-1 h-1 bg-white/10 rounded-full"></span>
+            
+            <a href="/refund-policy" className="hover:text-black transition-all duration-300 whitespace-nowrap relative group">
+              Refund Policy
+              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-black transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          </nav>
 
-          {/* 3. Right Section: Social Icons */}
-          <div className="flex items-center gap-6">
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:text-[#fbc02d] text-xl transition-colors duration-300"
-            >
-              <i className="fa-brands fa-instagram"></i>
+          {/* Right: Social Icons */}
+          <div className="flex items-center gap-6 min-w-[150px] justify-center lg:justify-end">
+            <a href="https://instagram.com" aria-label="Instagram" className="text-white hover:text-gray-300 transition-all duration-300 transform hover:-translate-y-1">
+              <Instagram size={22} />
             </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:text-[#fbc02d] text-xl transition-colors duration-300"
-            >
-              {/* X Logo */}
-              <i className="fa-brands fa-x-twitter"></i>
+            <a href="https://twitter.com" aria-label="Twitter" className="text-white hover:text-gray-300 transition-all duration-300 transform hover:-translate-y-1">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
             </a>
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:text-[#fbc02d] text-xl transition-colors duration-300"
-            >
-              <i className="fa-brands fa-facebook-f"></i>
+            <a href="https://facebook.com" aria-label="Facebook" className="text-white hover:text-gray-300 transition-all duration-300 transform hover:-translate-y-1">
+              <Facebook size={22} fill="currentColor" stroke="none" />
             </a>
           </div>
-
         </div>
       </div>
     </footer>

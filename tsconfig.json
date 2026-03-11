@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "src/app/cancellation-policy"  ],
+, "src/app/declaration-of-beneficial-ownership"  ],
   "exclude": ["node_modules"]
 }
