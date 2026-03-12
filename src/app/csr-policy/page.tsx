@@ -349,7 +349,7 @@ const CSRPolicy = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div style={{ backgroundColor: COLORS.SOFT_RED }} className="p-6 rounded-xl border border-red-100">
                   <h3 className="font-bold mb-3 text-sm" style={{ color: COLORS.RED }}>3.1 Hunger & Food Security</h3>
-                  <ul className="text-xs space-y-2 list-disc pl-4">
+                  <ul className="text-xs space-y-2 list-disc pl-4" style={{ color: COLORS.primary }}>
                     <li>Partnering with NGOs to reduce food wastage</li>
                     <li>Supporting food donation programs</li>
                     <li>Emergency meal support</li>
@@ -357,7 +357,7 @@ const CSRPolicy = () => {
                 </div>
                 <div style={{ backgroundColor: COLORS.SOFT_YELLOW }} className="p-6 rounded-xl border border-yellow-200">
                   <h3 className="font-bold mb-3 text-sm" style={{ color: '#854d0e' }}>3.2 Community Development</h3>
-                  <ul className="text-xs space-y-2 list-disc pl-4">
+                  <ul className="text-xs space-y-2 list-disc pl-4" style={{ color: COLORS.primary }}>
                     <li>Supporting small/local restaurants</li>
                     <li>Promoting women-led businesses</li>
                     <li>Creating delivery partner opportunities</li>
@@ -365,7 +365,7 @@ const CSRPolicy = () => {
                 </div>
                 <div style={{ backgroundColor: COLORS.SOFT_GREEN }} className="p-6 rounded-xl border border-green-200">
                   <h3 className="font-bold mb-3 text-sm" style={{ color: '#166534' }}>3.3 Environmental Sustainability</h3>
-                  <ul className="text-xs space-y-2 list-disc pl-4">
+                  <ul className="text-xs space-y-2 list-disc pl-4" style={{ color: COLORS.primary }}>
                     <li>Encouraging eco-friendly packaging</li>
                     <li>Reducing delivery carbon emissions</li>
                     <li>Promoting sustainable sourcing</li>
