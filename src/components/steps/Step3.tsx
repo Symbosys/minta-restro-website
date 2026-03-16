@@ -2,14 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { State, City, IState, ICity } from 'country-state-city';
-import { 
-  MapPin, 
-  Clock, 
-  Phone, 
-  Store, 
-  ChevronRight, 
-  Search, 
-  Check, 
+import {
+  MapPin,
+  Clock,
+  Phone,
+  Store,
+  ChevronRight,
+  Search,
+  Check,
   X,
   AlertCircle,
   Building2,
@@ -33,7 +33,7 @@ export default function Step3({ vendorData, onNext, onPrev }: { vendorData: any,
   // Shop Details
   const [shopName, setShopName] = useState('');
   const [contactNumber, setContactNumber] = useState('');
-  
+
   // Location
   const [completeAddress, setCompleteAddress] = useState('');
   const [floor, setFloor] = useState('');
@@ -41,13 +41,13 @@ export default function Step3({ vendorData, onNext, onPrev }: { vendorData: any,
   const [areaName, setAreaName] = useState('');
   const [selectedState, setSelectedState] = useState<IState | null>(null);
   const [selectedCity, setSelectedCity] = useState<ICity | null>(null);
-  
+
   // Hours
   const [shopHours, setShopHours] = useState<any[]>([]);
-  
+
   const [latitude, setLatitude] = useState<number | null>(null);
   const [longitude, setLongitude] = useState<number | null>(null);
-  
+
   // UI State
   const [isMapOpen, setIsMapOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -59,7 +59,7 @@ export default function Step3({ vendorData, onNext, onPrev }: { vendorData: any,
 
   const allStates = State.getStatesOfCountry('IN');
   const filteredStates = allStates.filter(s => s.name.toLowerCase().includes(stateSearch.toLowerCase()));
-  
+
   const allCities = selectedState ? City.getCitiesOfState('IN', selectedState.isoCode) : [];
   const filteredCities = allCities.filter(c => c.name.toLowerCase().includes(citySearch.toLowerCase()));
 
@@ -73,14 +73,14 @@ export default function Step3({ vendorData, onNext, onPrev }: { vendorData: any,
       setAreaName(vendorData.areaName || '');
       setLatitude(vendorData.latitude || null);
       setLongitude(vendorData.longitude || null);
-      
+
       if (vendorData.state) {
         const stateObj = allStates.find(s => s.name === vendorData.state);
         if (stateObj) setSelectedState(stateObj);
       }
-      
+
       // We can't easily find city without state, so it will be handled when state is loaded or manually picked
-      
+
       if (vendorData.shopHours && Array.isArray(vendorData.shopHours) && vendorData.shopHours.length > 0) {
         // Initialize state with all days, merging in vendor data
         const initialHours = DAYS_OF_WEEK.map(day => {
@@ -179,9 +179,13 @@ export default function Step3({ vendorData, onNext, onPrev }: { vendorData: any,
     setIsLoading(false);
 
     if (res.success) {
-      // Update local storage so data persists on refresh
-      const updatedVendor = { ...vendorData, ...payload, status: 'SHOP_IMAGES_NOT_UPLOADED' };
-      localStorage.setItem('vendorAuth', JSON.stringify(updatedVendor));
+      let updatedVendor = { ...vendorData, ...payload };
+
+      if (vendorData.status === 'SHOP_DETAILS_NOT_FILLED') {
+        updatedVendor.status = 'SHOP_IMAGES_NOT_UPLOADED';
+        localStorage.setItem('vendorAuth', JSON.stringify(updatedVendor));
+      }
+
       onNext(updatedVendor);
     } else {
       setErrorMsg(res.message);
@@ -227,7 +231,7 @@ export default function Step3({ vendorData, onNext, onPrev }: { vendorData: any,
             <Store className="w-5 h-5" />
             <h3 className="text-lg font-bold text-gray-900 m-0">Store Basics</h3>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-full">
             <div>
               <label className="block text-[13px] font-bold text-[#374151] mb-2 uppercase tracking-tight">
@@ -269,7 +273,7 @@ export default function Step3({ vendorData, onNext, onPrev }: { vendorData: any,
 
           <div className="mb-8">
             <div className={`w-full h-48 bg-gray-100 rounded-2xl border-2 border-dashed border-gray-200 flex flex-col items-center justify-center gap-3 group hover:border-[#8719C6]/50 hover:bg-[#8719C6]/5 transition-all cursor-pointer overflow-hidden relative  ${latitude ? 'border-solid border-[#8719C6]/30' : ''}`}
-                 onClick={() => setIsMapOpen(true)}>
+              onClick={() => setIsMapOpen(true)}>
               {latitude && longitude ? (
                 <>
                   <div className="absolute inset-0 bg-emerald-50/50 flex flex-col items-center justify-center p-6 text-center">
@@ -364,7 +368,7 @@ export default function Step3({ vendorData, onNext, onPrev }: { vendorData: any,
                   </span>
                   <Search className="w-4 h-4 text-gray-400" />
                 </button>
-                
+
                 {showStateList && (
                   <div className="absolute z-50 left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl overflow-hidden max-h-[300px] flex flex-col">
                     <div className="p-3 border-b border-gray-100 bg-gray-50/50">
@@ -464,7 +468,7 @@ export default function Step3({ vendorData, onNext, onPrev }: { vendorData: any,
             <h3 className="text-lg font-bold text-gray-900 m-0">Operating Hours</h3>
           </div>
           <p className="text-gray-500 text-[13px] mb-8 font-medium">
-             Set your outlet's opening and closing times. Customers will only see you open during these hours.
+            Set your outlet's opening and closing times. Customers will only see you open during these hours.
           </p>
 
           <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
@@ -528,7 +532,7 @@ export default function Step3({ vendorData, onNext, onPrev }: { vendorData: any,
           </div>
           Back
         </button>
-        
+
         <button
           onClick={handleSubmit}
           disabled={isLoading}
@@ -538,7 +542,7 @@ export default function Step3({ vendorData, onNext, onPrev }: { vendorData: any,
             <div className="w-6 h-6 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
           ) : (
             <div className="flex items-center gap-3">
-               Finish Setup <ChevronRight className="w-5 h-5" />
+              Finish Setup <ChevronRight className="w-5 h-5" />
             </div>
           )}
         </button>
@@ -554,7 +558,7 @@ export default function Step3({ vendorData, onNext, onPrev }: { vendorData: any,
           setLatitude(lat);
           setLongitude(lng);
           setIsMapOpen(false);
-          
+
           // Try to extract pincode if present in address
           const pinMatch = addr.match(/\b\d{6}\b/);
           if (pinMatch) setPincode(pinMatch[0]);

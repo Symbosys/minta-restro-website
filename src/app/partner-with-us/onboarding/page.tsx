@@ -10,6 +10,9 @@ import Step1 from '../../../components/steps/Step1';
 import Step2 from '../../../components/steps/Step2';
 import Step3 from '../../../components/steps/Step3';
 import Step4 from '../../../components/steps/Step4';
+import Step5 from '../../../components/steps/Step5';
+import Step6 from '../../../components/steps/Step6';
+import Step7 from '../../../components/steps/Step7';
 import { fetchVendorMeAction } from '../../../api/actions/vendor';
 
 const steps = [
@@ -220,13 +223,47 @@ export default function OnboardingPage() {
               />
             )}
             
-            {currentStep > 4 && (
+            {currentStep === 5 && (
+              <Step5
+                vendorData={vendorData}
+                onNext={(updatedData?: any) => {
+                  if (updatedData) setVendorData((prev: any) => ({ ...prev, ...updatedData }));
+                  setCurrentStep(Math.min(currentStep + 1, steps.length));
+                }}
+                onPrev={() => setCurrentStep(Math.max(currentStep - 1, 1))}
+              />
+            )}
+            
+            {currentStep === 6 && (
+              <Step6
+                vendorData={vendorData}
+                onNext={(updatedData?: any) => {
+                  if (updatedData) setVendorData((prev: any) => ({ ...prev, ...updatedData }));
+                  setCurrentStep(Math.min(currentStep + 1, steps.length));
+                }}
+                onPrev={() => setCurrentStep(Math.max(currentStep - 1, 1))}
+              />
+            )}
+            
+            {currentStep === 7 && (
+              <Step7
+                vendorData={vendorData}
+                onNext={(updatedData?: any) => {
+                  if (updatedData) setVendorData((prev: any) => ({ ...prev, ...updatedData }));
+                  // Final step logic
+                  router.push('/partner-with-us/congratulations'); 
+                }}
+                onPrev={() => setCurrentStep(Math.max(currentStep - 1, 1))}
+              />
+            )}
+            
+            {currentStep > 7 && (
                <div className="flex flex-col items-center justify-center h-[400px] animate-in fade-in slide-in-from-bottom-4 duration-500">
                  <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-6 border border-gray-100 shadow-inner">
                     <CheckCircle2 className="w-10 h-10 text-gray-300" />
                  </div>
-                 <h2 className="text-2xl font-extrabold text-gray-900 mb-2 tracking-tight">{steps[currentStep-1].title}</h2>
-                 <p className="text-gray-500 text-center max-w-sm font-medium">This step is not available in the current preview. Click previous or reset.</p>
+                 <h2 className="text-2xl font-extrabold text-gray-900 mb-2 tracking-tight">{steps[currentStep-1]?.title || 'Complete'}</h2>
+                 <p className="text-gray-500 text-center max-w-sm font-medium">Your onboarding is complete. Please wait for approval.</p>
                  
                  <div className="flex gap-4 mt-8">
                    <button 

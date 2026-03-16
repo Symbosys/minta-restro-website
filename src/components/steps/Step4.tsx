@@ -21,6 +21,9 @@ export default function Step4({ vendorData, onNext, onPrev }: { vendorData: any,
   const [menuImages, setMenuImages] = useState<File[]>([]);
   const [menuPreviews, setMenuPreviews] = useState<string[]>([]);
   
+  const [initialShopPreview, setInitialShopPreview] = useState<string | null>(null);
+  const [initialMenuPreviews, setInitialMenuPreviews] = useState<string[]>([]);
+  
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   
@@ -33,24 +36,25 @@ export default function Step4({ vendorData, onNext, onPrev }: { vendorData: any,
         const images = typeof vendorData.images === 'string' ? JSON.parse(vendorData.images) : vendorData.images;
         if (images?.url) {
           setShopImagePreview(images.url);
+          setInitialShopPreview(images.url);
         }
       } catch (e) { console.error("Error parsing shop images", e); }
     }
     
-    if (vendorData?.menuImages && Array.isArray(vendorData.menuImages) && vendorData.menuImages.length > 0) {
-      const existingMenus = vendorData.menuImages.map((m: any) => {
-        // Prisma might return it as a stringified JSON or a direct object depending on DB type
+    if (vendorData?.menuImages && Array.isArray(vendorData.menuImages)) {
+      const existingMenus = (vendorData.menuImages as any[]).map((m: any) => {
         let imgObj = m.imageUrl;
         if (typeof imgObj === 'string') {
           try {
             imgObj = JSON.parse(imgObj);
           } catch (e) {
-            return imgObj; // Fallback to raw string
+            return imgObj;
           }
         }
         return imgObj?.url || imgObj;
       });
       setMenuPreviews(existingMenus);
+      setInitialMenuPreviews(existingMenus);
     }
   }, [vendorData]);
 
@@ -88,21 +92,41 @@ export default function Step4({ vendorData, onNext, onPrev }: { vendorData: any,
   };
 
   const removeMenuImage = (index: number) => {
-    // If it's a new file (not from server)
-    const preview = menuPreviews[index];
-    if (preview.startsWith('blob:')) {
-      // Find the file index
-      // This is a bit tricky if we mixed existing and new. 
-      // Let's just track them separately if needed, but for now simple:
+    const previewToRemove = menuPreviews[index];
+    
+    // If it's a blob (newly added file), remove it from menuImages too
+    if (previewToRemove.startsWith('blob:')) {
+      // Find the correspondence. This assumes order is preserved.
+      // A more robust way would be to store objects {preview, file}
+      // But for now, we can find which "new" image this corresponds to
+      const newOnlyIndex = menuPreviews.slice(0, index).filter(p => p.startsWith('blob:')).length;
+      setMenuImages(prev => prev.filter((_, i) => i !== newOnlyIndex));
     }
     
     setMenuPreviews(prev => prev.filter((_, i) => i !== index));
-    // Note: This won't remove from server, but will exclude from new upload
+  };
+
+  const isDirty = () => {
+    const shopChanged = !!shopImage;
+    const menuCountChanged = menuPreviews.length !== initialMenuPreviews.length;
+    
+    // Check if any of the remaining menu previews are new (blobs) 
+    // or if the set of existing ones changed (less likely but possible)
+    const hasNewMenuImages = menuPreviews.some(p => p.startsWith('blob:'));
+    
+    // If anything was removed or added or replaced
+    return shopChanged || menuCountChanged || hasNewMenuImages;
   };
 
   const handleSubmit = async () => {
     if (!shopImage && !shopImagePreview && menuPreviews.length === 0) {
       setErrorMsg('Please upload at least one image (Shop or Menu).');
+      return;
+    }
+
+    // If no changes, move to next step immediately
+    if (!isDirty()) {
+      onNext();
       return;
     }
 
@@ -115,25 +139,18 @@ export default function Step4({ vendorData, onNext, onPrev }: { vendorData: any,
         formData.append('shopImage', shopImage);
       }
 
-      // We only append NEW images to avoid re-uploading existing ones handled by backend logic if applicable
-      // But typically we send all that changed. 
-      // The backend expects 'menuImages' repeated for multiple files.
-      
-      const newMenuFiles = menuImages; // This is naive if user deleted some new ones
-      // Better: filter menuImages based on which previews are still there and are blobs
-      
-      // Let's simplify: the backend handles fresh uploads.
       menuImages.forEach(file => {
         formData.append('menuImages', file);
       });
 
       const res = await uploadShopImagesAction(formData, vendorData.token);
       if (res.success) {
-        const updatedVendor = { 
-          ...vendorData, 
-          status: 'PRODUCT_SELECTION_NOT_DONE' 
-        };
-        localStorage.setItem('vendorAuth', JSON.stringify(updatedVendor));
+        let updatedVendor = { ...vendorData };
+        // Update status only if not already advanced
+        if (vendorData.status === 'SHOP_IMAGES_NOT_UPLOADED') {
+          updatedVendor.status = 'PRODUCT_SELECTION_NOT_DONE';
+          localStorage.setItem('vendorAuth', JSON.stringify(updatedVendor));
+        }
         onNext(updatedVendor);
       } else {
         setErrorMsg(res.message);
