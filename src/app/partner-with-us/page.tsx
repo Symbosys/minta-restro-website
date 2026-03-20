@@ -200,7 +200,7 @@ const PartnerPage = () => {
       <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-mintaBlue selection:text-white relative">
 
         {/* --- NAVBAR --- */}
-        <header className="fixed top-0 left-0 w-full z-[100] bg-black/80 backdrop-blur-md border-b border-white/5 py-4 px-8 flex items-center justify-between">
+        <header className="fixed top-0 left-0 w-full z-100 bg-black/80 backdrop-blur-md border-b border-white/5 py-4 px-8 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-5 group relative">
                 <div className="relative p-1.5 bg-transparent rounded-2xl border border-white/10 group-hover:border-mintaBlue/50 transition-all duration-500 flex items-center justify-center">
                     <img 
@@ -211,7 +211,7 @@ const PartnerPage = () => {
                 </div>
                 
                 <div className="flex flex-col justify-center">
-                    <span className="text-white font-sans text-sm font-[900] tracking-[0.25em] uppercase leading-none mb-1 group-hover:text-mintaBlue transition-colors duration-300">
+                    <span className="text-white font-sans text-sm font-black tracking-[0.25em] uppercase leading-none mb-1 group-hover:text-mintaBlue transition-colors duration-300">
                         Minta
                     </span>
                     <span className="text-mintaBlue font-sans text-[9px] font-black tracking-[0.4em] uppercase leading-none group-hover:text-white transition-all duration-300 mt-0.5">
@@ -226,11 +226,11 @@ const PartnerPage = () => {
             <div className="flex items-center gap-10">
                 <Link href="/about-us" className="text-white font-sans text-[14px] font-bold tracking-[0.2em] uppercase hover:text-mintaBlue transition-colors relative group">
                     About Us
-                    <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-mintaBlue transition-all duration-300 group-hover:w-full"></span>
+                    <span className="absolute -bottom-1 left-0 w-0 h-px-mintaBlue transition-all duration-300 group-hover:w-full"></span>
                 </Link>
                 <Link href="https://vendor.mintafresh.com/" className="text-white font-sans text-[14px] font-bold tracking-[0.2em] uppercase hover:text-mintaBlue transition-colors relative group">
                     Owner Panel
-                    <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-mintaBlue transition-all duration-300 group-hover:w-full"></span>
+                    <span className="absolute -bottom-1 left-0 w-0 h-px-mintaBlue transition-all duration-300 group-hover:w-full"></span>
                 </Link>
                 <button className="border border-white/30 px-6 py-2.5 rounded-full text-white font-sans text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-mintaBlue hover:text-white hover:border-mintaBlue transition-all">
                     Download App
@@ -247,7 +247,7 @@ const PartnerPage = () => {
           <div className="absolute inset-0 bg-[#0b0e11]/80 z-0"></div>
 
           {/* Subtle background glow */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-mintaBlue/10 to-transparent pointer-events-none z-0" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-linear-to-b from-mintaBlue/10 to-transparent pointer-events-none z-0" />
           
           <div className="relative z-10 max-w-4xl mx-auto">
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-10 leading-[1.1] tracking-tight">
@@ -337,7 +337,7 @@ const PartnerPage = () => {
         
         {/* --- AUTH MODAL (Login & OTP) --- */}
         {showModal && (
-          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-300">
+          <div className="fixed inset-0 z-200 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-300">
             <div className="w-full max-w-md bg-white rounded-3xl overflow-hidden shadow-2xl relative animate-in slide-in-from-bottom-8 duration-300">
               
               {/* Phone Step */}
@@ -428,7 +428,7 @@ const PartnerPage = () => {
                     <div className="w-20 h-20 bg-white rounded-2xl p-2 mb-4 shadow-lg overflow-hidden flex items-center justify-center">
                        <img src="/logo/logo.jpeg" alt="Minta" className="object-contain w-full h-full" />
                     </div>
-                    <h3 className="text-white text-xl font-bold uppercase tracking-widest mt-2">Minta Fresh</h3>
+                    <h3 className="text-white text-xl font-bold uppercase tracking-widest mt-2">Minta Restro</h3>
                     <p className="text-white/80 text-sm mt-1">Quick & Fresh</p>
                   </div>
 
@@ -549,7 +549,7 @@ const PartnerPage = () => {
 
 const DocumentItem = ({ label, subtext, isLink }: { label: string, subtext?: string, isLink?: boolean }) => (
   <div className="flex items-start gap-3">
-    <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+    <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 shrink-0" />
     <div>
       <p className="font-semibold text-gray-800">{label}</p>
       {subtext && (

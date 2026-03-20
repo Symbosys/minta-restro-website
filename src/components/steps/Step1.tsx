@@ -69,7 +69,7 @@ export default function Step1({ vendorData, onNext }: { vendorData: any, onNext:
 
       <h3 className="text-lg font-bold text-[#1f2937] mb-2">Owner details</h3>
       <p className="text-gray-500 text-[13px] mb-8">
-        Minta Fresh will use these details for all business communications and updates
+        Minta Restro will use these details for all business communications and updates
       </p>
 
       {errorMsg && (

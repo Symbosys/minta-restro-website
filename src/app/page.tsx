@@ -4,10 +4,13 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Script from 'next/script';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { Menu, X, MoreVertical } from 'lucide-react';
 import Footer from './Footer';
 
 const MintaRestro = () => {
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     
@@ -146,7 +149,7 @@ const MintaRestro = () => {
   return (
     <>
       <Head>
-        <title>Minta Fresh | Premium Quality Cuts</title>
+        <title>Minta Restro | Premium Quality Cuts</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -285,54 +288,133 @@ const MintaRestro = () => {
         <div className="cursor-dot hidden md:block"></div>
         <div className="cursor-outline hidden md:block"></div>
 
-        <header className="fixed top-0 left-0 w-full z-[100] bg-black/80 backdrop-blur-md border-b border-white/5 py-4 px-8 flex items-center justify-between">
-            <a href="#hero" className="flex items-center gap-5 group relative logo-trigger-gsap">
+        <header className="fixed top-0 left-0 w-full z-[100] bg-black/80 backdrop-blur-md border-b border-white/5 py-3 md:py-4 px-4 md:px-8 flex items-center justify-between transition-all duration-300">
+            <a href="#hero" className="flex items-center gap-3 md:gap-5 group relative logo-trigger-gsap shrink-0">
                 <div className="relative animate-shimmer logo-icon-gsap">
                     <div className="absolute -inset-1.5 bg-mintaBlue/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition duration-700"></div>
-                    <div className="relative p-1.5 bg-transparent rounded-2xl border border-white/10 group-hover:border-mintaBlue/50 transition-all duration-500 shadow-2xl flex items-center justify-center">
+                    <div className="relative p-1 bg-transparent rounded-2xl border border-white/10 group-hover:border-mintaBlue/50 transition-all duration-500 shadow-2xl flex items-center justify-center">
                         <img 
                             src="/logo/logo.jpeg" 
                             alt="Minta" 
-                            className="h-10 w-auto object-contain brightness-125 contrast-110 rounded-lg"
+                            className="h-8 md:h-10 w-auto object-contain brightness-125 contrast-110 rounded-lg"
                         />
                     </div>
                 </div>
                 
                 <div className="flex flex-col justify-center">
-                    <span className="text-white font-sans text-base font-[900] tracking-[0.25em] uppercase leading-none mb-1 group-hover:text-mintaBlue transition-colors duration-300 logo-text-top-gsap">
+                    <span className="text-white font-sans text-sm md:text-base font-black tracking-[0.25em] uppercase leading-none mb-1 group-hover:text-mintaBlue transition-colors duration-300 logo-text-top-gsap">
                         Minta
                     </span>
-                    <span className="text-white font-sans text-[11px] font-black tracking-[0.4em] uppercase leading-none group-hover:text-mintaBlue transition-all duration-300 logo-text-bottom-gsap mt-0.5">
+                    <span className="text-white font-sans text-[9px] md:text-[11px] font-black tracking-[0.4em] uppercase leading-none group-hover:text-mintaBlue transition-all duration-300 logo-text-bottom-gsap mt-0.5">
                         Restro
                     </span>
                 </div>
             </a>
 
             <nav className="hidden lg:flex items-center gap-12">
-                {/* <a href="#tech" className="text-white font-sans text-[14px] font-bold tracking-[0.2em] uppercase hover:text-mintaBlue transition-colors relative group">
-                    Elite
-                    <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-mintaBlue transition-all duration-300 group-hover:w-full"></span>
-                </a> */}
-                {/* <a href="#download" className="text-white font-sans text-[14px] font-bold tracking-[0.2em] uppercase hover:text-mintaBlue transition-colors relative group">
-                    Get App
-                    <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-mintaBlue transition-all duration-300 group-hover:w-full"></span>
-                </a> */}
-            </nav>
-
-            <div className="flex items-center gap-10">
                 <Link href="/about-us" className="text-white font-sans text-[14px] font-bold tracking-[0.2em] uppercase hover:text-mintaBlue transition-colors relative group">
                     About Us
-                    <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-mintaBlue transition-all duration-300 group-hover:w-full"></span>
+                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-mintaBlue transition-all duration-300 group-hover:w-full"></span>
                 </Link>
                 <a href="/partner-with-us" className="text-white font-sans text-[14px] font-bold tracking-[0.2em] uppercase hover:text-mintaBlue transition-colors relative group">
                     Partner with us
-                    <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-mintaBlue transition-all duration-300 group-hover:w-full"></span>
+                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-mintaBlue transition-all duration-300 group-hover:w-full"></span>
                 </a>
+            </nav>
+
+            <div className="hidden lg:flex items-center gap-10">
                 <button className="border border-white/30 px-6 py-2.5 rounded-full text-white font-sans text-[13px] font-bold tracking-[0.2em] uppercase hover:bg-mintaBlue hover:text-white hover:border-mintaBlue transition-all">
                     Download App
                 </button>
             </div>
+
+            {/* Mobile Menu Toggle */}
+            <button 
+                className="lg:hidden text-white hover:text-mintaBlue transition-all duration-300 z-[110] p-2 bg-white/5 rounded-xl border border-white/10"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Toggle Menu"
+            >
+                {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
+            </button>
+
         </header>
+
+        {/* Sidebar Overlay/Backdrop */}
+        <div 
+            className={`fixed inset-0 bg-black/80 backdrop-blur-md z-[100] lg:hidden transition-opacity duration-500 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+            onClick={() => setIsMenuOpen(false)}
+        ></div>
+
+        {/* SIDEBAR SIDE */}
+        <div className={`fixed top-0 right-0 w-[80%] sm:w-[350px] h-full bg-black z-[110] lg:hidden transition-transform duration-500 ease-in-out border-l border-white/10 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+            <div className="flex flex-col h-full overflow-y-auto">
+                {/* Header in Sidebar */}
+                <div className="flex justify-between items-center p-6 border-b border-white/10">
+                    <div className="flex items-center gap-3">
+                        <img src="/logo/logo.jpeg" alt="Logo" className="h-8 w-auto rounded-lg" />
+                        <span className="text-white font-sans text-xl font-black tracking-widest uppercase">Minta</span>
+                    </div>
+                    <button 
+                        onClick={() => setIsMenuOpen(false)}
+                        className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-all border border-white/10"
+                    >
+                        <X size={20} />
+                    </button>
+                </div>
+
+                {/* Navigation */}
+                <nav className="px-8 py-10 flex flex-col gap-8">
+                    <a 
+                        href="#hero" 
+                        onClick={() => setIsMenuOpen(false)}
+                        className="text-white font-sans text-2xl font-bold tracking-tight hover:text-mintaBlue transition-all"
+                    >
+                        Home
+                    </a>
+                    <Link 
+                        href="/about-us" 
+                        onClick={() => setIsMenuOpen(false)}
+                        className="text-white font-sans text-2xl font-bold tracking-tight hover:text-mintaBlue transition-all"
+                    >
+                        About Us
+                    </Link>
+                    <a 
+                        href="/partner-with-us" 
+                        onClick={() => setIsMenuOpen(false)}
+                        className="text-white font-sans text-2xl font-bold tracking-tight hover:text-mintaBlue transition-all"
+                    >
+                        Partner With Us
+                    </a>
+                </nav>
+
+                {/* Bottom CTA */}
+                <div className="mt-auto p-8 space-y-8 bg-white/5 border-t border-white/10">
+                    <button 
+                        className="w-full bg-mintaBlue text-white py-4 rounded-xl font-sans font-black tracking-widest uppercase text-xs hover:bg-black hover:text-mintaBlue border hover:border-mintaBlue transition-all shadow-lg shadow-mintaBlue/20"
+                        onClick={() => setIsMenuOpen(false)}
+                    >
+                        Download App
+                    </button>
+
+                    <div className="flex flex-col items-center gap-6">
+                        <div className="flex justify-center gap-6">
+                            <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:bg-mintaBlue hover:text-white hover:border-mintaBlue transition-all">
+                                <i className="fa-brands fa-facebook-f text-sm"></i>
+                            </a>
+                            <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:bg-mintaBlue hover:text-white hover:border-mintaBlue transition-all">
+                                <i className="fa-brands fa-instagram text-sm"></i>
+                            </a>
+                            <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:bg-mintaBlue hover:text-white hover:border-mintaBlue transition-all">
+                                <i className="fa-brands fa-twitter text-sm"></i>
+                            </a>
+                        </div>
+                        <p className="text-white/30 font-sans text-[10px] font-medium tracking-[0.2em] uppercase">
+                            © 2024 Minta Restro
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <section id="hero" className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden z-10 pt-20">
             <div className="absolute inset-0 z-0 overflow-hidden">
@@ -345,20 +427,20 @@ const MintaRestro = () => {
             </div>
         </section>
 
-        <section id="features" className="relative py-40 bg-white overflow-hidden min-h-[800px] flex items-center justify-center">
+        <section id="features" className="relative py-24 md:py-40 bg-white overflow-hidden min-h-[600px] md:min-h-[800px] flex items-center justify-center">
             <div className="container mx-auto px-6 relative z-10">
-                <div className="absolute left-[2%] top-[20%] food-asset">
-                    <img src="https://pngimg.com/uploads/burger_sandwich/burger_sandwich_PNG4135.png" alt="Burger" className="w-32 md:w-40 lg:w-48 drop-shadow-2xl -rotate-12" />
+                <div className="absolute left-[2%] top-[10%] md:top-[20%] food-asset opacity-40 md:opacity-100 scale-75 md:scale-100">
+                    <img src="https://pngimg.com/uploads/burger_sandwich/burger_sandwich_PNG4135.png" alt="Burger" className="w-24 md:w-40 lg:w-48 drop-shadow-2xl -rotate-12" />
                 </div>
-                <div className="absolute right-[0%] bottom-[5%] food-asset">
-                    <img src="https://pngimg.com/uploads/pizza/pizza_PNG44090.png" alt="Pizza" className="w-40 md:w-48 lg:w-56 drop-shadow-2xl -rotate-6" />
+                <div className="absolute right-[0%] bottom-[2%] md:bottom-[5%] food-asset opacity-40 md:opacity-100 scale-75 md:scale-100">
+                    <img src="https://pngimg.com/uploads/pizza/pizza_PNG44090.png" alt="Pizza" className="w-32 md:w-48 lg:w-56 drop-shadow-2xl -rotate-6" />
                 </div>
-                <div className="text-center max-w-4xl mx-auto relative z-20">
-                    <h2 className="font-serif text-6xl md:text-8xl lg:text-9xl text-gray-900 mb-10 leading-[1.1] tracking-tight">
+                <div className="text-center max-w-5xl mx-auto relative z-20">
+                    <h2 className="font-serif text-[2.5rem] sm:text-6xl md:text-8xl lg:text-9xl text-gray-900 mb-8 md:mb-10 leading-[1.1] tracking-tight">
                         Delicious <span className="text-mintaBlue">Food</span> <br /> 
                         <span className="text-mintaBlue font-light italic">from</span> Multiple Restaurants
                     </h2>
-                    <p className="text-gray-500 font-sans text-lg md:text-2xl leading-relaxed font-medium max-w-2xl mx-auto">
+                    <p className="text-gray-500 font-sans text-base md:text-2xl leading-relaxed font-medium max-w-2xl mx-auto">
                         For over a decade, we've enabled our customers to discover new tastes, delivered right to their doorstep.
                     </p>
                 </div>
@@ -371,48 +453,48 @@ const MintaRestro = () => {
             <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-mintaBlue/10 rounded-full blur-[100px] pointer-events-none animate-pulse" style={{ animationDelay: '2s' }}></div>
 
             <div className="container mx-auto px-6 text-center z-10">
-                <div className="flex flex-col items-center mb-16">
-                    <h2 className="gold-shimmer-effect font-serif text-6xl md:text-8xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
+                <div className="flex flex-col items-center mb-10 md:mb-16">
+                    <h2 className="gold-shimmer-effect font-serif text-[2.5rem] sm:text-5xl md:text-8xl lg:text-9xl font-bold tracking-tight leading-[1.1] px-4">
                         Experience the free delivery and more
                     </h2>
-                    <div className="w-32 h-1 bg-gradient-to-r from-transparent via-mintaGold to-transparent mt-4 opacity-50"></div>
+                    <div className="w-24 md:w-32 h-1 bg-gradient-to-r from-transparent via-mintaGold to-transparent mt-4 opacity-50"></div>
                     
-                    <p className="text-white/60 font-sans text-sm md:text-lg tracking-[0.2em] font-medium uppercase italic mt-10">
-                        India's Top Savings Program <br /> for Food Lovers
+                    <p className="text-white/60 font-sans text-xs md:text-lg tracking-[0.2em] font-medium uppercase italic mt-6 md:mt-10 px-6">
+                        India's Top Savings Program <br className="hidden md:block" /> for Food Lovers
                     </p>
 
-                    <div className="flex items-center justify-center gap-6 mt-16 mb-8">
-                        <div className="h-px w-12 bg-gradient-to-r from-transparent to-mintaGold/40"></div>
-                        <div className="flex items-center gap-3">
-                            <span className="text-mintaGold text-sm animate-pulse">★</span>
-                            <h3 className="text-white font-sans text-xs md:text-sm font-black tracking-[0.5em] uppercase">
+                    <div className="flex items-center justify-center gap-4 md:gap-6 mt-10 md:mt-16 mb-6 md:mb-8">
+                        <div className="h-px w-8 md:w-12 bg-gradient-to-r from-transparent to-mintaGold/40"></div>
+                        <div className="flex items-center gap-2 md:gap-3">
+                            <span className="text-mintaGold text-xs md:text-sm animate-pulse">★</span>
+                            <h3 className="text-white font-sans text-[10px] md:text-sm font-black tracking-[0.3em] md:tracking-[0.5em] uppercase">
                                 Download the app
                             </h3>
-                            <span className="text-mintaGold text-sm animate-pulse">★</span>
+                            <span className="text-mintaGold text-xs md:text-sm animate-pulse">★</span>
                         </div>
-                        <div className="h-px w-12 bg-gradient-to-l from-transparent to-mintaGold/40"></div>
+                        <div className="h-px w-8 md:w-12 bg-gradient-to-l from-transparent to-mintaGold/40"></div>
                     </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-3xl mx-auto">
-                    <div className="gold-benefit-item flex items-center gap-6 text-left group">
-                        <div className="w-20 h-20 bg-mintaGray rounded-2xl flex items-center justify-center border border-white/10 group-hover:border-mintaGold/50 transition-all p-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-3xl mx-auto px-4">
+                    <div className="gold-benefit-item flex items-center gap-4 md:gap-6 text-left group">
+                        <div className="w-16 md:w-20 h-16 md:h-20 bg-mintaGray rounded-2xl flex items-center justify-center border border-white/10 group-hover:border-mintaGold/50 transition-all p-3 shrink-0">
                             <img src="/logo/eee.avif" alt="Free Delivery" className="w-full h-full object-contain" />
                         </div>
                         <div>
                             <p className="text-mintaGold font-sans text-[10px] font-bold tracking-[0.2em] uppercase mb-1">Free Delivery</p>
-                            <h4 className="text-white font-sans font-bold text-xl mb-1">Free Delivery</h4>
-                            <p className="text-goldText opacity-80 text-sm">At all restaurants within 7 km</p>
+                            <h4 className="text-white font-sans font-bold text-lg md:text-xl mb-1">Free Delivery</h4>
+                            <p className="text-goldText opacity-80 text-xs md:text-sm">At all restaurants within 7 km</p>
                         </div>
                     </div>
-                    <div className="gold-benefit-item flex items-center gap-6 text-left group">
-                        <div className="w-20 h-20 bg-mintaGray rounded-2xl flex items-center justify-center border border-white/10 group-hover:border-mintaGold/50 transition-all p-3">
+                    <div className="gold-benefit-item flex items-center gap-4 md:gap-6 text-left group">
+                        <div className="w-16 md:w-20 h-16 md:h-20 bg-mintaGray rounded-2xl flex items-center justify-center border border-white/10 group-hover:border-mintaGold/50 transition-all p-3 shrink-0">
                             <img src="/logo/dd.avif" alt="Extra Off" className="w-full h-full object-contain" />
                         </div>
                         <div>
                             <p className="text-mintaGold font-sans text-[10px] font-bold tracking-[0.2em] uppercase mb-1">Extra Off</p>
-                            <h4 className="text-white font-sans font-bold text-xl mb-1">Extra Off</h4>
-                            <p className="text-white font-sans font-medium text-sm mb-0.5">Up to 30% extra off</p>
-                            <p className="text-goldText opacity-80 text-sm">At 5,000+ partner restaurants</p>
+                            <h4 className="text-white font-sans font-bold text-lg md:text-xl mb-1">Extra Off</h4>
+                            <p className="text-white font-sans font-medium text-xs md:text-sm mb-0.5">Up to 30% extra off</p>
+                            <p className="text-goldText opacity-80 text-xs md:text-sm">At 5,000+ partner restaurants</p>
                         </div>
                     </div>
                 </div>
@@ -427,25 +509,25 @@ const MintaRestro = () => {
                 <div className="flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-32">
                     
                     {/* Left: Content Side */}
-                    <div className="w-full lg:w-[450px] flex flex-col items-center lg:items-start text-center lg:text-left">
+                    <div className="w-full lg:w-[450px] flex flex-col items-center lg:items-start text-center lg:text-left px-4">
                         <div className="delivery-content-reveal">
-                            <h2 className="text-gray-900 font-serif text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-8">
-                                Deliver Food <br />
+                            <h2 className="text-gray-900 font-serif text-[2.5rem] md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-6 md:mb-8">
+                                Deliver Food <br className="hidden md:block" />
                                 <span className="blue-gradient-text italic font-normal">from Multiple</span> <br />
                                 Restaurants.
                             </h2>
-                            <div className="w-20 h-1.5 bg-mintaBlue rounded-full mb-12 mx-auto lg:mx-0"></div>
+                            <div className="w-16 md:w-20 h-1.5 bg-mintaBlue rounded-full mb-8 md:mb-12 mx-auto lg:mx-0"></div>
                         </div>
 
                         {/* Install Section */}
-                        <div className="delivery-content-reveal flex flex-col items-center lg:items-start gap-6">
-                            <div className="flex items-center gap-6 p-5 rounded-[2rem] bg-white border border-gray-100 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-transform hover:scale-[1.02] duration-500">
-                                <div className="p-3 bg-gray-50 rounded-2xl">
-                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=MintaRestro" alt="QR" className="w-20 h-20 opacity-90" />
+                        <div className="delivery-content-reveal flex flex-col items-center lg:items-start gap-6 w-full">
+                            <div className="flex flex-col sm:flex-row items-center gap-6 p-6 rounded-[2rem] bg-white border border-gray-100 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-transform hover:scale-[1.02] duration-500 w-full sm:w-auto">
+                                <div className="p-3 bg-gray-50 rounded-2xl shrink-0">
+                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=MintaRestro" alt="QR" className="w-20 h-20 md:w-24 md:h-24 opacity-90 mx-auto" />
                                 </div>
-                                <div className="pr-4">
-                                    <p className="text-mintaBlue font-sans font-black uppercase text-[10px] tracking-[0.3em] mb-3">Available on</p>
-                                    <div className="flex gap-5 text-gray-900">
+                                <div className="text-center sm:text-left">
+                                    <p className="text-mintaBlue font-sans font-black uppercase text-[10px] tracking-[0.3em] mb-4">Available on</p>
+                                    <div className="flex flex-wrap justify-center sm:justify-start gap-5 text-gray-900">
                                         <div className="group flex items-center gap-2 cursor-pointer">
                                             <i className="fa-brands fa-google-play text-xl group-hover:text-mintaBlue transition-colors"></i>
                                             <span className="text-[11px] font-bold font-sans uppercase tracking-wider">Play Store</span>
@@ -461,7 +543,7 @@ const MintaRestro = () => {
                     </div>
 
                     {/* Right: Phone Mockup Side */}
-                    <div className="w-full lg:w-auto flex justify-center delivery-phone-reveal relative px-4 lg:px-0 group/phone scale-[1.05]">
+                    <div className="w-full lg:w-auto flex justify-center delivery-phone-reveal relative px-4 lg:px-0 group/phone scale-90 sm:scale-[1.05]">
                         {/* Soft atmospheric backlight */}
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[500px] bg-mintaBlue/20 blur-[120px] rounded-full opacity-60 pointer-events-none"></div>
                         
@@ -473,7 +555,7 @@ const MintaRestro = () => {
                             <div className="absolute -right-[14px] top-36 w-[3px] h-16 bg-[#222] rounded-r-sm border-y border-r border-white/5"></div> {/* Power */}
 
                             {/* Main Chassis */}
-                            <div className="relative w-80 h-[660px] bg-[#050505] rounded-[3.8rem] border-[12px] border-[#1a1a1a] shadow-[0_60px_100px_-20px_rgba(0,0,0,0.6)] overflow-hidden ring-[1px] ring-white/10 group-hover/phone:shadow-mintaBlue/10 transition-all duration-1000">
+                            <div className="relative w-[280px] sm:w-80 h-[580px] sm:h-[660px] bg-[#050505] rounded-[3rem] sm:rounded-[3.8rem] border-[8px] sm:border-[12px] border-[#1a1a1a] shadow-[0_60px_100px_-20px_rgba(0,0,0,0.6)] overflow-hidden ring-[1px] ring-white/10 group-hover/phone:shadow-mintaBlue/10 transition-all duration-1000">
                                 
                                 {/* Metallic/Glass Bezel Reflection */}
                                 <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-white/5 pointer-events-none z-50"></div>

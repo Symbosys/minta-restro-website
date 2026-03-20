@@ -47,7 +47,7 @@ export default function CongratulationsPage() {
           </Link>
 
           <p className="mt-8 text-xs text-gray-400 font-bold uppercase tracking-widest">
-            Welcome to the Minta fresh family
+            Welcome to the Minta Restro family
           </p>
         </div>
       </div>

@@ -114,7 +114,7 @@ const AboutPage = () => {
               </p>
 
               <p>
-                Minta Fresh is a brand operated by Minta Minta Club Private Limited, created to 
+                Minta Restro is a brand operated by Minta Minta Club Private Limited, created to 
                 provide a revolutionary and reliable doorstep delivery of mutton, fish, and chicken 
                 and goat meat to customers.
               </p>
@@ -130,7 +130,7 @@ const AboutPage = () => {
               </p>
 
               <p>
-                Minta Fresh is a technology-enabled service that facilitates the sale of food products 
+                Minta Restro is a technology-enabled service that facilitates the sale of food products 
                 only. The platform does not provide financial services, gaming, reward-based earnings 
                 products of any kind.
               </p>

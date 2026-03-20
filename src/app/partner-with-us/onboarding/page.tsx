@@ -107,7 +107,7 @@ export default function OnboardingPage() {
       {/* Header */}
       <header className="bg-white border-b border-gray-200 py-4 px-8 flex shrink-0 items-center justify-between z-50">
         <Link href="/partner-with-us" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-          <h1 className="text-2xl font-black text-[#8719C6] tracking-tighter italic m-0">Minta Fresh</h1>
+          <h1 className="text-2xl font-black text-[#8719C6] tracking-tighter italic m-0">Minta Restro</h1>
           <span className="bg-gray-100 text-gray-500 text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wider">Partner</span>
         </Link>
         <div className="text-sm font-medium text-gray-600 hidden sm:block">
