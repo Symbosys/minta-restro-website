@@ -75,7 +75,7 @@ const RestroWebsite = () => {
       showcaseImgNames.forEach((name) => {
         const img = new window.Image();
         img.decoding = "sync";
-        img.src = `/assete/images/${name}`;
+        img.src = `/assets/images/${name}`;
       });
     }
   }, []);
@@ -356,7 +356,8 @@ const RestroWebsite = () => {
         }
 
         @keyframes floatFood3D {
-          0%, 100% {
+          0%,
+          100% {
             transform: translateY(0px) rotate(-6deg) scale(1);
           }
           50% {
@@ -364,7 +365,8 @@ const RestroWebsite = () => {
           }
         }
         @keyframes floatFoodAlt3D {
-          0%, 100% {
+          0%,
+          100% {
             transform: translateY(-14px) rotate(4deg) scale(1.02);
           }
           50% {
@@ -380,14 +382,16 @@ const RestroWebsite = () => {
 
         .shadow-3d-detached {
           filter: drop-shadow(0 16px 12px rgba(0, 0, 0, 0.44))
-                  drop-shadow(0 38px 32px rgba(0, 0, 0, 0.34))
-                  drop-shadow(0 80px 65px rgba(0, 0, 0, 0.22));
-          transition: filter 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            drop-shadow(0 38px 32px rgba(0, 0, 0, 0.34))
+            drop-shadow(0 80px 65px rgba(0, 0, 0, 0.22));
+          transition:
+            filter 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+            transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
         .shadow-3d-detached:hover {
           filter: drop-shadow(0 25px 18px rgba(0, 0, 0, 0.55))
-                  drop-shadow(0 55px 45px rgba(0, 0, 0, 0.45))
-                  drop-shadow(0 100px 85px rgba(0, 0, 0, 0.32));
+            drop-shadow(0 55px 45px rgba(0, 0, 0, 0.45))
+            drop-shadow(0 100px 85px rgba(0, 0, 0, 0.32));
           transform: translateY(-24px) scale(1.12) rotate(-2deg);
         }
 
@@ -622,13 +626,9 @@ const RestroWebsite = () => {
                   <img
                     alt="Restro logo"
                     className="relative h-9 w-auto object-contain transition-all rounded-lg"
-                    src="/logo/logo.jpeg"
+                    src="/logo/brand-logo.jpg"
                   />
                 </div>
-                <span className="hidden items-center gap-1.5 rounded-full bg-brand-primary/10 px-3 py-1 text-[11px] font-extrabold text-brand-primary sm:inline-flex">
-                  <span className="h-2 w-2 rounded-full bg-brand-primary animate-pulse-live"></span>
-                  Live
-                </span>
               </a>
 
               <div className="hidden items-center gap-1 rounded-full border border-brand-border/40 bg-brand-surface-warm/80 p-1.5 md:flex">
@@ -774,7 +774,10 @@ const RestroWebsite = () => {
           <Gsap3DShowcase />
 
           {/* --- SECTION 2: HERO OVERVIEW (ORIGINAL HERO SECTION) --- */}
-          <section id="hero-overview" className="relative overflow-hidden pt-20 pb-20 lg:pt-28 lg:pb-28">
+          <section
+            id="hero-overview"
+            className="relative overflow-hidden pt-20 pb-20 lg:pt-28 lg:pb-28"
+          >
             <div className="hero-glow pointer-events-none absolute inset-0"></div>
             {/* Ambient Animated Glow Orbs */}
             <div className="pointer-events-none absolute -right-32 -top-32 h-[420px] w-[420px] rounded-full bg-brand-primary/15 blur-3xl animate-pulse-glow"></div>
@@ -786,10 +789,6 @@ const RestroWebsite = () => {
               <div className="text-center lg:text-left">
                 {/* Eyebrow Pill */}
                 <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-brand-primary/10 border border-brand-primary/20 mb-5 shadow-xs transition-all hover:bg-brand-primary/15">
-                  <span className="relative flex h-2.5 w-2.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-primary"></span>
-                  </span>
                   <span className="font-script text-xl sm:text-2xl text-brand-primary font-bold">
                     Taste Beyond Ordinary
                   </span>
@@ -1353,7 +1352,7 @@ const RestroWebsite = () => {
           </section>
 
           {/* --- SECTION: JOURNAL --- */}
-          <section className="py-10 lg:py-14">
+          <section className="relative py-12 lg:py-16">
             <div className="mx-auto max-w-7xl px-5 lg:px-8">
               <div className="mb-8 flex justify-center">
                 <div className="max-w-2xl text-center mx-auto">
@@ -1369,31 +1368,31 @@ const RestroWebsite = () => {
                 </div>
               </div>
 
-              <div className="grid gap-5 lg:grid-cols-12 lg:h-[340px]">
+              <div className="grid gap-4 lg:grid-cols-12 lg:h-[280px]">
                 <div className="group relative h-64 sm:h-72 lg:h-full overflow-hidden rounded-3xl border border-brand-border bg-brand-surface-elevated shadow-lg lg:col-span-7">
                   <img
                     alt="The art of a good biryani."
-                    className="object-cover h-full w-full transition-transform duration-500 group-hover:scale-105"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     src="https://images.pexels.com/photos/15059053/pexels-photo-15059053.jpeg?auto=compress&cs=tinysrgb&w=1400"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                  <div className="absolute bottom-5 left-6 right-6">
+                  <div className="absolute bottom-4 left-6 right-6">
                     <p className="font-script text-2xl sm:text-3xl text-white">
                       The art of a good biryani.
                     </p>
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-4 lg:col-span-5 lg:h-full">
+                <div className="flex flex-col gap-3 lg:col-span-5 lg:h-full">
                   <div className="group relative h-36 sm:h-40 lg:h-auto lg:flex-1 overflow-hidden rounded-3xl border border-brand-border bg-brand-surface-elevated shadow-md transition-all duration-300 hover:shadow-lg">
                     <img
                       alt="Crisp Masala Dosa"
-                      className="object-cover h-full w-full transition-transform duration-500 group-hover:scale-105"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       src="https://images.pexels.com/photos/20422138/pexels-photo-20422138.jpeg?auto=compress&cs=tinysrgb&w=1000"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                    <div className="absolute bottom-4 left-5 right-5">
-                      <p className="font-script text-xl sm:text-2xl text-white">
+                    <div className="absolute bottom-3 left-5 right-5">
+                      <p className="font-script text-lg sm:text-xl text-white">
                         Crisp Masala Dosa
                       </p>
                     </div>
@@ -1402,12 +1401,12 @@ const RestroWebsite = () => {
                   <div className="group relative h-36 sm:h-40 lg:h-auto lg:flex-1 overflow-hidden rounded-3xl border border-brand-border bg-brand-surface-elevated shadow-md transition-all duration-300 hover:shadow-lg">
                     <img
                       alt="South Indian Traditions"
-                      className="object-cover h-full w-full transition-transform duration-500 group-hover:scale-105"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       src="https://images.pexels.com/photos/20422123/pexels-photo-20422123.jpeg?auto=compress&cs=tinysrgb&w=1000"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                    <div className="absolute bottom-4 left-5 right-5">
-                      <p className="font-script text-xl sm:text-2xl text-white">
+                    <div className="absolute bottom-3 left-5 right-5">
+                      <p className="font-script text-lg sm:text-xl text-white">
                         South Indian Traditions
                       </p>
                     </div>
@@ -1418,7 +1417,7 @@ const RestroWebsite = () => {
           </section>
 
           {/* --- SECTION: #CITIES --- */}
-          <section id="cities" className="py-20 lg:py-28">
+          <section id="cities" className="relative py-16 lg:py-24">
             <div className="mx-auto max-w-5xl px-5 lg:px-8">
               <div className="mb-12 text-center">
                 <p className="mb-2 font-script text-2xl text-[#f97316] sm:text-3xl">
@@ -1460,8 +1459,8 @@ const RestroWebsite = () => {
           {/* --- SECTION: #TRACKING (LIVE TRACKING) --- */}
           <section id="tracking" className="py-20 lg:py-28">
             <div className="mx-auto max-w-7xl px-5 lg:px-8">
-              <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
-                <div>
+              <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-8 xl:gap-12">
+                <div className="lg:col-span-5">
                   <div className="max-w-2xl text-left">
                     <p
                       id="tracking-heading"
@@ -1585,9 +1584,10 @@ const RestroWebsite = () => {
                   </ul>
                 </div>
 
-                {/* Right Column: Phone Mockup */}
-                <div className="flex justify-center lg:justify-end">
-                  <div className="relative mx-auto w-[280px] sm:w-[300px] animate-float">
+                {/* Right Column: Dual Phone Mockups */}
+                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-end gap-6 sm:gap-6 lg:gap-5 xl:gap-6 lg:col-span-7">
+                  {/* Phone 1: Order Status Steps Screen (Untouched) */}
+                  <div className="relative mx-auto w-[270px] sm:w-[280px] xl:w-[295px] animate-float">
                     <div className="relative rounded-[2.5rem] border-[6px] border-brand-text bg-brand-text p-2 shadow-2xl shadow-brand-primary/20">
                       <div className="absolute left-1/2 top-3 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-brand-text"></div>
                       <div className="overflow-hidden rounded-[2rem] bg-brand-surface-warm">
@@ -1720,6 +1720,303 @@ const RestroWebsite = () => {
                       </div>
                     </div>
                     <div className="absolute -inset-4 -z-10 rounded-[3rem] bg-brand-primary/10 blur-2xl"></div>
+                  </div>
+
+                  {/* Phone 2: Delivery Boy & Live Map Tracking Screen */}
+                  <div className="relative mx-auto w-[270px] sm:w-[280px] xl:w-[295px] animate-float-reverse sm:mt-6 lg:mt-8">
+                    <div className="relative rounded-[2.5rem] border-[6px] border-brand-text bg-brand-text p-2 shadow-2xl shadow-brand-primary/20">
+                      <div className="absolute left-1/2 top-3 z-20 h-5 w-24 -translate-x-1/2 rounded-full bg-brand-text"></div>
+                      <div className="overflow-hidden rounded-[2rem] bg-slate-50 flex flex-col min-h-[480px]">
+                        {/* Top Bar inside Phone */}
+                        <div className="relative z-10 flex items-center justify-between bg-white px-4 pb-2 pt-9 border-b border-slate-100">
+                          <div className="flex items-center gap-2">
+                            <div className="h-6 w-6 rounded-full bg-slate-100 flex items-center justify-center text-brand-text">
+                              <svg
+                                className="h-3.5 w-3.5"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2.5}
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M15 19l-7-7 7-7"
+                                />
+                              </svg>
+                            </div>
+                            <div>
+                              <p className="text-xs font-bold text-brand-text leading-none">
+                                Live Map
+                              </p>
+                              <p className="text-[10px] text-brand-text-muted">
+                                Order #TG-4821
+                              </p>
+                            </div>
+                          </div>
+
+                          <span className="flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600">
+                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            GPS Live
+                          </span>
+                        </div>
+
+                        {/* Map Area */}
+                        <div className="relative h-[220px] w-full bg-[#eef2f6] overflow-hidden select-none">
+                          {/* Vector Map Roads & Landmarks */}
+                          <svg
+                            className="absolute inset-0 h-full w-full"
+                            viewBox="0 0 300 220"
+                            preserveAspectRatio="none"
+                          >
+                            <defs>
+                              <pattern
+                                id="grid-pattern-delivery"
+                                width="20"
+                                height="20"
+                                patternUnits="userSpaceOnUse"
+                              >
+                                <rect width="20" height="20" fill="#f1f5f9" />
+                                <path
+                                  d="M 20 0 L 0 0 0 20"
+                                  fill="none"
+                                  stroke="#e2e8f0"
+                                  strokeWidth="0.8"
+                                />
+                              </pattern>
+                            </defs>
+                            <rect
+                              width="300"
+                              height="220"
+                              fill="url(#grid-pattern-delivery)"
+                            />
+
+                            {/* Green Park Areas */}
+                            <rect
+                              x="18"
+                              y="18"
+                              width="75"
+                              height="55"
+                              rx="8"
+                              fill="#dcfce7"
+                              opacity="0.8"
+                            />
+                            <rect
+                              x="210"
+                              y="20"
+                              width="75"
+                              height="60"
+                              rx="8"
+                              fill="#e0f2fe"
+                              opacity="0.8"
+                            />
+                            <rect
+                              x="190"
+                              y="130"
+                              width="95"
+                              height="75"
+                              rx="8"
+                              fill="#dcfce7"
+                              opacity="0.8"
+                            />
+                            <rect
+                              x="20"
+                              y="145"
+                              width="80"
+                              height="60"
+                              rx="8"
+                              fill="#fef3c7"
+                              opacity="0.7"
+                            />
+
+                            {/* Roads */}
+                            <path
+                              d="M 0 95 Q 150 90 300 95"
+                              stroke="#ffffff"
+                              strokeWidth="16"
+                              fill="none"
+                            />
+                            <path
+                              d="M 0 95 Q 150 90 300 95"
+                              stroke="#cbd5e1"
+                              strokeWidth="1"
+                              strokeDasharray="4 4"
+                              fill="none"
+                            />
+                            <path
+                              d="M 115 0 L 115 220"
+                              stroke="#ffffff"
+                              strokeWidth="14"
+                              fill="none"
+                            />
+                            <path
+                              d="M 205 0 L 205 220"
+                              stroke="#ffffff"
+                              strokeWidth="14"
+                              fill="none"
+                            />
+                            <path
+                              d="M 0 160 Q 150 165 300 160"
+                              stroke="#ffffff"
+                              strokeWidth="12"
+                              fill="none"
+                            />
+
+                            {/* Delivery Route Path */}
+                            <path
+                              d="M 50 95 Q 115 95 115 60 T 205 60 L 205 140"
+                              fill="none"
+                              stroke="#0049ad"
+                              strokeWidth="4"
+                              strokeDasharray="6 4"
+                              strokeLinecap="round"
+                            />
+                          </svg>
+
+                          {/* Restaurant Marker (Start) */}
+                          <div className="absolute left-[38px] top-[75px] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-none">
+                            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-amber-500 text-white shadow-md ring-2 ring-white">
+                              <span className="text-xs">🍳</span>
+                            </div>
+                            <span className="mt-0.5 rounded bg-white/90 px-1.5 py-0.5 text-[8px] font-bold text-brand-text shadow-sm border border-slate-200">
+                              Minta Restro
+                            </span>
+                          </div>
+
+                          {/* Customer Home Marker (Destination) */}
+                          <div className="absolute left-[205px] top-[148px] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-none">
+                            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-rose-500 text-white shadow-md ring-2 ring-white animate-bounce">
+                              <span className="text-xs">🏠</span>
+                            </div>
+                            <span className="mt-0.5 rounded bg-white/90 px-1.5 py-0.5 text-[8px] font-bold text-rose-600 shadow-sm border border-slate-200">
+                              Your Home
+                            </span>
+                          </div>
+
+                          {/* Delivery Boy Rider (On Route) */}
+                          <div className="absolute left-[138px] top-[54px] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-none">
+                            {/* Pulsing Radar Ring */}
+                            <span className="absolute -inset-2 rounded-full bg-blue-500/30 animate-ping"></span>
+                            {/* Scooter Icon Badge */}
+                            <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-brand-primary text-white shadow-lg ring-2 ring-white">
+                              <svg
+                                className="h-4 w-4"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path d="M19 13c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm0 4.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM7.5 13c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm0 4.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM17.5 6h-2.12l-1.89-3.79c-.19-.38-.58-.63-1.01-.63H9.5c-.55 0-1 .45-1 1s.45 1 1 1h2.24l1.5 3H8.5c-.55 0-1 .45-1 1s.45 1 1 1h4.63l1.5 3H5.2c-.61 0-1.18.27-1.57.73L1.13 14.5c-.38.45-.33 1.13.12 1.51.45.38 1.13.33 1.51-.12L5.2 13h2.3l-1.5 3c-.15.3-.2.64-.15.97.16 1.09 1.17 1.86 2.27 1.7 1.02-.15 1.78-.97 1.88-2H14c.28 0 .53-.11.71-.29l3.5-3.5c.18-.18.29-.43.29-.71V7c0-.55-.45-1-1-1z" />
+                              </svg>
+                            </div>
+                            {/* Live Status Floating Tooltip */}
+                            <div className="mt-1 whitespace-nowrap rounded-full bg-brand-text px-2 py-0.5 text-[8px] font-bold text-white shadow-md flex items-center gap-1">
+                              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                              Rahul (8 min away)
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Bottom Delivery Partner Sheet */}
+                        <div className="flex-1 bg-white p-3.5 flex flex-col justify-between border-t border-slate-100">
+                          {/* ETA & Distance Info */}
+                          <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+                            <div>
+                              <p className="text-[10px] font-medium text-brand-text-muted">
+                                Estimated Delivery
+                              </p>
+                              <p className="text-base font-extrabold text-brand-primary">
+                                12:55 PM{" "}
+                                <span className="text-xs font-normal text-emerald-600">
+                                  (12 mins)
+                                </span>
+                              </p>
+                            </div>
+                            <div className="text-right">
+                              <span className="rounded-md bg-brand-surface-warm px-2 py-1 text-[10px] font-bold text-brand-text border border-brand-border/60">
+                                2.4 km away
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Delivery Partner Profile Card */}
+                          <div className="py-2.5 flex items-center justify-between">
+                            <div className="flex items-center gap-2.5">
+                              <div className="relative">
+                                <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-brand-primary to-blue-400 flex items-center justify-center text-white font-bold text-sm shadow-sm">
+                                  🛵
+                                </div>
+                                <span className="absolute -bottom-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500 text-white text-[9px] font-bold ring-1 ring-white">
+                                  ✓
+                                </span>
+                              </div>
+
+                              <div>
+                                <div className="flex items-center gap-1.5">
+                                  <p className="text-xs font-bold text-brand-text">
+                                    Rahul Kumar
+                                  </p>
+                                  <span className="rounded bg-amber-100 px-1 py-0.2 text-[9px] font-bold text-amber-800">
+                                    ★ 4.9
+                                  </span>
+                                </div>
+                                <p className="text-[10px] text-brand-text-muted">
+                                  Honda Activa · JH-01-AB-4821
+                                </p>
+                              </div>
+                            </div>
+
+                            {/* Quick Action Buttons */}
+                            <div className="flex items-center gap-1.5">
+                              <div
+                                aria-label="Call delivery partner"
+                                className="h-8 w-8 rounded-full bg-emerald-500 flex items-center justify-center text-white shadow-sm hover:bg-emerald-600 transition-colors cursor-pointer"
+                              >
+                                <svg
+                                  className="h-4 w-4"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                  strokeWidth={2}
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                                  />
+                                </svg>
+                              </div>
+                              <div
+                                aria-label="Message delivery partner"
+                                className="h-8 w-8 rounded-full bg-brand-primary flex items-center justify-center text-white shadow-sm hover:bg-brand-primary-dark transition-colors cursor-pointer"
+                              >
+                                <svg
+                                  className="h-4 w-4"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                  strokeWidth={2}
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Safety & Hygiene Verified Footer */}
+                          <div className="rounded-lg bg-emerald-50/80 px-2.5 py-1.5 flex items-center gap-2 border border-emerald-100">
+                            <span className="text-xs">🛡️</span>
+                            <p className="text-[9px] text-emerald-800 font-medium leading-tight">
+                              Partner vaccinated & temperature verified. Contactless
+                              delivery enabled.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="absolute -inset-4 -z-10 rounded-[3rem] bg-brand-accent/15 blur-2xl"></div>
                   </div>
                 </div>
               </div>
@@ -1888,7 +2185,7 @@ const RestroWebsite = () => {
                 <img
                   alt="Restro logo"
                   className="mb-4 h-12 w-auto object-contain rounded-lg"
-                  src="/logo/logo.jpeg"
+                  src="/logo/brand-logo.jpg"
                 />
                 <p className="font-script text-2xl text-brand-primary-light">
                   Taste Beyond Ordinary

@@ -110,42 +110,42 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
-          href="/assete/images/biryani.png"
+          href="/assets/images/biryani.png"
           fetchPriority="high"
           type="image/png"
         />
         <link
           rel="preload"
           as="image"
-          href="/assete/images/dosa.png"
+          href="/assets/images/dosa.png"
           fetchPriority="high"
           type="image/png"
         />
         <link
           rel="preload"
           as="image"
-          href="/assete/images/idli.png"
+          href="/assets/images/idli.png"
           fetchPriority="high"
           type="image/png"
         />
         <link
           rel="preload"
           as="image"
-          href="/assete/images/indianthali.png"
+          href="/assets/images/indianthali.png"
           fetchPriority="high"
           type="image/png"
         />
         <link
           rel="preload"
           as="image"
-          href="/assete/images/muttonbiryani.png"
+          href="/assets/images/muttonbiryani.png"
           fetchPriority="high"
           type="image/png"
         />
         <link
           rel="preload"
           as="image"
-          href="/assete/images/thali.png"
+          href="/assets/images/thali.png"
           fetchPriority="high"
           type="image/png"
         />

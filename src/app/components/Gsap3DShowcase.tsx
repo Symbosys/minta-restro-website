@@ -11,6 +11,7 @@ export default function Gsap3DShowcase() {
   const shadowsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const hoverProgress = useRef<number[]>(showcaseProducts.map(() => 0));
 
   const stateRef = useRef({
     rotation: 0,
@@ -107,6 +108,7 @@ export default function Gsap3DShowcase() {
 
     let time = 0;
     let lastReportedIdx = -1;
+    let autoSpeed = 0.007;
 
     const updateTicker = (_timeSec: number, deltaTimeMs: number) => {
       const dt = Math.min(deltaTimeMs / 16.6, 2.5);
@@ -117,8 +119,11 @@ export default function Gsap3DShowcase() {
       } else if (Math.abs(stateRef.current.dragVelocity) > 0.0001) {
         stateRef.current.rotation += stateRef.current.dragVelocity * dt;
         stateRef.current.dragVelocity *= Math.pow(0.93, dt);
-      } else if (!stateRef.current.isHovered) {
-        stateRef.current.rotation += 0.01 * dt;
+        autoSpeed = 0.007;
+      } else {
+        const targetSpeed = stateRef.current.isHovered ? 0 : 0.007;
+        autoSpeed += (targetSpeed - autoSpeed) * 0.08 * dt;
+        stateRef.current.rotation += autoSpeed * dt;
       }
 
       currentTiltX += (targetTiltX - currentTiltX) * 0.08 * dt;
@@ -153,20 +158,25 @@ export default function Gsap3DShowcase() {
 
         const opacity = 0.45 + normalizedZ * 0.55;
 
-        const isThisHovered = stateRef.current.hoveredIndex === i;
-        const finalScale = isThisHovered ? scale * 1.12 : scale;
-        const finalY = isThisHovered ? floatY - 20 : floatY;
+        // Smooth continuous lerp for hover lift and scale
+        const targetHp = stateRef.current.hoveredIndex === i ? 1 : 0;
+        hoverProgress.current[i] +=
+          (targetHp - hoverProgress.current[i]) * 0.12 * dt;
+        const hp = hoverProgress.current[i];
+
+        const finalScale = scale * (1 + 0.1 * hp);
+        const finalY = floatY - 16 * hp;
 
         el.style.transform = `translate3d(${x.toFixed(1)}px, ${finalY.toFixed(1)}px, ${z.toFixed(1)}px) rotateY(${rotY.toFixed(1)}deg) rotateZ(${rotZ.toFixed(1)}deg) scale(${finalScale.toFixed(3)})`;
-        el.style.zIndex = `${Math.round(z + radiusZ + (isThisHovered ? 600 : 0))}`;
+        el.style.zIndex = `${Math.round(z + radiusZ + hp * 600)}`;
         el.style.opacity = `${opacity.toFixed(2)}`;
 
         const shadow = shadowsRef.current[i];
         if (shadow) {
           const shadowScale =
-            (0.7 + normalizedZ * 0.6) * (isThisHovered ? 1.25 : 1);
+            (0.7 + normalizedZ * 0.6) * (1 + 0.18 * hp);
           const shadowOpacity =
-            (0.15 + normalizedZ * 0.35) * (isThisHovered ? 0.65 : 1);
+            (0.15 + normalizedZ * 0.35) * (1 + 0.3 * hp);
           shadow.style.transform = `scale(${shadowScale.toFixed(2)}, 0.45)`;
           shadow.style.opacity = `${shadowOpacity.toFixed(2)}`;
         }
@@ -237,25 +247,22 @@ export default function Gsap3DShowcase() {
       <div className="relative z-20 flex flex-col items-center justify-center pointer-events-auto">
         <a
           href="#top"
-          className="group flex flex-col items-center gap-1.5 transition-transform duration-300 hover:scale-105"
+          className="group relative flex items-center justify-center transition-transform duration-300 hover:scale-105"
         >
-          <div className="relative p-1 rounded-2xl bg-white/70 backdrop-blur-md shadow-md border border-brand-border/40 transition-all duration-300 group-hover:shadow-lg group-hover:border-brand-primary/40">
+          <div className="relative p-1 rounded-2xl bg-white/75 backdrop-blur-md shadow-md border border-brand-border/40 transition-all duration-300 group-hover:shadow-lg group-hover:border-brand-primary/40">
             <img
-              src="/logo/logo.jpeg"
+              src="/logo/brand-logo.jpg"
               alt="Minta Restro Logo"
-              className="h-11 w-11 sm:h-13 sm:w-13 md:h-14 md:w-14 rounded-xl object-contain shadow-sm"
+              className="h-10 sm:h-12 md:h-14 w-auto object-contain rounded-xl shadow-sm"
             />
           </div>
-          <span className="font-serif text-xs sm:text-sm font-extrabold uppercase tracking-[0.22em] text-brand-primary transition-colors group-hover:text-brand-primary-dark">
-            Minta Restro
-          </span>
         </a>
       </div>
 
       {/* 3D Holographic Stage */}
       <div
         ref={stageRef}
-        className="relative z-10 w-full max-w-5xl h-[340px] sm:h-[400px] flex items-center justify-center my-auto [transform-style:preserve-3d] transition-transform duration-75 ease-out"
+        className="relative z-10 w-full max-w-5xl h-[340px] sm:h-[400px] flex items-center justify-center my-auto [transform-style:preserve-3d]"
       >
         {showcaseProducts.map((prod, idx) => (
           <div
@@ -272,7 +279,7 @@ export default function Gsap3DShowcase() {
               stateRef.current.isHovered = false;
               stateRef.current.hoveredIndex = -1;
             }}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center [transform-style:preserve-3d] cursor-pointer will-change-transform"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center [transform-style:preserve-3d] cursor-pointer will-change-transform p-4 sm:p-6"
           >
             <img
               src={prod.image}
