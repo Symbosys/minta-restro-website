@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.svg",
   },
+  verification: {
+    google: "nSsWDLrheX-E6n_4bQVNBbjRiEs8GvhKLdTKvfTnW78"
+  }
 };
 
 export default function RootLayout({
@@ -27,6 +30,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preload" as="image" href="/assete/images/biryani.png" fetchPriority="high" type="image/png" />
+        <link rel="preload" as="image" href="/assete/images/dosa.png" fetchPriority="high" type="image/png" />
+        <link rel="preload" as="image" href="/assete/images/idli.png" fetchPriority="high" type="image/png" />
+        <link rel="preload" as="image" href="/assete/images/indianthali.png" fetchPriority="high" type="image/png" />
+        <link rel="preload" as="image" href="/assete/images/muttonbiryani.png" fetchPriority="high" type="image/png" />
+        <link rel="preload" as="image" href="/assete/images/thali.png" fetchPriority="high" type="image/png" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

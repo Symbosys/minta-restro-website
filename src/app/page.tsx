@@ -4,6 +4,8 @@ import Head from "next/head";
 import Link from "next/link";
 import Script from "next/script";
 import { useEffect, useState } from "react";
+import { showcaseProducts } from "./showcaseData";
+import Gsap3DShowcase from "./components/Gsap3DShowcase";
 
 const RestroWebsite = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -58,6 +60,25 @@ const RestroWebsite = () => {
       price: "₹149",
     },
   ];
+
+  useEffect(() => {
+    // Preload showcase images immediately into browser cache
+    if (typeof window !== "undefined") {
+      const showcaseImgNames = [
+        "biryani.png",
+        "dosa.png",
+        "idli.png",
+        "indianthali.png",
+        "muttonbiryani.png",
+        "thali.png",
+      ];
+      showcaseImgNames.forEach((name) => {
+        const img = new window.Image();
+        img.decoding = "sync";
+        img.src = `/assete/images/${name}`;
+      });
+    }
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -302,6 +323,72 @@ const RestroWebsite = () => {
 
         .section-warm {
           background-color: #f5f2eb;
+        }
+
+        @keyframes spinSlow {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        .animate-spin-slow {
+          animation: spinSlow 36s linear infinite;
+        }
+
+        @keyframes marqueeScroll {
+          0% {
+            transform: translateX(0%);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
+        .animate-marquee-infinite {
+          display: flex;
+          flex-shrink: 0;
+          animation: marqueeScroll 22s linear infinite;
+          will-change: transform;
+        }
+        .marquee-group:hover .animate-marquee-infinite {
+          animation-play-state: paused;
+        }
+
+        @keyframes floatFood3D {
+          0%, 100% {
+            transform: translateY(0px) rotate(-6deg) scale(1);
+          }
+          50% {
+            transform: translateY(-18px) rotate(-3deg) scale(1.03);
+          }
+        }
+        @keyframes floatFoodAlt3D {
+          0%, 100% {
+            transform: translateY(-14px) rotate(4deg) scale(1.02);
+          }
+          50% {
+            transform: translateY(4px) rotate(1deg) scale(0.99);
+          }
+        }
+        .food-float-1 {
+          animation: floatFood3D 5.5s ease-in-out infinite;
+        }
+        .food-float-2 {
+          animation: floatFoodAlt3D 6.5s ease-in-out infinite;
+        }
+
+        .shadow-3d-detached {
+          filter: drop-shadow(0 16px 12px rgba(0, 0, 0, 0.44))
+                  drop-shadow(0 38px 32px rgba(0, 0, 0, 0.34))
+                  drop-shadow(0 80px 65px rgba(0, 0, 0, 0.22));
+          transition: filter 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .shadow-3d-detached:hover {
+          filter: drop-shadow(0 25px 18px rgba(0, 0, 0, 0.55))
+                  drop-shadow(0 55px 45px rgba(0, 0, 0, 0.45))
+                  drop-shadow(0 100px 85px rgba(0, 0, 0, 0.32));
+          transform: translateY(-24px) scale(1.12) rotate(-2deg);
         }
 
         @keyframes pulseLive {
@@ -683,8 +770,11 @@ const RestroWebsite = () => {
         )}
 
         <main id="top">
-          {/* --- HERO SECTION --- */}
-          <section className="relative overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-28">
+          {/* --- SECTION 1: GSAP 3D SHOWCASE HERO --- */}
+          <Gsap3DShowcase />
+
+          {/* --- SECTION 2: HERO OVERVIEW (ORIGINAL HERO SECTION) --- */}
+          <section id="hero-overview" className="relative overflow-hidden pt-20 pb-20 lg:pt-28 lg:pb-28">
             <div className="hero-glow pointer-events-none absolute inset-0"></div>
             {/* Ambient Animated Glow Orbs */}
             <div className="pointer-events-none absolute -right-32 -top-32 h-[420px] w-[420px] rounded-full bg-brand-primary/15 blur-3xl animate-pulse-glow"></div>
