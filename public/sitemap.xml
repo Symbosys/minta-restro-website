@@ -1,32 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Homepage -->
-  <url>
-    <loc>https://www.mintarestro.com/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+import type { MetadataRoute } from "next";
 
-  <!-- Privacy Policy -->
-  <url>
-    <loc>https://www.mintarestro.com/privacy-policy</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = "https://www.mintarestro.com";
 
-  <!-- Terms and Conditions -->
-  <url>
-    <loc>https://www.mintarestro.com/terms-and-condition</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <!-- Contact Us -->
-  <url>
-    <loc>https://www.mintarestro.com/contact-us</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-</urlset>
+  return [
+    {
+      url: baseUrl,
+      changeFrequency: "weekly",
+      priority: 1,
+    },
+    {
+      url: `${baseUrl}/privacy-policy`,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/terms-and-condition`,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/contact-us`,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+  ];
+}
