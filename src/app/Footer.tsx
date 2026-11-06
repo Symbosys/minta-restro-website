@@ -184,6 +184,35 @@ const Footer = () => {
         </div>
 
       </div>
+
+      {/* Bottom Sub-footer: Divider & Legal Row */}
+      <div className="max-w-7xl mx-auto mt-10 pt-6 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/60">
+        <p>
+          &copy; {currentYear} Restro &mdash; Taste Beyond Ordinary
+        </p>
+        <div className="flex items-center gap-2">
+          <Link
+            href="/privacy-policy"
+            className="hover:text-white transition-colors"
+          >
+            Privacy
+          </Link>
+          <span className="text-white/40 select-none">&bull;</span>
+          <Link
+            href="/terms-and-condition"
+            className="hover:text-white transition-colors"
+          >
+            Terms
+          </Link>
+          <span className="text-white/40 select-none">&bull;</span>
+          <Link
+            href="/contact-us"
+            className="hover:text-white transition-colors"
+          >
+            Contact
+          </Link>
+        </div>
+      </div>
     </footer>
   );
 };
