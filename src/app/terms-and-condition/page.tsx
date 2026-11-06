@@ -2,6 +2,7 @@
 
 import Head from 'next/head';
 import Script from 'next/script';
+import Navbar from '../Navbar';
 import Footer from '../Footer';
 
 const COLORS = {
@@ -63,30 +64,13 @@ const MintaTermsAndConditions = () => {
         `}
       </Script>
 
-    <div style={{ backgroundColor: COLORS.background }} className="min-h-screen flex flex-col font-sans">
+    <div style={{ backgroundColor: COLORS.background }} className="min-h-screen flex flex-col justify-between font-sans">
       
       {/* --- HEADER --- */}
-      <nav 
-        style={{ backgroundColor: COLORS.white, borderBottom: `1px solid ${COLORS.LITE_GRAY}30` }} 
-        className="sticky top-0 z-50 flex justify-between items-center px-6 py-4 shadow-sm"
-      >
-        <div className="flex items-baseline cursor-pointer">
-          <span style={{ color: COLORS.textPrimary }} className="text-2xl font-black tracking-tighter">MINTA RESTRO</span>
-          <span style={{ color: COLORS.primary }} className="text-3xl font-black leading-none">.</span>
-        </div>
-        <button 
-          style={{ 
-            borderColor: COLORS.LITE_GRAY, 
-            color: COLORS.textPrimary 
-          }}
-          className="border rounded-full px-6 py-2 text-xs font-bold tracking-widest hover:bg-gray-50 transition-colors uppercase"
-        >
-          Download App
-        </button>
-      </nav>
+      <Navbar />
 
       {/* --- MAIN CONTENT AREA --- */}
-      <main className="flex-grow py-10 px-4 md:px-8 flex items-center justify-center">
+      <main className="flex-grow pt-28 pb-10 px-4 md:px-8 flex items-center justify-center">
         
         <div 
           style={{ backgroundColor: COLORS.white, borderColor: COLORS.LITE_GRAY }} 

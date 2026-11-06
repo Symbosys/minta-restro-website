@@ -1,10 +1,12 @@
 import Head from 'next/head';
 import Script from 'next/script';
+import Navbar from '../Navbar';
 import Footer from '../Footer';
 
 export default function ContactUs() {
   return (
-    <div className="bg-[#f8f8f8] min-h-screen">
+    <div className="bg-[#f8f8f8] min-h-screen flex flex-col justify-between">
+      <Navbar />
       <Head>
         <title>Contact Us</title>
         <meta name="description" content="Contact us page" />
@@ -41,8 +43,9 @@ export default function ContactUs() {
         `}
       </Script>
 
-      {/* Top Banner Section */}
-      <div className="bg-[#e0f2ff] py-12 text-center">
+      <main className="flex-grow">
+        {/* Top Banner Section */}
+        <div className="bg-[#e0f2ff] pt-28 pb-12 text-center">
         <div className="container mx-auto px-4">
           <h4 className="text-[#0049AD] text-sm font-bold uppercase tracking-widest mb-4">
             Get In Touch
@@ -90,6 +93,7 @@ export default function ContactUs() {
           </div>
         </div>
       </div>
+      </main>
 
       <Footer />
     </div>

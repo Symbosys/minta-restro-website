@@ -1,95 +1,188 @@
-import { Facebook, Instagram } from 'lucide-react';
-import Image from 'next/image';
+import { Facebook, Instagram } from "lucide-react";
+import Link from "next/link";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-mintaBlue py-24 px-6 md:px-12 border-t border-white/10">
-      <div className="max-w-7xl mx-auto flex flex-col gap-12">
-        {/* Main Footer Row: Branding | Policies | Socials */}
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-12 lg:gap-16">
+    <footer
+      style={{ fontFamily: "'Montserrat', sans-serif" }}
+      className="w-full bg-[#0049ad] py-10 lg:py-12 px-6 sm:px-10 lg:px-12 border-t border-white/10 text-white mt-auto"
+    >
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-8 xl:gap-12">
+        
+        {/* Left: Branding & Legal Entity */}
+        <div className="flex flex-col items-start min-w-[220px] max-w-xs shrink-0">
+          <img
+            src="/logo/brand-logo.jpg"
+            alt="Minta Restro"
+            className="h-10 sm:h-12 w-auto object-contain"
+          />
+          <p className="mt-3 text-[11px] font-bold uppercase tracking-[0.18em] text-white">
+            A UNIT OF MINTA CLUB PVT. LTD
+          </p>
+          <p className="mt-1 text-[9.5px] font-medium tracking-[0.14em] uppercase text-white/80">
+            &copy; {currentYear} MINTA RESTRO. ALL RIGHTS RESERVED.
+          </p>
+        </div>
+
+        {/* Vertical Divider 1 */}
+        <div className="hidden lg:block w-[1px] h-24 bg-white/25 shrink-0 self-center" />
+
+        {/* Middle: 3 Columns (Company, Policies, Business) */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 lg:gap-8 xl:gap-12 grow max-w-2xl">
           
-          {/* Left: Branding */}
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left min-w-[200px]">
-            <Image 
-              src="/logo/tt2.jpeg" 
-              alt="Minta Restro" 
-              height={180}
-              width={180}
-              className="lg:-ml-7 brightness-110 contrast-110"
-            />
-            <p className="text-white text-[12px] md:text-[14px] font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] px-4 lg:px-0">
-              A Unit of Minta Club Pvt. Ltd
-            </p>
-            <p className="text-white/80 text-[10px] md:text-[12px] uppercase tracking-[0.2em] md:tracking-[0.3em] font-medium mt-2">
-              © {currentYear} Minta Restro. All rights reserved.
-            </p>
+          {/* Column 1: Company */}
+          <div className="flex flex-col">
+            <h3 className="text-sm font-bold text-white tracking-wide">
+              Company
+            </h3>
+            <div className="w-6 h-[2px] bg-white mt-1.5 mb-3 rounded-full" />
+            <ul className="space-y-2 text-xs text-white/85">
+              <li>
+                <Link
+                  href="/about-us"
+                  className="hover:text-white hover:underline transition-colors"
+                >
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contact-us"
+                  className="hover:text-white hover:underline transition-colors"
+                >
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="/#faq"
+                  className="hover:text-white hover:underline transition-colors"
+                >
+                  FAQ
+                </a>
+              </li>
+            </ul>
           </div>
 
-          {/* Center: Policy Links */}
-          <nav className="flex flex-wrap items-center justify-center gap-x-4 md:gap-x-6 gap-y-4 text-[11px] md:text-[13px] font-bold uppercase tracking-[0.15em] md:tracking-[0.2em] text-white px-4 lg:px-8 max-w-2xl">
-            <a href="/terms-and-condition" className="hover:text-black transition-all duration-300 whitespace-nowrap relative group">
-              Terms & Conditions
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-black transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <span className="hidden md:block w-1 h-1 bg-white/20 rounded-full"></span>
-            
-            <a href="/privacy-policy" className="hover:text-black transition-all duration-300 whitespace-nowrap relative group">
-              Privacy Policy
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-black transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <span className="hidden md:block w-1 h-1 bg-white/20 rounded-full"></span>
-            
-            <a href="/business-complince" className="hover:text-black transition-all duration-300 whitespace-nowrap relative group">
-              Business & Payment
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-black transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <span className="hidden md:block w-1 h-1 bg-white/20 rounded-full"></span>
-            
-            <a href="/partner-vendor" className="hover:text-black transition-all duration-300 whitespace-nowrap relative group">
-              Partner & Vendor
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-black transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <span className="hidden md:block w-1 h-1 bg-white/20 rounded-full"></span>
-            
-            <a href="/csr-policy" className="hover:text-black transition-all duration-300 whitespace-nowrap relative group">
-              CSR Policy
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-black transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <span className="hidden md:block w-1 h-1 bg-white/20 rounded-full"></span>
-            
-            <a href="/contact-us" className="hover:text-black transition-all duration-300 whitespace-nowrap relative group">
-              Contact Us
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-black transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <span className="hidden md:block w-1 h-1 bg-white/20 rounded-full"></span>
-            
-            <a href="#" className="hover:text-black transition-all duration-300 whitespace-nowrap relative group">
-              FAQ
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-black transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <span className="hidden md:block w-1 h-1 bg-white/20 rounded-full"></span>
-            
-            <a href="/refund-policy" className="hover:text-black transition-all duration-300 whitespace-nowrap relative group">
-              Refund Policy
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-black transition-all duration-300 group-hover:w-full"></span>
-            </a>
-          </nav>
+          {/* Column 2: Policies */}
+          <div className="flex flex-col">
+            <h3 className="text-sm font-bold text-white tracking-wide">
+              Policies
+            </h3>
+            <div className="w-6 h-[2px] bg-white mt-1.5 mb-3 rounded-full" />
+            <ul className="space-y-2 text-xs text-white/85">
+              <li>
+                <Link
+                  href="/terms-and-condition"
+                  className="hover:text-white hover:underline transition-colors"
+                >
+                  Terms &amp; Conditions
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/privacy-policy"
+                  className="hover:text-white hover:underline transition-colors"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/refund-policy"
+                  className="hover:text-white hover:underline transition-colors"
+                >
+                  Refund Policy
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-          {/* Right: Social Icons */}
-          <div className="flex items-center gap-8 min-w-[150px] justify-center lg:justify-end">
-            <a href="https://instagram.com" aria-label="Instagram" className="text-white hover:text-black transition-all duration-300 transform hover:-translate-y-1">
-              <Instagram size={24} />
+          {/* Column 3: Business */}
+          <div className="flex flex-col">
+            <h3 className="text-sm font-bold text-white tracking-wide">
+              Business
+            </h3>
+            <div className="w-6 h-[2px] bg-white mt-1.5 mb-3 rounded-full" />
+            <ul className="space-y-2 text-xs text-white/85">
+              <li>
+                <Link
+                  href="/business-complince"
+                  className="hover:text-white hover:underline transition-colors"
+                >
+                  Business &amp; Payment
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/partner-vendor"
+                  className="hover:text-white hover:underline transition-colors"
+                >
+                  Partner &amp; Vendor
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/csr-policy"
+                  className="hover:text-white hover:underline transition-colors"
+                >
+                  CSR Policy
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        {/* Vertical Divider 2 */}
+        <div className="hidden lg:block w-[1px] h-24 bg-white/25 shrink-0 self-center" />
+
+        {/* Right: Follow Us */}
+        <div className="flex flex-col items-start shrink-0">
+          <h3 className="text-sm font-bold text-white tracking-wide">
+            Follow Us
+          </h3>
+          <div className="w-6 h-[2px] bg-white mt-1.5 mb-3 rounded-full" />
+          <div className="flex items-center gap-3">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="w-9 h-9 rounded-xl border border-white/90 flex items-center justify-center text-white hover:bg-white hover:text-[#0049ad] transition-all"
+            >
+              <Instagram size={17} />
             </a>
-            <a href="https://twitter.com" aria-label="Twitter" className="text-white hover:text-black transition-all duration-300 transform hover:-translate-y-1">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
+            <a
+              href="https://x.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="X (Twitter)"
+              className="w-9 h-9 rounded-xl border border-white/90 flex items-center justify-center text-white hover:bg-white hover:text-[#0049ad] transition-all"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
             </a>
-            <a href="https://facebook.com" aria-label="Facebook" className="text-white hover:text-black transition-all duration-300 transform hover:-translate-y-1">
-              <Facebook size={24} fill="currentColor" stroke="none" />
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="w-9 h-9 rounded-xl border border-white/90 flex items-center justify-center text-white hover:bg-white hover:text-[#0049ad] transition-all"
+            >
+              <Facebook size={17} fill="currentColor" stroke="none" />
             </a>
           </div>
         </div>
+
       </div>
     </footer>
   );

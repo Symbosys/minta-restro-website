@@ -15,6 +15,7 @@ import Link from 'next/link';
 import Script from 'next/script';
 import React, { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import Navbar from '../Navbar';
 import Footer from '../Footer';
 import { requestOtpAction, verifyOtpAction } from '../../api/actions/auth';
 
@@ -197,46 +198,11 @@ const PartnerPage = () => {
         `}
       </Script>
 
-      <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-mintaBlue selection:text-white relative">
+      <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-mintaBlue selection:text-white relative flex flex-col justify-between">
+        <main className="flex-grow">
 
         {/* --- NAVBAR --- */}
-        <header className="fixed top-0 left-0 w-full z-100 bg-black/80 backdrop-blur-md border-b border-white/5 py-4 px-8 flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-5 group relative">
-                <div className="relative p-1.5 bg-transparent rounded-2xl border border-white/10 group-hover:border-mintaBlue/50 transition-all duration-500 flex items-center justify-center">
-                    <img 
-                        src="/logo/logo.jpeg" 
-                        alt="Minta" 
-                        className="h-10 w-auto object-contain brightness-125 contrast-110 rounded-lg"
-                    />
-                </div>
-                
-                <div className="flex flex-col justify-center">
-                    <span className="text-white font-sans text-sm font-black tracking-[0.25em] uppercase leading-none mb-1 group-hover:text-mintaBlue transition-colors duration-300">
-                        Minta
-                    </span>
-                    <span className="text-mintaBlue font-sans text-[9px] font-black tracking-[0.4em] uppercase leading-none group-hover:text-white transition-all duration-300 mt-0.5">
-                        Restro
-                    </span>
-                </div>
-            </Link>
-
-            <nav className="hidden lg:flex items-center gap-12">
-            </nav>
-
-            <div className="flex items-center gap-10">
-                <Link href="/about-us" className="text-white font-sans text-[14px] font-bold tracking-[0.2em] uppercase hover:text-mintaBlue transition-colors relative group">
-                    About Us
-                    <span className="absolute -bottom-1 left-0 w-0 h-px-mintaBlue transition-all duration-300 group-hover:w-full"></span>
-                </Link>
-                <Link href="https://vendor.mintafresh.com/" className="text-white font-sans text-[14px] font-bold tracking-[0.2em] uppercase hover:text-mintaBlue transition-colors relative group">
-                    Owner Panel
-                    <span className="absolute -bottom-1 left-0 w-0 h-px-mintaBlue transition-all duration-300 group-hover:w-full"></span>
-                </Link>
-                <button className="border border-white/30 px-6 py-2.5 rounded-full text-white font-sans text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-mintaBlue hover:text-white hover:border-mintaBlue transition-all">
-                    Download App
-                </button>
-            </div>
-        </header>
+        <Navbar />
 
         {/* --- HERO SECTION --- */}
         <section 
@@ -332,6 +298,7 @@ const PartnerPage = () => {
             <i className="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
           </button>
         </section>
+        </main>
 
         <Footer />
         

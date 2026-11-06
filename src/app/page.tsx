@@ -6,6 +6,7 @@ import Script from "next/script";
 import { useEffect, useState } from "react";
 import { showcaseProducts } from "./showcaseData";
 import Gsap3DShowcase from "./components/Gsap3DShowcase";
+import Footer from "./Footer";
 
 const RestroWebsite = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -609,7 +610,7 @@ const RestroWebsite = () => {
         }
       `}</style>
 
-      <div className="selection:bg-brand-primary selection:text-white flex min-h-full flex-col bg-brand-surface text-brand-text">
+      <div className="selection:bg-brand-primary selection:text-white flex min-h-screen flex-col justify-between bg-brand-surface text-brand-text">
         <div className="cursor-dot hidden md:block"></div>
         <div className="cursor-outline hidden md:block"></div>
 
@@ -769,7 +770,7 @@ const RestroWebsite = () => {
           </div>
         )}
 
-        <main id="top">
+        <main id="top" className="flex-grow">
           {/* --- SECTION 1: GSAP 3D SHOWCASE HERO --- */}
           <Gsap3DShowcase />
 
@@ -2178,112 +2179,7 @@ const RestroWebsite = () => {
         </main>
 
         {/* --- FOOTER --- */}
-        <footer className="border-t border-brand-border bg-brand-text text-white">
-          <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
-            <div className="grid gap-10 md:grid-cols-3">
-              <div>
-                <img
-                  alt="Restro logo"
-                  className="mb-4 h-12 w-auto object-contain rounded-lg"
-                  src="/logo/brand-logo.jpg"
-                />
-                <p className="font-script text-2xl text-brand-primary-light">
-                  Taste Beyond Ordinary
-                </p>
-                <p className="mt-3 text-sm text-white/60">
-                  Made with love for food lovers.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/40">
-                  Quick Links
-                </h3>
-                <ul className="space-y-2">
-                  <li>
-                    <a
-                      className="text-sm text-white/70 transition-colors hover:text-brand-primary-light"
-                      href="#food"
-                    >
-                      Food
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="text-sm text-white/70 transition-colors hover:text-brand-primary-light"
-                      href="#story"
-                    >
-                      Story
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="text-sm text-white/70 transition-colors hover:text-brand-primary-light"
-                      href="#experience"
-                    >
-                      Why Restro
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="text-sm text-white/70 transition-colors hover:text-brand-primary-light"
-                      href="#cities"
-                    >
-                      Cities
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="text-sm text-white/70 transition-colors hover:text-brand-primary-light"
-                      href="#faq"
-                    >
-                      FAQ
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/40">
-                  Legal &amp; Support
-                </h3>
-                <ul className="space-y-2 text-sm text-white/70">
-                  <li>
-                    <Link
-                      href="/privacy-policy"
-                      className="hover:text-brand-primary-light transition-colors"
-                    >
-                      Privacy Policy
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/terms-and-condition"
-                      className="hover:text-brand-primary-light transition-colors"
-                    >
-                      Terms of Service
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/contact-us"
-                      className="hover:text-brand-primary-light transition-colors"
-                    >
-                      Contact Us
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
-              <p className="text-sm text-white/50">
-                © 2026 Restro — Taste Beyond Ordinary
-              </p>
-              <p className="text-sm text-white/50">Privacy • Terms • Contact</p>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </>
   );
