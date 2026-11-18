@@ -127,6 +127,13 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
+          href="/assets/images/pizza.png"
+          fetchPriority="high"
+          type="image/png"
+        />
+        <link
+          rel="preload"
+          as="image"
           href="/assets/images/dosa.png"
           fetchPriority="high"
           type="image/png"
@@ -148,6 +155,13 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
+          href="/assets/images/burger.png"
+          fetchPriority="high"
+          type="image/png"
+        />
+        <link
+          rel="preload"
+          as="image"
           href="/assets/images/muttonbiryani.png"
           fetchPriority="high"
           type="image/png"
@@ -156,6 +170,20 @@ export default function RootLayout({
           rel="preload"
           as="image"
           href="/assets/images/thali.png"
+          fetchPriority="high"
+          type="image/png"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/assets/images/rava.png"
+          fetchPriority="high"
+          type="image/png"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/assets/images/cake.png"
           fetchPriority="high"
           type="image/png"
         />

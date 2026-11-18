@@ -1,17 +1,26 @@
 "use client";
 
 import Head from "next/head";
-import Link from "next/link";
 import Script from "next/script";
 import { useEffect, useState } from "react";
 import { showcaseProducts } from "./showcaseData";
 import Gsap3DShowcase from "./components/Gsap3DShowcase";
+import HeroBrandHeritageSection from "./components/HeroBrandHeritageSection";
+import OurVisionSection from "./components/OurVisionSection";
+import FoodCultureSection from "./components/FoodCultureSection";
+import WhatMakesDifferentSection from "./components/WhatMakesDifferentSection";
+import CommunityFlavoursSection from "./components/CommunityFlavoursSection";
+import BrandBeliefSection from "./components/BrandBeliefSection";
+import VendorCommunitySection from "./components/VendorCommunitySection";
+import OurCommitmentSection from "./components/OurCommitmentSection";
+import RoadAheadSection from "./components/RoadAheadSection";
+import TasteOfTraditionSection from "./components/TasteOfTraditionSection";
+import Navbar from "./Navbar";
+
 import Footer from "./Footer";
 
 const RestroWebsite = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
-  const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
   const [activeCity, setActiveCity] = useState(1);
 
   const cities = [
@@ -29,49 +38,20 @@ const RestroWebsite = () => {
     },
   ];
 
-  const heroSlides = [
-    {
-      title: "Indian biryani food story",
-      image:
-        "https://images.pexels.com/photos/9609848/pexels-photo-9609848.jpeg?auto=compress&cs=tinysrgb&w=1400",
-      tag: "RESTRO • FOOD STORIES",
-      caption: "Real food. Real cravings.",
-      dish: "Dum Biryani",
-      badgeEmoji: "🍛",
-      price: "₹249",
-    },
-    {
-      title: "Traditional Meat Rice",
-      image:
-        "https://images.pexels.com/photos/32825916/pexels-photo-32825916.jpeg?auto=compress&cs=tinysrgb&w=1400",
-      tag: "RESTRO • REGIONAL SPECIALS",
-      caption: "Comfort that feels familiar.",
-      dish: "Handi Meat Rice",
-      badgeEmoji: "🍖",
-      price: "₹389",
-    },
-    {
-      title: "Morning South Indian",
-      image:
-        "https://images.pexels.com/photos/20422138/pexels-photo-20422138.jpeg?auto=compress&cs=tinysrgb&w=1400",
-      tag: "RESTRO • SOUTH CLASSICS",
-      caption: "Crisp dosas & warm mornings.",
-      dish: "Ghee Masala Dosa",
-      badgeEmoji: "🥞",
-      price: "₹149",
-    },
-  ];
-
   useEffect(() => {
     // Preload showcase images immediately into browser cache
     if (typeof window !== "undefined") {
       const showcaseImgNames = [
         "biryani.png",
+        "pizza.png",
         "dosa.png",
         "idli.png",
         "indianthali.png",
+        "burger.png",
         "muttonbiryani.png",
         "thali.png",
+        "rava.png",
+        "cake.png",
       ];
       showcaseImgNames.forEach((name) => {
         const img = new window.Image();
@@ -80,13 +60,6 @@ const RestroWebsite = () => {
       });
     }
   }, []);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentHeroSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 4500);
-    return () => clearInterval(timer);
-  }, [heroSlides.length]);
 
   const foodTabs = [
     {
@@ -232,7 +205,7 @@ const RestroWebsite = () => {
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
       </Head>
@@ -261,6 +234,7 @@ const RestroWebsite = () => {
                 },
                 fontFamily: {
                   sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                  serif: ['"Playfair Display"', 'Georgia', 'serif'],
                   script: ['"Caveat"', 'cursive'],
                 }
               }
@@ -270,12 +244,20 @@ const RestroWebsite = () => {
       </Script>
 
       <style jsx global>{`
+        @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
+
+        html,
         body {
-          background-color: #fbf9f5;
+          background-color: #ffffff;
           color: #111827;
           overflow-x: hidden;
-          cursor: none;
           font-family: "Plus Jakarta Sans", sans-serif;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+          body {
+            cursor: none;
+          }
         }
 
         .cursor-dot,
@@ -310,6 +292,10 @@ const RestroWebsite = () => {
 
         .font-script {
           font-family: "Caveat", cursive;
+        }
+
+        .font-editorial-serif {
+          font-family: "Playfair Display", Georgia, serif;
         }
 
         .gradient-flame {
@@ -610,974 +596,266 @@ const RestroWebsite = () => {
         }
       `}</style>
 
-      <div className="selection:bg-brand-primary selection:text-white flex min-h-screen flex-col justify-between bg-brand-surface text-brand-text">
+      <div className="selection:bg-brand-primary selection:text-white flex min-h-screen flex-col justify-between overflow-x-clip bg-brand-surface text-brand-text">
         <div className="cursor-dot hidden md:block"></div>
         <div className="cursor-outline hidden md:block"></div>
 
         {/* --- HEADER NAVBAR --- */}
-        <header className="fixed inset-x-0 top-0 z-50 px-4 pt-3 transition-all duration-500 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl rounded-full border transition-all duration-500 border-brand-border/40 bg-white/70 p-3 shadow-md backdrop-blur-md">
-            <nav className="flex items-center justify-between px-3 sm:px-5">
-              <a
-                className="group relative flex items-center gap-3 transition-transform duration-300 hover:scale-105"
-                href="#top"
-              >
-                <div className="relative flex items-center justify-center">
-                  <div className="absolute -inset-1.5 rounded-full bg-gradient-to-r from-brand-primary-light to-brand-primary opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-75"></div>
-                  <img
-                    alt="Restro logo"
-                    className="relative h-9 w-auto object-contain transition-all rounded-lg"
-                    src="/logo/brand-logo.jpg"
-                  />
-                </div>
-              </a>
-
-              <div className="hidden items-center gap-1 rounded-full border border-brand-border/40 bg-brand-surface-warm/80 p-1.5 md:flex">
-                <a
-                  href="#food"
-                  className="relative rounded-full px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider transition-all duration-300 text-brand-text-muted hover:bg-brand-surface-elevated hover:text-brand-primary"
-                >
-                  Food
-                </a>
-                <a
-                  href="#story"
-                  className="relative rounded-full px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider transition-all duration-300 text-brand-text-muted hover:bg-brand-surface-elevated hover:text-brand-primary"
-                >
-                  Story
-                </a>
-                <a
-                  href="#experience"
-                  className="relative rounded-full px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider transition-all duration-300 text-brand-text-muted hover:bg-brand-surface-elevated hover:text-brand-primary"
-                >
-                  Why Restro
-                </a>
-                <a
-                  href="#cities"
-                  className="relative rounded-full px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider transition-all duration-300 text-brand-text-muted hover:bg-brand-surface-elevated hover:text-brand-primary"
-                >
-                  Cities
-                </a>
-                <a
-                  href="#faq"
-                  className="relative rounded-full px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider transition-all duration-300 text-brand-text-muted hover:bg-brand-surface-elevated hover:text-brand-primary"
-                >
-                  FAQ
-                </a>
-              </div>
-
-              <div className="hidden items-center gap-3 md:flex">
-                <a
-                  href="#app"
-                  className="relative inline-flex items-center gap-2 overflow-hidden rounded-full gradient-flame px-6 py-2.5 text-xs font-black uppercase tracking-wider text-white shadow-lg shadow-brand-primary/30 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-brand-primary/50"
-                >
-                  <span>Get App</span>
-                  <svg
-                    className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    ></path>
-                  </svg>
-                </a>
-              </div>
-
-              <button
-                type="button"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-brand-border bg-white text-brand-text shadow-sm transition-transform duration-300 active:scale-95 md:hidden"
-                aria-label="Toggle menu"
-                aria-expanded={isMenuOpen}
-              >
-                <svg
-                  className="h-5 w-5 transition-transform duration-300"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  ></path>
-                </svg>
-              </button>
-            </nav>
-          </div>
-        </header>
-
-        {/* --- MOBILE MENU OVERLAY --- */}
-        {isMenuOpen && (
-          <div
-            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            <div
-              className="absolute top-20 right-4 left-4 rounded-3xl bg-white p-6 shadow-2xl border border-brand-border/60"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="flex flex-col gap-4">
-                <a
-                  href="#food"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-base font-bold text-brand-text hover:text-brand-primary"
-                >
-                  Food
-                </a>
-                <a
-                  href="#story"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-base font-bold text-brand-text hover:text-brand-primary"
-                >
-                  Story
-                </a>
-                <a
-                  href="#experience"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-base font-bold text-brand-text hover:text-brand-primary"
-                >
-                  Why Restro
-                </a>
-                <a
-                  href="#cities"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-base font-bold text-brand-text hover:text-brand-primary"
-                >
-                  Cities
-                </a>
-                <a
-                  href="#faq"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-base font-bold text-brand-text hover:text-brand-primary"
-                >
-                  FAQ
-                </a>
-                <a
-                  href="#app"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="mt-2 text-center rounded-full gradient-flame py-3 text-xs font-black uppercase tracking-wider text-white"
-                >
-                  Get App
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
+        <Navbar isHomePage />
 
         <main id="top" className="flex-grow">
           {/* --- SECTION 1: GSAP 3D SHOWCASE HERO --- */}
           <Gsap3DShowcase />
 
-          {/* --- SECTION 2: HERO OVERVIEW (ORIGINAL HERO SECTION) --- */}
+          {/* --- SECTION 2: BRAND STORY & HERITAGE HERO OVERVIEW --- */}
+          <HeroBrandHeritageSection />
+
+          {/* --- SECTION 2B: OUR VISION - BRINGING LOCAL FOOD TO EVERY TABLE --- */}
+          <OurVisionSection />
+
+          {/* --- SECTION 1C: CELEBRATING INDIA'S AUTHENTIC FOOD CULTURE --- */}
+          <FoodCultureSection />
+
+          {/* --- SECTION: OUR BRAND BELIEF --- */}
+          <BrandBeliefSection />
+
+          {/* --- SECTION: WHAT MAKES MINTA RESTRO DIFFERENT (REPLACED WHY RESTRO) --- */}
+          <WhatMakesDifferentSection />
+
+          {/* --- SECTION: A COMMUNITY OF FLAVOURS --- */}
+          <CommunityFlavoursSection />
+
+          {/* --- SECTION: #CITIES (LOCAL DISCOVERY) --- */}
           <section
-            id="hero-overview"
-            className="relative overflow-hidden pt-20 pb-20 lg:pt-28 lg:pb-28"
+            id="cities"
+            className="relative bg-white py-12 sm:py-16 lg:py-20 scroll-mt-16 sm:scroll-mt-20"
           >
-            <div className="hero-glow pointer-events-none absolute inset-0"></div>
-            {/* Ambient Animated Glow Orbs */}
-            <div className="pointer-events-none absolute -right-32 -top-32 h-[420px] w-[420px] rounded-full bg-brand-primary/15 blur-3xl animate-pulse-glow"></div>
-            <div className="pointer-events-none absolute -bottom-32 -left-32 h-[420px] w-[420px] rounded-full bg-brand-primary-light/15 blur-3xl animate-pulse-glow-delayed"></div>
-            <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-amber-400/5 blur-3xl animate-pulse-glow"></div>
-
-            <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-2 lg:gap-16 lg:px-8">
-              {/* Left Column */}
-              <div className="text-center lg:text-left">
-                {/* Eyebrow Pill */}
-                <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-brand-primary/10 border border-brand-primary/20 mb-5 shadow-xs transition-all hover:bg-brand-primary/15">
-                  <span className="font-script text-xl sm:text-2xl text-brand-primary font-bold">
-                    Taste Beyond Ordinary
-                  </span>
-                  <span className="text-[10px] font-black uppercase tracking-wider text-brand-primary bg-white/90 px-2.5 py-0.5 rounded-full shadow-xs">
-                    Hot &amp; Fresh
-                  </span>
-                </div>
-
-                {/* 2-Line Headline */}
-                <h1 className="text-[30px] xs:text-[34px] sm:text-5xl lg:text-[52px] xl:text-[60px] font-extrabold leading-[1.12] tracking-tight text-brand-text">
-                  <span className="block whitespace-nowrap">
-                    Where familiar food
-                  </span>
-                  <span className="block whitespace-nowrap">
-                    feels{" "}
-                    <span className="gradient-text-flame">extraordinary.</span>
-                  </span>
-                </h1>
-
-                <p className="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-brand-text-muted lg:mx-0">
-                  Restro is a modern food discovery destination for Biryani,
-                  Meat Rice, Chicken Rice, South Indian favourites and the local
-                  dishes people love.
-                </p>
-
-                {/* Primary CTA Buttons with Shimmer & Scale Animation */}
-                <div className="mt-8 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
-                  <a
-                    href="#food"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document
-                        .getElementById("food")
-                        ?.scrollIntoView({ behavior: "smooth" });
+            <div className="mx-auto max-w-5xl 2xl:max-w-[1200px] px-4 sm:px-6 lg:px-8">
+              <div className="mb-8 sm:mb-10 text-center">
+                {/* Golden Hairlines & Eyebrow */}
+                <div className="flex items-center justify-center gap-3 sm:gap-4 mb-2.5 sm:mb-3">
+                  <span
+                    aria-hidden="true"
+                    className="h-[1.5px] w-12 sm:w-16 rounded-full"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, transparent 0%, #c58917 100%)",
                     }}
-                    className="animate-btn-shimmer gradient-flame rounded-full px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-brand-primary/25 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-brand-primary/40 active:scale-95 text-center"
-                  >
-                    Explore Food
-                  </a>
-                  <a
-                    href="#app"
-                    className="rounded-full border border-brand-border bg-brand-surface-elevated/90 backdrop-blur-sm px-6 py-3.5 text-sm font-bold text-brand-text shadow-sm transition-all duration-300 hover:border-brand-primary hover:text-brand-primary hover:scale-105 hover:shadow-md flex items-center gap-2 group"
-                  >
-                    <span>Order on Restro App</span>
-                    <span className="transition-transform duration-300 group-hover:translate-x-1">
-                      →
-                    </span>
-                  </a>
-                </div>
-
-                {/* Store Badges */}
-                <div className="mt-8 flex justify-center lg:justify-start">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <a
-                      href="#app"
-                      className="inline-flex items-center gap-3 rounded-xl px-5 py-3 transition-all duration-300 hover:scale-105 bg-brand-text text-white hover:bg-brand-text/90 shadow-sm"
-                      aria-label="Get Restro on Google Play"
-                    >
-                      <svg
-                        className="h-7 w-7 shrink-0"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                      >
-                        <path d="M3.609 1.814L13.792 12 3.61 22.186a1.004 1.004 0 01-.601-.92V2.734a1.004 1.004 0 01.601-.92zM14.5 12.707l2.302 2.302-10.937 6.333a1.004 1.004 0 01-.295-.295L14.5 12.707zM17.402 9.806l1.463 1.463a1 1 0 010 1.414l-1.463 1.463-2.601-2.601 2.601-2.339zM14.5 11.293L5.57 4.984a1.004 1.004 0 01.295-.295L16.802 10.954 14.5 11.293z"></path>
-                      </svg>
-                      <div className="text-left">
-                        <div className="text-[10px] uppercase tracking-wider opacity-70">
-                          Get it on
-                        </div>
-                        <div className="text-sm font-semibold leading-tight">
-                          Google Play
-                        </div>
-                      </div>
-                    </a>
-
-                    <a
-                      href="#app"
-                      className="inline-flex items-center gap-3 rounded-xl px-5 py-3 transition-all duration-300 hover:scale-105 bg-brand-text text-white hover:bg-brand-text/90 shadow-sm"
-                      aria-label="Download Restro on the App Store"
-                    >
-                      <svg
-                        className="h-7 w-7 shrink-0"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                      >
-                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path>
-                      </svg>
-                      <div className="text-left">
-                        <div className="text-[10px] uppercase tracking-wider opacity-70">
-                          Download on the
-                        </div>
-                        <div className="text-sm font-semibold leading-tight">
-                          App Store
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column: Clean Food Showcase Card */}
-              <div className="relative flex justify-center lg:justify-end">
-                {/* Main Food Card Showcase */}
-                <div className="relative h-105 w-full max-w-lg overflow-hidden rounded-3xl border border-brand-border bg-brand-surface-elevated shadow-2xl shadow-brand-primary/10 sm:h-125">
-                  {heroSlides.map((slide, idx) => (
-                    <div
-                      key={idx}
-                      className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                        currentHeroSlide === idx
-                          ? "opacity-100"
-                          : "opacity-0 pointer-events-none"
-                      }`}
-                    >
-                      <div className="relative w-full h-full overflow-hidden">
-                        <img
-                          alt={slide.title}
-                          className={`object-cover absolute inset-0 h-full w-full transition-transform duration-1000 ${
-                            currentHeroSlide === idx
-                              ? "scale-105 animate-food-plate-bounce"
-                              : "scale-100"
-                          }`}
-                          src={slide.image}
-                        />
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/20"></div>
-                    </div>
-                  ))}
-
-                  {/* Top-Left Category Tag */}
-                  <div className="absolute top-5 left-5 z-10 flex items-center gap-2">
-                    <div className="rounded-full border border-white/40 bg-black/45 px-3.5 py-1.5 text-[10px] font-bold tracking-widest text-white backdrop-blur-md uppercase transition-all duration-300">
-                      {heroSlides[currentHeroSlide].tag}
-                    </div>
-                  </div>
-
-                  {/* Bottom Captions & Slide Switcher Dots */}
-                  <div className="absolute bottom-6 left-6 right-6 z-10 flex items-end justify-between gap-4">
-                    <div>
-                      <p className="font-script text-lg sm:text-xl text-white drop-shadow-md transition-all duration-500 font-semibold tracking-wide">
-                        {heroSlides[currentHeroSlide].caption}
-                      </p>
-                    </div>
-
-                    {/* Interactive Slide Switcher Dots */}
-                    <div className="flex items-center gap-1.5 pb-1">
-                      {heroSlides.map((_, i) => (
-                        <button
-                          key={i}
-                          type="button"
-                          onClick={() => setCurrentHeroSlide(i)}
-                          className={`h-1.5 rounded-full transition-all duration-300 ${
-                            currentHeroSlide === i
-                              ? "w-6 bg-white"
-                              : "w-1.5 bg-white/40 hover:bg-white/70"
-                          }`}
-                          aria-label={`Go to slide ${i + 1}`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* --- SECTION: #FOOD (DISCOVERY & MOOD TABS) --- */}
-          <section id="food" className="section-warm py-20 lg:py-28">
-            <div className="mx-auto max-w-7xl px-5 lg:px-8">
-              <div className="mb-14 flex justify-center">
-                <div className="max-w-2xl text-center mx-auto">
-                  <p
-                    id="food-heading"
-                    className="mb-2 font-script text-2xl text-brand-primary sm:text-3xl"
-                  >
-                    What are you craving?
-                  </p>
-                  <h2 className="text-3xl font-extrabold tracking-tight text-brand-text sm:text-4xl lg:text-5xl">
-                    Start with your mood.
-                  </h2>
-                  <p className="mt-4 text-lg leading-relaxed text-brand-text-muted">
-                    Quick discovery for the kind of food you feel like eating
-                    today.
-                  </p>
-                </div>
-              </div>
-
-              {/* Tabs */}
-              <div className="mb-12 flex flex-wrap justify-center gap-3">
-                {foodTabs.map((tab, idx) => (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    onClick={() => setActiveTab(idx)}
-                    className={`flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-extrabold transition-all ${
-                      activeTab === idx
-                        ? "gradient-flame text-white shadow-md shadow-brand-primary/25 scale-105"
-                        : "border border-brand-border bg-brand-surface-elevated text-brand-text hover:border-brand-primary hover:text-brand-primary"
-                    }`}
-                  >
-                    <span>{tab.emoji}</span>
-                    <span>{tab.name}</span>
-                  </button>
-                ))}
-              </div>
-
-              {/* Interactive Tab Panel */}
-              <div
-                className="mb-16 grid items-center gap-10 rounded-3xl border border-brand-border bg-brand-surface-elevated p-6 shadow-xl shadow-brand-primary/5 lg:grid-cols-2 lg:gap-12 lg:p-10 border-t-4 border-brand-primary"
-                role="tabpanel"
-                aria-labelledby="food-heading"
-              >
-                <div>
-                  <div className="mb-4 flex items-center gap-3">
-                    <span className="text-4xl">{currentTab.emoji}</span>
-                    <h3 className="text-2xl font-bold text-brand-text sm:text-3xl">
-                      {currentTab.name}
-                    </h3>
-                  </div>
-                  <p className="mb-8 text-lg leading-relaxed text-brand-text-muted">
-                    {currentTab.desc}
-                  </p>
-                  <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-brand-text-muted">
-                    What you can order
-                  </p>
-                  <div className="flex flex-wrap gap-2.5">
-                    {currentTab.tags.map((tag, i) => (
-                      <span
-                        key={i}
-                        className="inline-flex items-center rounded-full border border-brand-border bg-brand-surface-elevated px-3.5 py-1.5 text-sm font-medium text-brand-text shadow-sm transition-colors hover:border-brand-primary/40 hover:bg-brand-surface-warm"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex justify-center">
-                  <div className="relative mx-auto w-[280px] sm:w-[300px]">
-                    <div className="relative rounded-[2.5rem] border-[6px] border-brand-text bg-brand-text p-2 shadow-2xl shadow-brand-primary/20">
-                      <div className="absolute left-1/2 top-3 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-brand-text"></div>
-                      <div className="overflow-hidden rounded-[2rem] bg-brand-surface-warm">
-                        <div className="flex min-h-[420px] flex-col bg-brand-surface-warm">
-                          <div className="gradient-flame px-4 pb-4 pt-10">
-                            <p className="text-xs font-medium text-white/80">
-                              {currentTab.name}
-                            </p>
-                            <p className="text-lg font-bold text-white">
-                              Popular picks
-                            </p>
-                          </div>
-                          <div className="flex flex-1 flex-col gap-0 divide-y divide-brand-border p-2">
-                            {currentTab.items.map((item, i) => (
-                              <div
-                                key={i}
-                                className="flex items-center justify-between px-3 py-3.5"
-                              >
-                                <div>
-                                  <p className="text-sm font-semibold text-brand-text">
-                                    {item.name}
-                                  </p>
-                                  <p className="text-xs text-brand-text-muted">
-                                    Tap to add
-                                  </p>
-                                </div>
-                                <span className="rounded-lg bg-brand-primary/10 px-2.5 py-1 text-sm font-bold text-brand-primary">
-                                  {item.price}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                          <div className="border-t border-brand-border p-4">
-                            <div className="gradient-flame rounded-xl py-3 text-center text-sm font-bold text-white">
-                              View cart · 2 items
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="absolute -inset-4 -z-10 rounded-[3rem] bg-brand-primary/10 blur-2xl"></div>
-                  </div>
-                </div>
-              </div>
-
-              {/* 4 Cards Grid */}
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
-                <article
-                  id="biryani"
-                  className="group flex flex-col overflow-hidden rounded-2xl border border-brand-border bg-brand-surface-elevated shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand-primary/10"
-                >
-                  <div className="relative h-56 w-full overflow-hidden">
-                    <img
-                      alt="All Types of Biryani"
-                      className="object-cover h-full w-full transition-transform duration-500 group-hover:scale-105"
-                      src="https://images.pexels.com/photos/9609848/pexels-photo-9609848.jpeg?auto=compress&cs=tinysrgb&w=1000"
-                    />
-                  </div>
-                  <div className="p-6 text-center flex-1 flex flex-col justify-between">
-                    <h3 className="mb-2 text-xl font-bold text-brand-text">
-                      All Types of Biryani
-                    </h3>
-                    <p className="text-sm leading-relaxed text-brand-text-muted min-h-[2.75rem] flex items-center justify-center">
-                      Chicken, Mutton, Egg, Fish and more — fragrant rice and
-                      rich flavours.
-                    </p>
-                  </div>
-                </article>
-
-                <article
-                  id="bhaat"
-                  className="group flex flex-col overflow-hidden rounded-2xl border border-brand-border bg-brand-surface-elevated shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand-primary/10"
-                >
-                  <div className="relative h-56 w-full overflow-hidden">
-                    <img
-                      alt="Meat Rice"
-                      className="object-cover h-full w-full transition-transform duration-500 group-hover:scale-105"
-                      src="https://images.pexels.com/photos/32825916/pexels-photo-32825916.jpeg?auto=compress&cs=tinysrgb&w=1000"
-                    />
-                  </div>
-                  <div className="p-6 text-center flex-1 flex flex-col justify-between">
-                    <h3 className="mb-2 text-xl font-bold text-brand-text">
-                      Meat Rice
-                    </h3>
-                    <p className="text-sm leading-relaxed text-brand-text-muted min-h-[2.75rem] flex items-center justify-center">
-                      Hearty meat and rice combinations inspired by traditional
-                      Indian kitchens.
-                    </p>
-                  </div>
-                </article>
-
-                <article
-                  id="chicken"
-                  className="group flex flex-col overflow-hidden rounded-2xl border border-brand-border bg-brand-surface-elevated shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand-primary/10"
-                >
-                  <div className="relative h-56 w-full overflow-hidden">
-                    <img
-                      alt="Chicken Rice"
-                      className="object-cover h-full w-full transition-transform duration-500 group-hover:scale-105"
-                      src="https://images.pexels.com/photos/36870974/pexels-photo-36870974.jpeg?auto=compress&cs=tinysrgb&w=1000"
-                    />
-                  </div>
-                  <div className="p-6 text-center flex-1 flex flex-col justify-between">
-                    <h3 className="mb-2 text-xl font-bold text-brand-text">
-                      Chicken Rice
-                    </h3>
-                    <p className="text-sm leading-relaxed text-brand-text-muted min-h-[2.75rem] flex items-center justify-center">
-                      Chicken, curry and rice combinations made for everyday
-                      comfort.
-                    </p>
-                  </div>
-                </article>
-
-                <article
-                  id="south"
-                  className="group flex flex-col overflow-hidden rounded-2xl border border-brand-border bg-brand-surface-elevated shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand-primary/10"
-                >
-                  <div className="relative h-56 w-full overflow-hidden">
-                    <img
-                      alt="South Indian"
-                      className="object-cover h-full w-full transition-transform duration-500 group-hover:scale-105"
-                      src="https://images.pexels.com/photos/35351659/pexels-photo-35351659.jpeg?auto=compress&cs=tinysrgb&w=1000"
-                    />
-                  </div>
-                  <div className="p-6 text-center flex-1 flex flex-col justify-between">
-                    <h3 className="mb-2 text-xl font-bold text-brand-text">
-                      South Indian
-                    </h3>
-                    <p className="text-sm leading-relaxed text-brand-text-muted min-h-[2.75rem] flex items-center justify-center">
-                      Dosa, Idli, Vada, Uttapam and timeless South Indian
-                      favourites.
-                    </p>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </section>
-
-          {/* --- SECTION: FOR EVERY KIND OF HUNGER --- */}
-          <section className="py-20 lg:py-28">
-            <div className="mx-auto max-w-7xl px-5 lg:px-8">
-              <div className="mb-14 flex justify-center">
-                <div className="max-w-2xl text-center mx-auto">
-                  <p className="mb-2 font-script text-2xl text-brand-primary sm:text-3xl">
-                    For every kind of hunger
-                  </p>
-                  <h2 className="text-3xl font-extrabold tracking-tight text-brand-text sm:text-4xl lg:text-5xl">
-                    Food for the moment.
-                  </h2>
-                </div>
-              </div>
-
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                <div className="group relative h-72 overflow-hidden rounded-3xl border border-brand-border bg-brand-surface-elevated shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">
-                  <img
-                    alt="Weekend Biryani"
-                    className="object-cover h-full w-full transition-transform duration-500 group-hover:scale-105"
-                    src="https://images.pexels.com/photos/15059053/pexels-photo-15059053.jpeg?auto=compress&cs=tinysrgb&w=1000"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                  <div className="absolute bottom-6 left-6 right-6 text-white">
-                    <h3 className="text-2xl font-bold tracking-tight">
-                      Weekend Biryani
-                    </h3>
-                    <p className="mt-1 text-sm text-white/80">
-                      Slow down. Eat well.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="group relative h-72 overflow-hidden rounded-3xl border border-brand-border bg-brand-surface-elevated shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">
-                  <img
-                    alt="Morning South Indian"
-                    className="object-cover h-full w-full transition-transform duration-500 group-hover:scale-105"
-                    src="https://images.pexels.com/photos/20422123/pexels-photo-20422123.jpeg?auto=compress&cs=tinysrgb&w=1000"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                  <div className="absolute bottom-6 left-6 right-6 text-white">
-                    <h3 className="text-2xl font-bold tracking-tight">
-                      Morning South Indian
-                    </h3>
-                    <p className="mt-1 text-sm text-white/80">
-                      Start with something warm.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="group relative h-72 overflow-hidden rounded-3xl border border-brand-border bg-brand-surface-elevated shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">
-                  <img
-                    alt="Traditional Meal"
-                    className="object-cover h-full w-full transition-transform duration-500 group-hover:scale-105"
-                    src="https://images.pexels.com/photos/35267280/pexels-photo-35267280.jpeg?auto=compress&cs=tinysrgb&w=1000"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                  <div className="absolute bottom-6 left-6 right-6 text-white">
-                    <h3 className="text-2xl font-bold tracking-tight">
-                      Traditional Meal
-                    </h3>
-                    <p className="mt-1 text-sm text-white/80">
-                      Comfort that feels familiar.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* --- SECTION: #STORY --- */}
-          <section id="story" className="section-warm py-20 lg:py-28">
-            <div className="mx-auto max-w-7xl px-5 lg:px-8">
-              <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-                <div className="relative h-112 w-full overflow-hidden rounded-3xl border border-brand-border bg-brand-surface-elevated shadow-xl lg:h-125">
-                  <img
-                    alt="The Restro Story - Traditional Indian food"
-                    className="object-cover h-full w-full"
-                    src="https://images.pexels.com/photos/35267280/pexels-photo-35267280.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                  <span className="text-xs sm:text-[13px] font-bold tracking-[0.2em] text-[#c58917] uppercase">
+                    LOCAL DISCOVERY
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="h-[1.5px] w-12 sm:w-16 rounded-full"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, #c58917 0%, transparent 100%)",
+                    }}
                   />
                 </div>
-                <div>
-                  <p className="mb-2 font-script text-2xl text-brand-primary sm:text-3xl">
-                    The Restro Story
-                  </p>
-                  <h2 className="text-3xl font-extrabold tracking-tight text-brand-text sm:text-4xl lg:text-5xl">
-                    Simple food.{" "}
-                    <span className="gradient-text-flame">
-                      Beautifully discovered.
-                    </span>
-                  </h2>
-                  <div className="mt-6 space-y-4 text-base leading-relaxed text-brand-text-muted lg:text-lg">
-                    <p>
-                      Restro is built around a simple belief: the best food is
-                      often the food you already know and love. We bring
-                      familiar Indian flavours into one elegant discovery
-                      experience.
-                    </p>
-                    <p>
-                      From a fragrant biryani to a crisp dosa, Restro is
-                      designed to make discovering your next meal feel as good
-                      as eating it.
-                    </p>
-                  </div>
-                  <div className="mt-8 font-script text-3xl text-brand-primary">
-                    — Restro
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
 
-          {/* --- SECTION: #EXPERIENCE (WHY RESTRO) --- */}
-          <section
-            id="experience"
-            className="bg-brand-text py-20 text-white lg:py-28"
-          >
-            <div className="mx-auto max-w-7xl px-5 lg:px-8">
-              <div className="mb-16 text-center">
-                <p className="mb-2 font-script text-2xl text-brand-primary-light sm:text-3xl">
-                  Why Restro
-                </p>
-                <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
-                  More than a menu.
-                </h2>
-                <p className="mx-auto mt-4 max-w-2xl text-base text-white/70 lg:text-lg">
-                  Restro can grow into a complete food discovery brand, not just
-                  an ordering interface.
-                </p>
-              </div>
-
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                <div className="rounded-2xl border border-white/15 bg-white/5 p-7 backdrop-blur-sm transition-all duration-300 hover:border-brand-primary-light/40 hover:bg-white/10">
-                  <div className="font-script text-3xl font-bold text-brand-primary-light">
-                    01
-                  </div>
-                  <h3 className="mt-3 text-xl font-bold text-white">
-                    Real Local Flavours
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-white/70">
-                    Discover food people actually crave — from traditional meals
-                    to everyday favourites.
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-white/15 bg-white/5 p-7 backdrop-blur-sm transition-all duration-300 hover:border-brand-primary-light/40 hover:bg-white/10">
-                  <div className="font-script text-3xl font-bold text-brand-primary-light">
-                    02
-                  </div>
-                  <h3 className="mt-3 text-xl font-bold text-white">
-                    Great Value
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-white/70">
-                    Highlight Restro's value proposition, offers and
-                    app-exclusive benefits without clutter.
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-white/15 bg-white/5 p-7 backdrop-blur-sm transition-all duration-300 hover:border-brand-primary-light/40 hover:bg-white/10">
-                  <div className="font-script text-3xl font-bold text-brand-primary-light">
-                    03
-                  </div>
-                  <h3 className="mt-3 text-xl font-bold text-white">
-                    Food Stories
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-white/70">
-                    Tell the story behind dishes, cuisines, cities and local
-                    food culture.
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-white/15 bg-white/5 p-7 backdrop-blur-sm transition-all duration-300 hover:border-brand-primary-light/40 hover:bg-white/10">
-                  <div className="font-script text-3xl font-bold text-brand-primary-light">
-                    04
-                  </div>
-                  <h3 className="mt-3 text-xl font-bold text-white">
-                    Easy Ordering
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-white/70">
-                    Keep this website elegant and informative, then move
-                    customers naturally to the app.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* --- SECTION: JOURNAL --- */}
-          <section className="relative py-12 lg:py-16">
-            <div className="mx-auto max-w-7xl px-5 lg:px-8">
-              <div className="mb-8 flex justify-center">
-                <div className="max-w-2xl text-center mx-auto">
-                  <p className="mb-1 font-script text-2xl text-brand-primary sm:text-3xl">
-                    Restro Journal
-                  </p>
-                  <h2 className="text-3xl font-extrabold tracking-tight text-brand-text sm:text-4xl lg:text-5xl">
-                    Stories behind the food.
-                  </h2>
-                  <p className="mt-2 text-base leading-relaxed text-brand-text-muted">
-                    A future content engine for SEO, discovery and food lovers.
-                  </p>
-                </div>
-              </div>
-
-              <div className="grid gap-4 lg:grid-cols-12 lg:h-[280px]">
-                <div className="group relative h-64 sm:h-72 lg:h-full overflow-hidden rounded-3xl border border-brand-border bg-brand-surface-elevated shadow-lg lg:col-span-7">
-                  <img
-                    alt="The art of a good biryani."
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    src="https://images.pexels.com/photos/15059053/pexels-photo-15059053.jpeg?auto=compress&cs=tinysrgb&w=1400"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                  <div className="absolute bottom-4 left-6 right-6">
-                    <p className="font-script text-2xl sm:text-3xl text-white">
-                      The art of a good biryani.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-3 lg:col-span-5 lg:h-full">
-                  <div className="group relative h-36 sm:h-40 lg:h-auto lg:flex-1 overflow-hidden rounded-3xl border border-brand-border bg-brand-surface-elevated shadow-md transition-all duration-300 hover:shadow-lg">
-                    <img
-                      alt="Crisp Masala Dosa"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      src="https://images.pexels.com/photos/20422138/pexels-photo-20422138.jpeg?auto=compress&cs=tinysrgb&w=1000"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                    <div className="absolute bottom-3 left-5 right-5">
-                      <p className="font-script text-lg sm:text-xl text-white">
-                        Crisp Masala Dosa
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="group relative h-36 sm:h-40 lg:h-auto lg:flex-1 overflow-hidden rounded-3xl border border-brand-border bg-brand-surface-elevated shadow-md transition-all duration-300 hover:shadow-lg">
-                    <img
-                      alt="South Indian Traditions"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      src="https://images.pexels.com/photos/20422123/pexels-photo-20422123.jpeg?auto=compress&cs=tinysrgb&w=1000"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                    <div className="absolute bottom-3 left-5 right-5">
-                      <p className="font-script text-lg sm:text-xl text-white">
-                        South Indian Traditions
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* --- SECTION: #CITIES --- */}
-          <section id="cities" className="relative py-16 lg:py-24">
-            <div className="mx-auto max-w-5xl px-5 lg:px-8">
-              <div className="mb-12 text-center">
-                <p className="mb-2 font-script text-2xl text-[#f97316] sm:text-3xl">
-                  Local discovery
-                </p>
-                <h2 className="text-3xl font-extrabold tracking-tight text-brand-text sm:text-4xl lg:text-5xl">
+                <h2 className="font-sans text-2xl sm:text-3xl lg:text-[40px] font-black tracking-tight text-[#002766] leading-tight">
                   Discover food in your city.
                 </h2>
-                <p className="mx-auto mt-4 max-w-xl text-sm sm:text-base leading-relaxed text-brand-text-muted">
+                <p className="mx-auto mt-2.5 sm:mt-3 max-w-xl text-xs sm:text-sm md:text-[14.5px] leading-relaxed text-[#556987]">
                   The final dynamic site can generate city-specific pages, food
                   guides, restaurants and local SEO content.
                 </p>
               </div>
 
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {cities.map((city, idx) => (
-                  <div
-                    key={idx}
-                    onClick={() => setActiveCity(idx)}
-                    onMouseEnter={() => setActiveCity(idx)}
-                    className={`cursor-pointer rounded-2xl bg-white p-7 transition-all duration-300 flex flex-col justify-center min-h-[120px] ${
-                      activeCity === idx
-                        ? "border border-[#f97316] shadow-sm"
-                        : "border border-gray-200/80 shadow-sm hover:border-[#f97316]/50"
-                    }`}
-                  >
-                    <h3 className="text-xl sm:text-2xl font-bold text-brand-text mb-2.5">
-                      {city.name}
-                    </h3>
-                    <p className="text-xs sm:text-sm leading-relaxed text-brand-text-muted">
-                      {city.desc}
-                    </p>
-                  </div>
-                ))}
+              <div className="grid gap-4 sm:gap-5 lg:gap-6 grid-cols-1 md:grid-cols-3">
+                {cities.map((city, idx) => {
+                  const isActive = activeCity === idx;
+                  return (
+                    <div
+                      key={idx}
+                      onClick={() => setActiveCity(idx)}
+                      onMouseEnter={() => setActiveCity(idx)}
+                      className={`cursor-pointer rounded-2xl p-4 sm:p-5 transition-all duration-200 flex items-center gap-3.5 sm:gap-4 ${
+                        isActive
+                          ? "border-2 border-[#1e6beb] bg-[#f4f8fe] shadow-sm"
+                          : "border border-gray-200/90 bg-white shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:border-blue-300 hover:shadow-md"
+                      }`}
+                    >
+                      {/* Left Squircle Icon Badge */}
+                      <div className="flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl bg-[#e8f2fd] text-[#0049ad]">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.1"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="h-5 w-5 sm:h-6 sm:w-6 text-[#0049ad]"
+                        >
+                          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                          <circle cx="12" cy="10" r="3" />
+                        </svg>
+                      </div>
+
+                      {/* Vertical Divider Line */}
+                      <div
+                        className={`h-9 sm:h-10 w-[1px] shrink-0 ${
+                          isActive ? "bg-[#d2e2f6]" : "bg-gray-200/80"
+                        }`}
+                      />
+
+                      {/* Right Text Content */}
+                      <div className="text-left min-w-0 flex-1">
+                        <h3 className="text-base sm:text-lg font-bold text-[#092248] leading-tight">
+                          {city.name}
+                        </h3>
+                        <p className="text-xs sm:text-[12.5px] text-[#556987] leading-snug mt-1 line-clamp-2">
+                          {city.desc}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </section>
 
           {/* --- SECTION: #TRACKING (LIVE TRACKING) --- */}
-          <section id="tracking" className="py-20 lg:py-28">
-            <div className="mx-auto max-w-7xl px-5 lg:px-8">
-              <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-8 xl:gap-12">
-                <div className="lg:col-span-5">
-                  <div className="max-w-2xl text-left">
-                    <p
-                      id="tracking-heading"
-                      className="mb-2 font-script text-2xl text-brand-primary sm:text-3xl"
-                    >
-                      Live tracking
-                    </p>
-                    <h2 className="text-3xl font-extrabold tracking-tight text-brand-text sm:text-4xl lg:text-5xl">
-                      Know exactly where your food is
-                    </h2>
-                    <p className="mt-4 text-lg leading-relaxed text-brand-text-muted">
-                      From the moment you tap order to the knock on your door —
-                      follow every step in real time.
-                    </p>
-                  </div>
+          <section
+            id="tracking"
+            className="relative bg-[#f4f8fe] py-12 sm:py-16 lg:py-20 overflow-hidden scroll-mt-16 sm:scroll-mt-20"
+          >
+            <div className="mx-auto max-w-7xl 2xl:max-w-[1360px] px-4 sm:px-6 lg:px-8">
+              {/* Centered Section Header: LIVE TRACKING & Heading */}
+              <div className="mb-8 sm:mb-12 text-center max-w-3xl mx-auto">
+                <div className="flex items-center justify-center gap-3 sm:gap-4 mb-2.5 sm:mb-3">
+                  <span
+                    aria-hidden="true"
+                    className="h-[1.5px] w-12 sm:w-16 rounded-full"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, transparent 0%, #c58917 100%)",
+                    }}
+                  />
+                  <span className="text-xs sm:text-[13px] font-bold tracking-[0.2em] text-[#c58917] uppercase">
+                    LIVE TRACKING
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="h-[1.5px] w-12 sm:w-16 rounded-full"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, #c58917 0%, transparent 100%)",
+                    }}
+                  />
+                </div>
 
-                  <ul className="mt-10 space-y-6">
-                    <li className="flex gap-4">
-                      <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-accent/15">
+                <h2 className="font-sans text-2xl sm:text-3xl lg:text-[40px] font-black tracking-tight text-[#002766] leading-tight">
+                  Know exactly where your food is
+                </h2>
+              </div>
+
+              <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-8 xl:gap-12">
+                {/* Left Column: Subtitle & 4 Features */}
+                <div className="lg:col-span-5 flex flex-col justify-center text-left">
+                  <p className="text-xs sm:text-sm md:text-[14.5px] leading-relaxed text-[#556987] mb-6 sm:mb-7">
+                    From the moment you tap order to the knock on your door —
+                    follow every step in real time.
+                  </p>
+
+                  <ul className="space-y-4 sm:space-y-6">
+                    {/* Feature 1 */}
+                    <li className="flex items-start gap-3.5 sm:gap-4">
+                      <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-[#e8f1fc]">
                         <svg
-                          className="h-3.5 w-3.5 text-brand-accent"
-                          fill="none"
+                          className="h-5 w-5 text-[#10b981]"
                           viewBox="0 0 24 24"
+                          fill="none"
                           stroke="currentColor"
-                          strokeWidth={3}
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M5 13l4 4L19 7"
-                          />
+                          <path d="M20 6L9 17l-5-5" />
                         </svg>
                       </div>
-                      <div>
-                        <p className="font-semibold text-brand-text">
+                      <div className="text-left pt-0.5">
+                        <p className="text-sm sm:text-base font-bold text-[#092248]">
                           Real-time status updates
                         </p>
-                        <p className="mt-1 text-sm leading-relaxed text-brand-text-muted">
+                        <p className="mt-0.5 text-xs sm:text-[13px] leading-relaxed text-[#556987]">
                           Watch your order move from kitchen to doorstep, live.
                         </p>
                       </div>
                     </li>
 
-                    <li className="flex gap-4">
-                      <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-accent/15">
+                    {/* Feature 2 */}
+                    <li className="flex items-start gap-3.5 sm:gap-4">
+                      <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-[#e8f1fc]">
                         <svg
-                          className="h-3.5 w-3.5 text-brand-accent"
-                          fill="none"
+                          className="h-5 w-5 text-[#10b981]"
                           viewBox="0 0 24 24"
+                          fill="none"
                           stroke="currentColor"
-                          strokeWidth={3}
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M5 13l4 4L19 7"
-                          />
+                          <path d="M20 6L9 17l-5-5" />
                         </svg>
                       </div>
-                      <div>
-                        <p className="font-semibold text-brand-text">
+                      <div className="text-left pt-0.5">
+                        <p className="text-sm sm:text-base font-bold text-[#092248]">
                           Accurate ETA
                         </p>
-                        <p className="mt-1 text-sm leading-relaxed text-brand-text-muted">
+                        <p className="mt-0.5 text-xs sm:text-[13px] leading-relaxed text-[#556987]">
                           Know exactly when your food arrives — no guessing.
                         </p>
                       </div>
                     </li>
 
-                    <li className="flex gap-4">
-                      <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-accent/15">
+                    {/* Feature 3 */}
+                    <li className="flex items-start gap-3.5 sm:gap-4">
+                      <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-[#e8f1fc]">
                         <svg
-                          className="h-3.5 w-3.5 text-brand-accent"
-                          fill="none"
+                          className="h-5 w-5 text-[#10b981]"
                           viewBox="0 0 24 24"
+                          fill="none"
                           stroke="currentColor"
-                          strokeWidth={3}
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M5 13l4 4L19 7"
-                          />
+                          <path d="M20 6L9 17l-5-5" />
                         </svg>
                       </div>
-                      <div>
-                        <p className="font-semibold text-brand-text">
+                      <div className="text-left pt-0.5">
+                        <p className="text-sm sm:text-base font-bold text-[#092248]">
                           Delivery partner tracking
                         </p>
-                        <p className="mt-1 text-sm leading-relaxed text-brand-text-muted">
-                          See who's bringing your meal and where they are.
+                        <p className="mt-0.5 text-xs sm:text-[13px] leading-relaxed text-[#556987]">
+                          See who&apos;s bringing your meal and where they are.
                         </p>
                       </div>
                     </li>
 
-                    <li className="flex gap-4">
-                      <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-accent/15">
+                    {/* Feature 4 */}
+                    <li className="flex items-start gap-3.5 sm:gap-4">
+                      <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-[#e8f1fc]">
                         <svg
-                          className="h-3.5 w-3.5 text-brand-accent"
-                          fill="none"
+                          className="h-5 w-5 text-[#10b981]"
                           viewBox="0 0 24 24"
+                          fill="none"
                           stroke="currentColor"
-                          strokeWidth={3}
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M5 13l4 4L19 7"
-                          />
+                          <path d="M20 6L9 17l-5-5" />
                         </svg>
                       </div>
-                      <div>
-                        <p className="font-semibold text-brand-text">
+                      <div className="text-left pt-0.5">
+                        <p className="text-sm sm:text-base font-bold text-[#092248]">
                           Push notifications
                         </p>
-                        <p className="mt-1 text-sm leading-relaxed text-brand-text-muted">
+                        <p className="mt-0.5 text-xs sm:text-[13px] leading-relaxed text-[#556987]">
                           Get notified at every step so you never miss a beat.
                         </p>
                       </div>
@@ -1585,46 +863,57 @@ const RestroWebsite = () => {
                   </ul>
                 </div>
 
-                {/* Right Column: Dual Phone Mockups */}
-                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-end gap-6 sm:gap-6 lg:gap-5 xl:gap-6 lg:col-span-7">
-                  {/* Phone 1: Order Status Steps Screen (Untouched) */}
-                  <div className="relative mx-auto w-[270px] sm:w-[280px] xl:w-[295px] animate-float">
-                    <div className="relative rounded-[2.5rem] border-[6px] border-brand-text bg-brand-text p-2 shadow-2xl shadow-brand-primary/20">
-                      <div className="absolute left-1/2 top-3 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-brand-text"></div>
-                      <div className="overflow-hidden rounded-[2rem] bg-brand-surface-warm">
-                        <div className="flex min-h-[420px] flex-col bg-brand-surface-warm p-4 pt-10">
+                {/* Right Column: Dual Phone Mockups (Side-by-side on all screens) */}
+                <div className="relative flex flex-row items-start sm:items-center justify-center lg:justify-end gap-2.5 xs:gap-3.5 sm:gap-5 lg:col-span-7 w-full max-w-lg sm:max-w-none mx-auto">
+                  {/* Organic Sky Blue Aura in Background */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute -right-4 sm:-right-8 top-1/2 -translate-y-1/2 w-[340px] sm:w-[440px] h-[300px] sm:h-[380px] bg-[#e3efff]/70 rounded-[120px] rotate-[-12deg] blur-2xl -z-10 pointer-events-none"
+                  />
+
+                  {/* Phone 1: Order Status Steps Screen */}
+                  <div className="relative w-1/2 sm:w-auto mx-auto max-w-[170px] xs:max-w-[195px] sm:max-w-[235px] xl:max-w-[245px]">
+                    <div className="relative rounded-[1.6rem] xs:rounded-[1.9rem] sm:rounded-[2.2rem] border-[3.5px] xs:border-[4px] sm:border-[5px] border-[#081426] bg-[#081426] p-1 sm:p-1.5 shadow-[0_20px_45px_rgba(8,20,38,0.2)]">
+                      {/* Dynamic Island / Notch */}
+                      <div className="absolute left-1/2 top-1 sm:top-1.5 z-20 h-2.5 sm:h-3 w-10 sm:w-14 -translate-x-1/2 rounded-full bg-[#081426]" />
+
+                      <div className="overflow-hidden rounded-[1.3rem] xs:rounded-[1.6rem] sm:rounded-[1.8rem] bg-white">
+                        <div className="flex min-h-[330px] xs:min-h-[360px] sm:min-h-[395px] flex-col p-2 xs:p-2.5 sm:p-3 pt-6 xs:pt-7 sm:pt-9 bg-[#f8fafc]">
+                          {/* Top Header */}
                           <div className="mb-1 flex items-center justify-between">
-                            <p className="text-sm font-bold text-brand-text">
+                            <p className="text-[9.5px] xs:text-[10.5px] sm:text-[11.5px] font-bold text-[#092248]">
                               Order #TG-4821
                             </p>
-                            <span className="flex items-center gap-1.5 rounded-full bg-brand-accent/15 px-2.5 py-1 text-xs font-semibold text-brand-accent">
-                              <span className="h-2 w-2 rounded-full bg-brand-accent animate-pulse-live"></span>
+                            <span className="flex items-center gap-1 rounded-full bg-[#e8f8f0] px-1 sm:px-1.5 py-0.5 text-[8px] sm:text-[9px] font-bold text-[#10b981]">
+                              <span className="h-1.5 w-1.5 rounded-full bg-[#10b981] animate-pulse" />
                               Live
                             </span>
                           </div>
-                          <p className="mb-6 text-xs text-brand-text-muted">
-                            Hyderabadi Biryani · 2 items
+                          <p className="mb-1.5 sm:mb-2 text-[8px] xs:text-[9px] sm:text-[10px] text-[#64748b]">
+                            Hyderabad Biryani · 2 items
                           </p>
 
-                          <div className="mb-4 rounded-2xl border border-brand-border bg-brand-surface-elevated p-4">
-                            <p className="text-xs font-medium text-brand-text-muted">
+                          {/* Estimated Arrival Card */}
+                          <div className="mb-2 sm:mb-2.5 rounded-xl border border-gray-100 bg-white p-2 sm:p-2.5 shadow-xs">
+                            <p className="text-[7.5px] xs:text-[8.5px] sm:text-[9px] font-medium text-gray-400">
                               Estimated arrival
                             </p>
-                            <p className="text-2xl font-extrabold text-brand-primary">
+                            <p className="text-base xs:text-lg sm:text-xl font-black text-[#0049ad] tracking-tight">
                               12:55 PM
                             </p>
-                            <div className="mt-3 h-2 overflow-hidden rounded-full bg-brand-border">
-                              <div className="h-full rounded-full gradient-flame animate-progress-fill"></div>
+                            <div className="mt-1 sm:mt-1.5 h-1 sm:h-1.5 overflow-hidden rounded-full bg-gray-100">
+                              <div className="h-full w-[65%] rounded-full bg-[#0049ad]" />
                             </div>
                           </div>
 
-                          <div className="flex flex-1 flex-col gap-0">
+                          {/* 4 Timeline Steps */}
+                          <div className="flex flex-1 flex-col gap-0 px-0.5">
                             {/* Step 1 */}
-                            <div className="flex gap-3">
+                            <div className="flex gap-1.5 xs:gap-2 sm:gap-2.5">
                               <div className="flex flex-col items-center">
-                                <div className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold bg-brand-accent text-white">
+                                <div className="flex h-4.5 w-4.5 xs:h-5 xs:w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full text-[8.5px] xs:text-[9px] sm:text-[10px] font-bold bg-[#10b981] text-white shadow-xs">
                                   <svg
-                                    className="h-4 w-4"
+                                    className="h-2.5 w-2.5 sm:h-3 sm:w-3"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -1634,27 +923,27 @@ const RestroWebsite = () => {
                                       strokeLinecap="round"
                                       strokeLinejoin="round"
                                       d="M5 13l4 4L19 7"
-                                    ></path>
+                                    />
                                   </svg>
                                 </div>
-                                <div className="my-1 w-0.5 flex-1 min-h-[24px] bg-brand-accent"></div>
+                                <div className="my-0.5 w-0.5 flex-1 min-h-[12px] sm:min-h-[16px] bg-[#10b981]" />
                               </div>
-                              <div className="pb-6">
-                                <p className="text-sm font-semibold text-brand-text">
+                              <div className="pb-1.5 sm:pb-2.5">
+                                <p className="text-[9.5px] xs:text-[10.5px] sm:text-[11.5px] font-bold text-[#092248]">
                                   Order Placed
                                 </p>
-                                <p className="text-xs text-brand-text-muted">
+                                <p className="text-[7.5px] xs:text-[8px] sm:text-[9px] text-gray-400">
                                   12:04 PM
                                 </p>
                               </div>
                             </div>
 
                             {/* Step 2 */}
-                            <div className="flex gap-3">
+                            <div className="flex gap-1.5 xs:gap-2 sm:gap-2.5">
                               <div className="flex flex-col items-center">
-                                <div className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold bg-brand-accent text-white">
+                                <div className="flex h-4.5 w-4.5 xs:h-5 xs:w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full text-[8.5px] xs:text-[9px] sm:text-[10px] font-bold bg-[#0ea5e9] text-white shadow-xs">
                                   <svg
-                                    className="h-4 w-4"
+                                    className="h-2.5 w-2.5 sm:h-3 sm:w-3"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -1664,54 +953,54 @@ const RestroWebsite = () => {
                                       strokeLinecap="round"
                                       strokeLinejoin="round"
                                       d="M5 13l4 4L19 7"
-                                    ></path>
+                                    />
                                   </svg>
                                 </div>
-                                <div className="my-1 w-0.5 flex-1 min-h-[24px] bg-brand-accent"></div>
+                                <div className="my-0.5 w-0.5 flex-1 min-h-[12px] sm:min-h-[16px] bg-[#0ea5e9]" />
                               </div>
-                              <div className="pb-6">
-                                <p className="text-sm font-semibold text-brand-text">
+                              <div className="pb-1.5 sm:pb-2.5">
+                                <p className="text-[9.5px] xs:text-[10.5px] sm:text-[11.5px] font-bold text-[#092248]">
                                   Preparing
                                 </p>
-                                <p className="text-xs text-brand-text-muted">
+                                <p className="text-[7.5px] xs:text-[8px] sm:text-[9px] text-gray-400">
                                   12:18 PM
                                 </p>
                               </div>
                             </div>
 
                             {/* Step 3 */}
-                            <div className="flex gap-3">
+                            <div className="flex gap-1.5 xs:gap-2 sm:gap-2.5">
                               <div className="flex flex-col items-center">
-                                <div className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold gradient-flame text-white">
+                                <div className="flex h-4.5 w-4.5 xs:h-5 xs:w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full text-[8.5px] xs:text-[9px] sm:text-[10px] font-bold bg-[#0049ad] text-white shadow-xs">
                                   3
                                 </div>
-                                <div className="my-1 w-0.5 flex-1 min-h-[24px] bg-brand-border"></div>
+                                <div className="my-0.5 w-0.5 flex-1 min-h-[12px] sm:min-h-[16px] bg-gray-200" />
                               </div>
-                              <div className="pb-6">
-                                <p className="text-sm font-semibold text-brand-text">
+                              <div className="pb-1.5 sm:pb-2.5">
+                                <p className="text-[9.5px] xs:text-[10.5px] sm:text-[11.5px] font-bold text-[#092248]">
                                   Out for Delivery
-                                  <span className="ml-2 text-xs font-normal text-brand-accent">
+                                  <span className="hidden xs:inline ml-1 rounded-full bg-emerald-50 px-1 py-0.2 text-[7.5px] sm:text-[8px] font-medium text-[#10b981]">
                                     In progress
                                   </span>
                                 </p>
-                                <p className="text-xs text-brand-text-muted">
+                                <p className="text-[7.5px] xs:text-[8px] sm:text-[9px] text-gray-400">
                                   12:42 PM
                                 </p>
                               </div>
                             </div>
 
                             {/* Step 4 */}
-                            <div className="flex gap-3">
+                            <div className="flex gap-1.5 xs:gap-2 sm:gap-2.5">
                               <div className="flex flex-col items-center">
-                                <div className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold border-2 border-brand-border bg-brand-surface-elevated text-brand-text-muted">
+                                <div className="flex h-4.5 w-4.5 xs:h-5 xs:w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full text-[8.5px] xs:text-[9px] sm:text-[10px] font-bold border border-gray-300 bg-white text-gray-400">
                                   4
                                 </div>
                               </div>
-                              <div className="pb-6">
-                                <p className="text-sm font-semibold text-brand-text-muted">
+                              <div className="pb-1">
+                                <p className="text-[9.5px] xs:text-[10.5px] sm:text-[11.5px] font-semibold text-gray-400">
                                   Delivered
                                 </p>
-                                <p className="text-xs text-brand-text-muted">
+                                <p className="text-[7.5px] xs:text-[8px] sm:text-[9px] text-gray-300">
                                   —
                                 </p>
                               </div>
@@ -1720,20 +1009,21 @@ const RestroWebsite = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="absolute -inset-4 -z-10 rounded-[3rem] bg-brand-primary/10 blur-2xl"></div>
                   </div>
 
-                  {/* Phone 2: Delivery Boy & Live Map Tracking Screen */}
-                  <div className="relative mx-auto w-[270px] sm:w-[280px] xl:w-[295px] animate-float-reverse sm:mt-6 lg:mt-8">
-                    <div className="relative rounded-[2.5rem] border-[6px] border-brand-text bg-brand-text p-2 shadow-2xl shadow-brand-primary/20">
-                      <div className="absolute left-1/2 top-3 z-20 h-5 w-24 -translate-x-1/2 rounded-full bg-brand-text"></div>
-                      <div className="overflow-hidden rounded-[2rem] bg-slate-50 flex flex-col min-h-[480px]">
+                  {/* Phone 2: Delivery Partner & Live Map Tracking Screen */}
+                  <div className="relative w-1/2 sm:w-auto mx-auto max-w-[170px] xs:max-w-[195px] sm:max-w-[235px] xl:max-w-[245px] mt-2 sm:mt-5 lg:mt-6">
+                    <div className="relative rounded-[1.6rem] xs:rounded-[1.9rem] sm:rounded-[2.2rem] border-[3.5px] xs:border-[4px] sm:border-[5px] border-[#081426] bg-[#081426] p-1 sm:p-1.5 shadow-[0_20px_45px_rgba(8,20,38,0.2)]">
+                      {/* Dynamic Island / Notch */}
+                      <div className="absolute left-1/2 top-1 sm:top-1.5 z-20 h-2.5 sm:h-3 w-10 sm:w-14 -translate-x-1/2 rounded-full bg-[#081426]" />
+
+                      <div className="overflow-hidden rounded-[1.3rem] xs:rounded-[1.6rem] sm:rounded-[1.8rem] bg-white flex flex-col min-h-[330px] xs:min-h-[360px] sm:min-h-[415px]">
                         {/* Top Bar inside Phone */}
-                        <div className="relative z-10 flex items-center justify-between bg-white px-4 pb-2 pt-9 border-b border-slate-100">
-                          <div className="flex items-center gap-2">
-                            <div className="h-6 w-6 rounded-full bg-slate-100 flex items-center justify-center text-brand-text">
+                        <div className="relative z-10 flex items-center justify-between bg-white px-1.5 xs:px-2 sm:px-2.5 pb-1 sm:pb-1.5 pt-6 xs:pt-7 sm:pt-8.5 border-b border-gray-100">
+                          <div className="flex items-center gap-1">
+                            <div className="h-3.5 w-3.5 sm:h-4.5 sm:w-4.5 rounded-full bg-gray-100 flex items-center justify-center text-[#092248]">
                               <svg
-                                className="h-3.5 w-3.5"
+                                className="h-2 w-2 sm:h-2.5 sm:w-2.5"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -1747,232 +1037,207 @@ const RestroWebsite = () => {
                               </svg>
                             </div>
                             <div>
-                              <p className="text-xs font-bold text-brand-text leading-none">
+                              <p className="text-[9px] xs:text-[10px] sm:text-[11px] font-bold text-[#092248] leading-none">
                                 Live Map
                               </p>
-                              <p className="text-[10px] text-brand-text-muted">
+                              <p className="text-[7px] xs:text-[7.5px] sm:text-[8.5px] text-[#64748b]">
                                 Order #TG-4821
                               </p>
                             </div>
                           </div>
 
-                          <span className="flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600">
-                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                          <span className="flex items-center gap-1 rounded-full bg-[#e8f8f0] px-1 sm:px-1.5 py-0.5 text-[7px] xs:text-[7.5px] sm:text-[8.5px] font-bold text-[#10b981]">
+                            <span className="h-1.5 w-1.5 rounded-full bg-[#10b981] animate-pulse" />
                             GPS Live
                           </span>
                         </div>
 
                         {/* Map Area */}
-                        <div className="relative h-[220px] w-full bg-[#eef2f6] overflow-hidden select-none">
+                        <div className="relative h-[135px] xs:h-[150px] sm:h-[170px] w-full bg-[#f1f5f9] overflow-hidden select-none">
                           {/* Vector Map Roads & Landmarks */}
                           <svg
                             className="absolute inset-0 h-full w-full"
-                            viewBox="0 0 300 220"
+                            viewBox="0 0 300 200"
                             preserveAspectRatio="none"
                           >
-                            <defs>
-                              <pattern
-                                id="grid-pattern-delivery"
-                                width="20"
-                                height="20"
-                                patternUnits="userSpaceOnUse"
-                              >
-                                <rect width="20" height="20" fill="#f1f5f9" />
-                                <path
-                                  d="M 20 0 L 0 0 0 20"
-                                  fill="none"
-                                  stroke="#e2e8f0"
-                                  strokeWidth="0.8"
-                                />
-                              </pattern>
-                            </defs>
+                            {/* Street blocks */}
                             <rect
-                              width="300"
-                              height="220"
-                              fill="url(#grid-pattern-delivery)"
-                            />
-
-                            {/* Green Park Areas */}
-                            <rect
-                              x="18"
-                              y="18"
-                              width="75"
-                              height="55"
-                              rx="8"
-                              fill="#dcfce7"
-                              opacity="0.8"
-                            />
-                            <rect
-                              x="210"
-                              y="20"
-                              width="75"
-                              height="60"
-                              rx="8"
-                              fill="#e0f2fe"
-                              opacity="0.8"
-                            />
-                            <rect
-                              x="190"
-                              y="130"
-                              width="95"
-                              height="75"
-                              rx="8"
-                              fill="#dcfce7"
-                              opacity="0.8"
-                            />
-                            <rect
-                              x="20"
-                              y="145"
+                              x="15"
+                              y="15"
                               width="80"
-                              height="60"
-                              rx="8"
+                              height="50"
+                              rx="6"
+                              fill="#e2e8f0"
+                              opacity="0.6"
+                            />
+                            <rect
+                              x="205"
+                              y="15"
+                              width="80"
+                              height="55"
+                              rx="6"
+                              fill="#e8f8f0"
+                              opacity="0.8"
+                            />
+                            <rect
+                              x="15"
+                              y="135"
+                              width="85"
+                              height="55"
+                              rx="6"
                               fill="#fef3c7"
-                              opacity="0.7"
+                              opacity="0.6"
+                            />
+                            <rect
+                              x="205"
+                              y="125"
+                              width="80"
+                              height="65"
+                              rx="6"
+                              fill="#e8f8f0"
+                              opacity="0.8"
                             />
 
                             {/* Roads */}
                             <path
-                              d="M 0 95 Q 150 90 300 95"
+                              d="M 0 85 L 300 85"
                               stroke="#ffffff"
                               strokeWidth="16"
                               fill="none"
                             />
                             <path
-                              d="M 0 95 Q 150 90 300 95"
+                              d="M 0 85 L 300 85"
                               stroke="#cbd5e1"
                               strokeWidth="1"
                               strokeDasharray="4 4"
                               fill="none"
                             />
                             <path
-                              d="M 115 0 L 115 220"
+                              d="M 110 0 L 110 200"
                               stroke="#ffffff"
                               strokeWidth="14"
                               fill="none"
                             />
                             <path
-                              d="M 205 0 L 205 220"
+                              d="M 195 0 L 195 200"
                               stroke="#ffffff"
                               strokeWidth="14"
                               fill="none"
                             />
                             <path
-                              d="M 0 160 Q 150 165 300 160"
+                              d="M 0 150 L 300 150"
                               stroke="#ffffff"
-                              strokeWidth="12"
+                              strokeWidth="14"
                               fill="none"
                             />
 
-                            {/* Delivery Route Path */}
+                            {/* Delivery Route Path (Royal Blue) */}
                             <path
-                              d="M 50 95 Q 115 95 115 60 T 205 60 L 205 140"
+                              d="M 60 90 Q 95 90 100 50 T 195 50 L 195 105"
                               fill="none"
                               stroke="#0049ad"
-                              strokeWidth="4"
-                              strokeDasharray="6 4"
+                              strokeWidth="3.5"
                               strokeLinecap="round"
                             />
                           </svg>
 
-                          {/* Restaurant Marker (Start) */}
-                          <div className="absolute left-[38px] top-[75px] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-none">
-                            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-amber-500 text-white shadow-md ring-2 ring-white">
-                              <span className="text-xs">🍳</span>
+                          {/* Restaurant Marker (Top/Start) */}
+                          <div className="absolute left-[24%] top-[38px] sm:top-[45px] -translate-x-1/2 flex flex-col items-center pointer-events-none">
+                            <div className="flex h-4 w-4 sm:h-5 sm:w-5 items-center justify-center rounded-full bg-[#0049ad] text-white shadow-md ring-1 sm:ring-1.5 ring-white">
+                              <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2.5"
+                                className="h-2 w-2 sm:h-2.5 sm:w-2.5"
+                              >
+                                <path d="M3 21h18M5 21V7l7-4 7 4v14" />
+                              </svg>
                             </div>
-                            <span className="mt-0.5 rounded bg-white/90 px-1.5 py-0.5 text-[8px] font-bold text-brand-text shadow-sm border border-slate-200">
-                              Minta Restro
+                            <span className="mt-0.5 rounded-full bg-[#0049ad] px-1 sm:px-1.5 py-0.2 text-[6px] sm:text-[7px] font-bold text-white shadow-xs whitespace-nowrap">
+                              Rahul&apos;s
                             </span>
                           </div>
 
-                          {/* Customer Home Marker (Destination) */}
-                          <div className="absolute left-[205px] top-[148px] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-none">
-                            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-rose-500 text-white shadow-md ring-2 ring-white animate-bounce">
-                              <span className="text-xs">🏠</span>
+                          {/* Destination Marker (Customer Home) */}
+                          <div className="absolute left-[68%] top-[88px] sm:top-[105px] -translate-x-1/2 flex flex-col items-center pointer-events-none">
+                            <div className="flex h-4 w-4 sm:h-5 sm:w-5 items-center justify-center rounded-full bg-[#e11d48] text-white shadow-md ring-1 sm:ring-1.5 ring-white">
+                              <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2.5"
+                                className="h-2 w-2 sm:h-2.5 sm:w-2.5"
+                              >
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                              </svg>
                             </div>
-                            <span className="mt-0.5 rounded bg-white/90 px-1.5 py-0.5 text-[8px] font-bold text-rose-600 shadow-sm border border-slate-200">
+                            <span className="mt-0.5 rounded-full bg-white px-1 sm:px-1.5 py-0.2 text-[6px] sm:text-[7px] font-bold text-[#e11d48] shadow-xs border border-gray-100 whitespace-nowrap">
                               Your Home
                             </span>
                           </div>
 
-                          {/* Delivery Boy Rider (On Route) */}
-                          <div className="absolute left-[138px] top-[54px] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-none">
-                            {/* Pulsing Radar Ring */}
-                            <span className="absolute -inset-2 rounded-full bg-blue-500/30 animate-ping"></span>
-                            {/* Scooter Icon Badge */}
-                            <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-brand-primary text-white shadow-lg ring-2 ring-white">
-                              <svg
-                                className="h-4 w-4"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path d="M19 13c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm0 4.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM7.5 13c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm0 4.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM17.5 6h-2.12l-1.89-3.79c-.19-.38-.58-.63-1.01-.63H9.5c-.55 0-1 .45-1 1s.45 1 1 1h2.24l1.5 3H8.5c-.55 0-1 .45-1 1s.45 1 1 1h4.63l1.5 3H5.2c-.61 0-1.18.27-1.57.73L1.13 14.5c-.38.45-.33 1.13.12 1.51.45.38 1.13.33 1.51-.12L5.2 13h2.3l-1.5 3c-.15.3-.2.64-.15.97.16 1.09 1.17 1.86 2.27 1.7 1.02-.15 1.78-.97 1.88-2H14c.28 0 .53-.11.71-.29l3.5-3.5c.18-.18.29-.43.29-.71V7c0-.55-.45-1-1-1z" />
-                              </svg>
-                            </div>
-                            {/* Live Status Floating Tooltip */}
-                            <div className="mt-1 whitespace-nowrap rounded-full bg-brand-text px-2 py-0.5 text-[8px] font-bold text-white shadow-md flex items-center gap-1">
-                              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                              Rahul (8 min away)
+                          {/* Rider Icon along route */}
+                          <div className="absolute left-[46%] top-[34px] sm:top-[40px] -translate-x-1/2 flex flex-col items-center pointer-events-none">
+                            <span className="absolute -inset-1 rounded-full bg-blue-500/30 animate-ping" />
+                            <div className="relative flex h-4 w-4 sm:h-5 sm:w-5 items-center justify-center rounded-full bg-[#0049ad] text-white shadow-md ring-1 ring-white">
+                              <span className="text-[7.5px] sm:text-[9px]">
+                                🛵
+                              </span>
                             </div>
                           </div>
                         </div>
 
-                        {/* Bottom Delivery Partner Sheet */}
-                        <div className="flex-1 bg-white p-3.5 flex flex-col justify-between border-t border-slate-100">
-                          {/* ETA & Distance Info */}
-                          <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+                        {/* Bottom Sheet Cards */}
+                        <div className="p-1.5 sm:p-2 bg-white space-y-1 sm:space-y-1.5">
+                          {/* Estimated Delivery Bar */}
+                          <div className="rounded-xl border border-gray-100 bg-white p-1 sm:p-1.5 px-1.5 sm:px-2 shadow-xs flex items-center justify-between">
                             <div>
-                              <p className="text-[10px] font-medium text-brand-text-muted">
+                              <p className="text-[7px] sm:text-[8px] font-medium text-gray-400">
                                 Estimated Delivery
                               </p>
-                              <p className="text-base font-extrabold text-brand-primary">
+                              <p className="text-[9.5px] sm:text-[11px] font-black text-[#0049ad] leading-tight">
                                 12:55 PM{" "}
-                                <span className="text-xs font-normal text-emerald-600">
-                                  (12 mins)
+                                <span className="text-[7.5px] sm:text-[9px] font-normal text-[#10b981]">
+                                  (27m)
                                 </span>
                               </p>
                             </div>
-                            <div className="text-right">
-                              <span className="rounded-md bg-brand-surface-warm px-2 py-1 text-[10px] font-bold text-brand-text border border-brand-border/60">
-                                2.4 km away
-                              </span>
-                            </div>
+                            <span className="rounded-md bg-gray-50 px-1 sm:px-1.5 py-0.5 text-[6.5px] sm:text-[8px] font-bold text-[#092248] border border-gray-200/60">
+                              2.4 km
+                            </span>
                           </div>
 
-                          {/* Delivery Partner Profile Card */}
-                          <div className="py-2.5 flex items-center justify-between">
-                            <div className="flex items-center gap-2.5">
-                              <div className="relative">
-                                <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-brand-primary to-blue-400 flex items-center justify-center text-white font-bold text-sm shadow-sm">
+                          {/* Partner Info Row */}
+                          <div className="p-1 sm:p-1.5 px-1.5 sm:px-2 rounded-xl border border-gray-100 bg-white shadow-xs flex items-center justify-between gap-1">
+                            <div className="flex items-center gap-1 sm:gap-1.5 min-w-0">
+                              <div className="relative shrink-0">
+                                <div className="h-5 w-5 sm:h-7 sm:w-7 rounded-full bg-[#0049ad] flex items-center justify-center text-white text-[8px] sm:text-[10px]">
                                   🛵
                                 </div>
-                                <span className="absolute -bottom-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500 text-white text-[9px] font-bold ring-1 ring-white">
+                                <span className="absolute -bottom-0.5 -right-0.5 flex h-2.5 w-2.5 sm:h-3 sm:w-3 items-center justify-center rounded-full bg-[#10b981] text-white text-[6px] sm:text-[7px] font-bold ring-1 ring-white">
                                   ✓
                                 </span>
                               </div>
-
-                              <div>
-                                <div className="flex items-center gap-1.5">
-                                  <p className="text-xs font-bold text-brand-text">
-                                    Rahul Kumar
+                              <div className="min-w-0">
+                                <div className="flex items-center gap-0.5 sm:gap-1">
+                                  <p className="text-[8.5px] sm:text-[10px] font-bold text-[#092248] truncate">
+                                    Rahul K.
                                   </p>
-                                  <span className="rounded bg-amber-100 px-1 py-0.2 text-[9px] font-bold text-amber-800">
+                                  <span className="rounded bg-amber-50 px-0.5 sm:px-1 py-0.2 text-[6.5px] sm:text-[7.5px] font-bold text-amber-700 shrink-0">
                                     ★ 4.9
                                   </span>
                                 </div>
-                                <p className="text-[10px] text-brand-text-muted">
-                                  Honda Activa · JH-01-AB-4821
+                                <p className="text-[6.5px] sm:text-[8px] text-gray-400 truncate">
+                                  Activa · DL-04
                                 </p>
                               </div>
                             </div>
 
-                            {/* Quick Action Buttons */}
-                            <div className="flex items-center gap-1.5">
-                              <div
-                                aria-label="Call delivery partner"
-                                className="h-8 w-8 rounded-full bg-emerald-500 flex items-center justify-center text-white shadow-sm hover:bg-emerald-600 transition-colors cursor-pointer"
-                              >
+                            <div className="flex items-center gap-0.5 sm:gap-1 shrink-0">
+                              <div className="h-4 w-4 sm:h-5 sm:w-5 rounded-full bg-[#10b981] flex items-center justify-center text-white shadow-xs cursor-pointer hover:bg-emerald-600 transition-colors">
                                 <svg
-                                  className="h-4 w-4"
+                                  className="h-2 w-2 sm:h-2.5 sm:w-2.5"
                                   fill="none"
                                   viewBox="0 0 24 24"
                                   stroke="currentColor"
@@ -1985,12 +1250,9 @@ const RestroWebsite = () => {
                                   />
                                 </svg>
                               </div>
-                              <div
-                                aria-label="Message delivery partner"
-                                className="h-8 w-8 rounded-full bg-brand-primary flex items-center justify-center text-white shadow-sm hover:bg-brand-primary-dark transition-colors cursor-pointer"
-                              >
+                              <div className="h-4 w-4 sm:h-5 sm:w-5 rounded-full bg-[#0049ad] flex items-center justify-center text-white shadow-xs cursor-pointer hover:bg-blue-800 transition-colors">
                                 <svg
-                                  className="h-4 w-4"
+                                  className="h-2 w-2 sm:h-2.5 sm:w-2.5"
                                   fill="none"
                                   viewBox="0 0 24 24"
                                   stroke="currentColor"
@@ -2006,18 +1268,16 @@ const RestroWebsite = () => {
                             </div>
                           </div>
 
-                          {/* Safety & Hygiene Verified Footer */}
-                          <div className="rounded-lg bg-emerald-50/80 px-2.5 py-1.5 flex items-center gap-2 border border-emerald-100">
-                            <span className="text-xs">🛡️</span>
-                            <p className="text-[9px] text-emerald-800 font-medium leading-tight">
-                              Partner vaccinated & temperature verified. Contactless
-                              delivery enabled.
+                          {/* Green Status Message Banner */}
+                          <div className="rounded-lg bg-[#e8f8f0] px-1.5 sm:px-2 py-0.5 sm:py-1 flex items-center gap-1 border border-[#d1fae5]">
+                            <span className="text-[8px] sm:text-[9px]">📋</span>
+                            <p className="text-[6.5px] sm:text-[7.5px] font-medium text-[#065f46] leading-tight">
+                              Partner reached near your area.
                             </p>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className="absolute -inset-4 -z-10 rounded-[3rem] bg-brand-accent/15 blur-2xl"></div>
                   </div>
                 </div>
               </div>
@@ -2025,157 +1285,220 @@ const RestroWebsite = () => {
           </section>
 
           {/* --- SECTION: #APP (DOWNLOAD CTA BANNER) --- */}
-          <section id="app" className="py-20 lg:py-28">
-            <div className="mx-auto max-w-7xl px-5 lg:px-8">
-              <div className="relative overflow-hidden rounded-3xl bg-brand-primary-dark px-8 py-14 text-center sm:px-12 sm:py-16 lg:px-16">
-                <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brand-primary-light/20 blur-3xl"></div>
-                <div className="pointer-events-none absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-brand-primary/30 blur-3xl"></div>
+          <section
+            id="app"
+            className="bg-white py-12 sm:py-16 lg:py-20 scroll-mt-16 sm:scroll-mt-20"
+          >
+            <div className="mx-auto max-w-7xl 2xl:max-w-[1360px] px-4 sm:px-6 lg:px-8">
+              <div
+                className="relative overflow-hidden rounded-[24px] sm:rounded-[32px] px-5 py-9 sm:px-12 sm:py-12 md:py-14 text-center shadow-[0_20px_50px_-15px_rgba(0,45,110,0.35)]"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #024bab 0%, #013681 22%, #002d6e 50%, #013681 78%, #024bab 100%)",
+                }}
+              >
+                {/* SVG Corner Wave Glows & Organic Curves */}
+                <svg
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 h-full w-full"
+                  viewBox="0 0 1000 320"
+                  preserveAspectRatio="none"
+                >
+                  <defs>
+                    <radialGradient id="cardWaveBL" cx="5%" cy="85%" r="48%">
+                      <stop
+                        offset="0%"
+                        stopColor="#0a62c9"
+                        stopOpacity="0.85"
+                      />
+                      <stop
+                        offset="55%"
+                        stopColor="#044da5"
+                        stopOpacity="0.35"
+                      />
+                      <stop offset="100%" stopColor="#002d6e" stopOpacity="0" />
+                    </radialGradient>
+                    <radialGradient id="cardWaveTR" cx="95%" cy="15%" r="48%">
+                      <stop
+                        offset="0%"
+                        stopColor="#0a62c9"
+                        stopOpacity="0.85"
+                      />
+                      <stop
+                        offset="55%"
+                        stopColor="#044da5"
+                        stopOpacity="0.35"
+                      />
+                      <stop offset="100%" stopColor="#002d6e" stopOpacity="0" />
+                    </radialGradient>
+                    <linearGradient
+                      id="cardSwooshBL"
+                      x1="0%"
+                      y1="100%"
+                      x2="80%"
+                      y2="30%"
+                    >
+                      <stop
+                        offset="0%"
+                        stopColor="#0e6ad6"
+                        stopOpacity="0.45"
+                      />
+                      <stop offset="100%" stopColor="#054ea4" stopOpacity="0" />
+                    </linearGradient>
+                    <linearGradient
+                      id="cardSwooshTR"
+                      x1="100%"
+                      y1="0%"
+                      x2="20%"
+                      y2="70%"
+                    >
+                      <stop
+                        offset="0%"
+                        stopColor="#0e6ad6"
+                        stopOpacity="0.45"
+                      />
+                      <stop offset="100%" stopColor="#054ea4" stopOpacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <rect width="1000" height="320" fill="url(#cardWaveBL)" />
+                  <rect width="1000" height="320" fill="url(#cardWaveTR)" />
+                  <path
+                    d="M -50 320 Q 80 180 220 250 T 340 340 L -50 340 Z"
+                    fill="url(#cardSwooshBL)"
+                  />
+                  <path
+                    d="M 660 -40 Q 800 120 950 50 L 1050 -40 Z"
+                    fill="url(#cardSwooshTR)"
+                  />
+                </svg>
 
-                <div className="relative mx-auto max-w-3xl">
-                  <p className="mb-2 font-script text-2xl text-brand-primary-light sm:text-3xl">
-                    Your next meal is closer
-                  </p>
-                  <h2 className="text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">
-                    Discover here.{" "}
-                    <span className="text-brand-primary-light">
-                      Order on Restro.
+                <div className="relative z-10 mx-auto max-w-3xl">
+                  {/* Eyebrow: YOUR NEXT MEAL IS CLOSER */}
+                  <div className="flex items-center justify-center gap-3 sm:gap-4 mb-2.5 sm:mb-3">
+                    <span
+                      aria-hidden="true"
+                      className="h-[1.5px] w-12 sm:w-16 rounded-full"
+                      style={{
+                        background:
+                          "linear-gradient(90deg, transparent 0%, #e5a01d 100%)",
+                      }}
+                    />
+                    <span className="text-xs sm:text-[13px] font-bold tracking-[0.2em] text-[#e5a01d] uppercase">
+                      YOUR NEXT MEAL IS CLOSER
                     </span>
+                    <span
+                      aria-hidden="true"
+                      className="h-[1.5px] w-12 sm:w-16 rounded-full"
+                      style={{
+                        background:
+                          "linear-gradient(90deg, #e5a01d 0%, transparent 100%)",
+                      }}
+                    />
+                  </div>
+
+                  {/* Heading */}
+                  <h2 className="font-sans text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-black tracking-tight leading-tight">
+                    <span className="text-white">Discover here. </span>
+                    <span className="text-[#3b82f6]">Order on Restro.</span>
                   </h2>
-                  <p className="mx-auto mt-4 text-base leading-relaxed text-white/80 sm:text-lg">
-                    The website stays informative and brand-focused. Customers
-                    continue to the Restro app for availability, ordering and
+
+                  {/* Subtitle */}
+                  <p className="mx-auto mt-2.5 sm:mt-3 max-w-xl text-xs sm:text-sm md:text-[14.5px] leading-relaxed text-white/80">
+                    The website stays informational and branded. Customers
+                    continue to the Restro app for availability, order and
                     payment.
                   </p>
 
-                  <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                  {/* Buttons Row (3 Buttons Side-by-Side) */}
+                  <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+                    {/* Button 1: Download Restro App */}
                     <a
                       href="#app"
-                      className="rounded-full bg-white px-8 py-4 text-sm font-extrabold text-brand-primary-dark shadow-lg transition-transform hover:scale-105"
+                      className="inline-flex items-center justify-center rounded-full bg-white px-6 sm:px-7 py-3 sm:py-3.5 text-xs sm:text-sm font-bold text-[#00388d] shadow-sm transition-all duration-200 hover:bg-blue-50 hover:shadow-md hover:scale-[1.02] active:scale-95 text-center"
                     >
                       Download Restro App
                     </a>
 
-                    <div className="flex flex-wrap items-center gap-3">
-                      <a
-                        href="#app"
-                        className="inline-flex items-center gap-3 rounded-xl px-5 py-3 transition-all hover:scale-[1.02] border border-brand-border bg-brand-surface-elevated text-brand-text shadow-sm hover:border-brand-primary/30"
-                        aria-label="Get Restro on Google Play"
+                    {/* Button 2: Google Play */}
+                    <a
+                      href="#app"
+                      className="inline-flex items-center gap-2.5 sm:gap-3 rounded-xl sm:rounded-2xl px-4 sm:px-5 py-2 sm:py-2.5 bg-white text-gray-900 shadow-sm transition-all duration-200 hover:bg-blue-50 hover:shadow-md hover:scale-[1.02] active:scale-95"
+                      aria-label="Get Restro on Google Play"
+                    >
+                      <svg
+                        className="h-6 w-6 sm:h-7 sm:w-7 shrink-0"
+                        viewBox="0 0 512 512"
                       >
-                        <svg
-                          className="h-7 w-7 shrink-0"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                        >
-                          <path d="M3.609 1.814L13.792 12 3.61 22.186a1.004 1.004 0 01-.601-.92V2.734a1.004 1.004 0 01.601-.92zM14.5 12.707l2.302 2.302-10.937 6.333a1.004 1.004 0 01-.295-.295L14.5 12.707zM17.402 9.806l1.463 1.463a1 1 0 010 1.414l-1.463 1.463-2.601-2.601 2.601-2.339zM14.5 11.293L5.57 4.984a1.004 1.004 0 01.295-.295L16.802 10.954 14.5 11.293z"></path>
-                        </svg>
-                        <div className="text-left">
-                          <div className="text-[10px] uppercase tracking-wider opacity-70">
-                            Get it on
-                          </div>
-                          <div className="text-sm font-semibold leading-tight">
-                            Google Play
-                          </div>
+                        <path
+                          fill="#00C3FF"
+                          d="M25.7 15.3c-2.4 2.5-3.8 6.7-3.8 12.3v456.8c0 5.6 1.4 9.8 3.8 12.3l1.4 1.3 255.8-255.8v-6.1L27.1 14l-1.4 1.3z"
+                        />
+                        <path
+                          fill="#00E377"
+                          d="M368.5 327.9l-85.6-85.6-255.8 255.8c7.4 7.9 19.8 8.8 33.9.8l307.5-171z"
+                        />
+                        <path
+                          fill="#FF3239"
+                          d="M368.5 184.1L61 13.1C46.9 5.1 34.5 6 27.1 13.9l255.8 255.8 85.6-85.6z"
+                        />
+                        <path
+                          fill="#FFCE00"
+                          d="M368.5 327.9l75.3-41.9c21.8-12.2 21.8-32.1 0-44.2L368.5 184.1 282.9 256l85.6 71.9z"
+                        />
+                      </svg>
+                      <div className="text-left">
+                        <div className="text-[9px] sm:text-[9.5px] uppercase tracking-wider text-gray-500 font-semibold leading-none">
+                          GET IT ON
                         </div>
-                      </a>
+                        <div className="text-xs sm:text-sm font-bold text-gray-900 leading-tight mt-0.5">
+                          Google Play
+                        </div>
+                      </div>
+                    </a>
 
-                      <a
-                        href="#app"
-                        className="inline-flex items-center gap-3 rounded-xl px-5 py-3 transition-all hover:scale-[1.02] border border-brand-border bg-brand-surface-elevated text-brand-text shadow-sm hover:border-brand-primary/30"
-                        aria-label="Download Restro on the App Store"
+                    {/* Button 3: App Store */}
+                    <a
+                      href="#app"
+                      className="inline-flex items-center gap-2.5 sm:gap-3 rounded-xl sm:rounded-2xl px-4 sm:px-5 py-2 sm:py-2.5 bg-white text-gray-900 shadow-sm transition-all duration-200 hover:bg-blue-50 hover:shadow-md hover:scale-[1.02] active:scale-95"
+                      aria-label="Download Restro on the App Store"
+                    >
+                      <svg
+                        className="h-6 w-6 sm:h-7 sm:w-7 shrink-0 text-black fill-current"
+                        viewBox="0 0 170 170"
                       >
-                        <svg
-                          className="h-7 w-7 shrink-0"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                        >
-                          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path>
-                        </svg>
-                        <div className="text-left">
-                          <div className="text-[10px] uppercase tracking-wider opacity-70">
-                            Download on the
-                          </div>
-                          <div className="text-sm font-semibold leading-tight">
-                            App Store
-                          </div>
+                        <path d="M121.2 129.4c-.9 2.1-1.9 4.1-3 6.1-5.1 8.8-12 17.6-21.4 17.7-9.3.2-12.3-5.6-23-5.6-10.7 0-14.1 5.4-22.9 5.8-9.1.4-16.1-9.3-21.8-17.9-11.6-17.6-20.5-49.8-8.5-71.3 5.9-10.7 16.5-17.5 28-17.7 8.9-.2 17.3 6.1 22.8 6.1 5.4 0 15.6-7.5 26.3-6.4 4.5.2 17.1 1.8 25.2 13.9-.7.4-15 8.9-14.8 26.6.2 21.1 18.2 28.2 18.5 28.3-.2.5-2.9 9.9-5.4 14.4zM90.3 46.1c4.4-5.4 7.4-12.9 6.6-20.4-6.4.3-14.1 4.3-18.7 9.7-4.1 4.8-7.7 12.5-6.7 19.8 7.1.6 14.4-3.7 18.8-9.1z" />
+                      </svg>
+                      <div className="text-left">
+                        <div className="text-[9px] sm:text-[9.5px] uppercase tracking-wider text-gray-500 font-semibold leading-none">
+                          DOWNLOAD ON THE
                         </div>
-                      </a>
-                    </div>
+                        <div className="text-xs sm:text-sm font-bold text-gray-900 leading-tight mt-0.5">
+                          App Store
+                        </div>
+                      </div>
+                    </a>
                   </div>
 
-                  <p className="mt-6 text-xs text-white/60">
-                    App Store / Google Play links can be inserted when ready.
+                  {/* Trademark Notice */}
+                  <p className="mt-5 sm:mt-6 text-[10px] sm:text-[11px] text-white/55">
+                    App Store, Google Play, and their logos are trademarks.
                   </p>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* --- SECTION: #FAQ --- */}
-          <section id="faq" className="py-20 lg:py-28">
-            <div className="mx-auto max-w-7xl px-5 lg:px-8">
-              <div className="mb-14 flex justify-center">
-                <div className="max-w-2xl text-center mx-auto">
-                  <p
-                    id="faq-heading"
-                    className="mb-2 font-script text-2xl text-brand-primary sm:text-3xl"
-                  >
-                    FAQ
-                  </p>
-                  <h2 className="text-3xl font-extrabold tracking-tight text-brand-text sm:text-4xl lg:text-5xl">
-                    Questions, simply answered.
-                  </h2>
-                </div>
-              </div>
+          {/* --- SECTION: OUR VENDOR COMMUNITY --- */}
+          <VendorCommunitySection />
 
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                <div className="rounded-3xl border border-brand-border bg-brand-surface-elevated p-8 shadow-sm transition-all duration-300 hover:shadow-md">
-                  <h3 className="text-xl font-bold text-brand-text">
-                    Can I order here?
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-brand-text-muted">
-                    No. The website is for information and discovery. Ordering
-                    and payment happen in the Restro app.
-                  </p>
-                </div>
+          {/* --- SECTION: OUR COMMITMENT TO CUSTOMERS (OUR PROMISE) --- */}
+          <OurCommitmentSection />
 
-                <div className="rounded-3xl border border-brand-border bg-brand-surface-elevated p-8 shadow-sm transition-all duration-300 hover:shadow-md">
-                  <h3 className="text-xl font-bold text-brand-text">
-                    What does Restro offer?
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-brand-text-muted">
-                    Biryani, Meat Rice, Chicken Rice, South Indian dishes and
-                    additional local favourites.
-                  </p>
-                </div>
+          {/* --- SECTION: THE ROAD AHEAD --- */}
+          <RoadAheadSection />
 
-                <div className="rounded-3xl border border-brand-border bg-brand-surface-elevated p-8 shadow-sm transition-all duration-300 hover:shadow-md">
-                  <h3 className="text-xl font-bold text-brand-text">
-                    Will the website be dynamic?
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-brand-text-muted">
-                    Yes. Categories, dishes, cities, blogs, FAQs, offers and SEO
-                    pages can be managed from an admin/CMS layer.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* --- SECTION: THE RESTRO PROMISE --- */}
-          <section className="section-warm py-20 lg:py-28">
-            <div className="mx-auto max-w-5xl px-5 text-center lg:px-8">
-              <p className="mb-2 font-script text-2xl text-brand-primary sm:text-3xl">
-                The Restro Promise
-              </p>
-              <h2 className="text-3xl font-extrabold tracking-tight text-brand-text sm:text-4xl lg:text-5xl">
-                Good food shouldn't feel ordinary.
-              </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-brand-text-muted">
-                Real food. Local flavours. Beautiful discovery. One simple
-                destination — Restro.
-              </p>
-            </div>
-          </section>
+          {/* --- SECTION: MINTA RESTRO - THE TASTE OF TRADITION --- */}
+          <TasteOfTraditionSection />
         </main>
 
         {/* --- FOOTER --- */}

@@ -11,8 +11,8 @@ const Footer = () => {
     >
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-8 xl:gap-12">
         
-        {/* Left: Branding & Legal Entity */}
-        <div className="flex flex-col items-start min-w-[220px] max-w-xs shrink-0">
+        {/* Left: Branding & Legal Entity (Centered on mobile, left on desktop) */}
+        <div className="flex flex-col items-center lg:items-start text-center lg:text-left min-w-[220px] max-w-xs shrink-0 mx-auto lg:mx-0">
           <img
             src="/logo/brand-logo.jpg"
             alt="Minta Restro"
@@ -29,8 +29,8 @@ const Footer = () => {
         {/* Vertical Divider 1 */}
         <div className="hidden lg:block w-[1px] h-24 bg-white/25 shrink-0 self-center" />
 
-        {/* Middle: 3 Columns (Company, Policies, Business) */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 lg:gap-8 xl:gap-12 grow max-w-2xl">
+        {/* Middle: 2x2 Grid on Mobile (Company, Policies, Business, Follow Us), 3 Columns on Desktop */}
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-8 xl:gap-12 grow max-w-2xl mx-auto lg:mx-0 w-full">
           
           {/* Column 1: Company */}
           <div className="flex flex-col">
@@ -56,12 +56,12 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <a
-                  href="/#faq"
+                <Link
+                  href="/#promise"
                   className="hover:text-white hover:underline transition-colors"
                 >
-                  FAQ
-                </a>
+                  Our Promise
+                </Link>
               </li>
             </ul>
           </div>
@@ -134,13 +134,57 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* Column 4 on Mobile (Completes 2x2 Grid): Follow Us */}
+          <div className="flex flex-col lg:hidden">
+            <h3 className="text-sm font-bold text-white tracking-wide">
+              Follow Us
+            </h3>
+            <div className="w-6 h-[2px] bg-white mt-1.5 mb-3 rounded-full" />
+            <div className="flex items-center gap-2 xs:gap-2.5">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="w-8.5 h-8.5 xs:w-9 xs:h-9 rounded-xl border border-white/90 flex items-center justify-center text-white hover:bg-white hover:text-[#0049ad] transition-all"
+              >
+                <Instagram size={16} />
+              </a>
+              <a
+                href="https://x.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X (Twitter)"
+                className="w-8.5 h-8.5 xs:w-9 xs:h-9 rounded-xl border border-white/90 flex items-center justify-center text-white hover:bg-white hover:text-[#0049ad] transition-all"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+              </a>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="w-8.5 h-8.5 xs:w-9 xs:h-9 rounded-xl border border-white/90 flex items-center justify-center text-white hover:bg-white hover:text-[#0049ad] transition-all"
+              >
+                <Facebook size={16} fill="currentColor" stroke="none" />
+              </a>
+            </div>
+          </div>
+
         </div>
 
-        {/* Vertical Divider 2 */}
+        {/* Vertical Divider 2 (Desktop only) */}
         <div className="hidden lg:block w-[1px] h-24 bg-white/25 shrink-0 self-center" />
 
-        {/* Right: Follow Us */}
-        <div className="flex flex-col items-start shrink-0">
+        {/* Right: Follow Us (Desktop only) */}
+        <div className="hidden lg:flex flex-col items-start shrink-0">
           <h3 className="text-sm font-bold text-white tracking-wide">
             Follow Us
           </h3>
