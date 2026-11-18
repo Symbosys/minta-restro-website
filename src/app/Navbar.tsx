@@ -35,12 +35,24 @@ const quickJumpItems: { label: string; href: string; id: string }[] = [
   { label: "Meat Rice & Regional Flavours", href: "#food", id: "food" },
   { label: "South Indian Classics", href: "#food", id: "food" },
   { label: "Brand Belief", href: "#brand-belief", id: "brand-belief" },
-  { label: "Why Restro (What Makes Us Different)", href: "#experience", id: "experience" },
-  { label: "A Community of Flavours", href: "#community-flavours", id: "community-flavours" },
+  {
+    label: "Why Restro (What Makes Us Different)",
+    href: "#experience",
+    id: "experience",
+  },
+  {
+    label: "A Community of Flavours",
+    href: "#community-flavours",
+    id: "community-flavours",
+  },
   { label: "Cities & Local Discovery", href: "#cities", id: "cities" },
   { label: "Live Order Tracking & ETA", href: "#tracking", id: "tracking" },
   { label: "Get the App", href: "#app", id: "app" },
-  { label: "Partner Screen / For Vendors", href: "/partner-with-us", id: "vendors" },
+  {
+    label: "Partner Screen / For Vendors",
+    href: "/partner-with-us",
+    id: "vendors",
+  },
   { label: "Our Promise & Commitment", href: "#promise", id: "promise" },
   { label: "The Road Ahead & Mission", href: "#road-ahead", id: "road-ahead" },
   { label: "Contact Us", href: "/contact-us", id: "contact" },
@@ -158,7 +170,8 @@ const Navbar = ({ isHomePage = false }: NavbarProps) => {
     if (element) {
       const navbarHeight = window.innerWidth >= 640 ? 76 : 60;
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - navbarHeight;
 
       window.scrollTo({
         top: Math.max(0, offsetPosition),
@@ -430,7 +443,8 @@ const Navbar = ({ isHomePage = false }: NavbarProps) => {
             <div className="flex flex-col gap-1.5">
               {homeLinks.map((item) => {
                 const isRoute = item.href.startsWith("/");
-                const isActive = isHomePage && !isRoute && activeNav === item.id;
+                const isActive =
+                  isHomePage && !isRoute && activeNav === item.id;
 
                 if (isRoute) {
                   return (
