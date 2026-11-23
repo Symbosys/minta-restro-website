@@ -176,7 +176,7 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
-          href="/assets/images/rava.png"
+          href="/assets/images/meat-rice.png"
           fetchPriority="high"
           type="image/png"
         />

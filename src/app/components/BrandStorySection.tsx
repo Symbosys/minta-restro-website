@@ -36,7 +36,7 @@ interface StoryGalleryItem {
 
 const storyGallery: StoryGalleryItem[] = [
   {
-    src: "/assets/images/brand-story/biryani-handi.jpg",
+    src: "/assets/images/biryanis/kolkata-chicken-biryani.jpg",
     alt: "Authentic Handi Chicken Biryani garnished with crispy onions and fresh mint",
     label: "Authentic Handi Biryani",
     frame: {
@@ -60,7 +60,7 @@ const storyGallery: StoryGalleryItem[] = [
     },
   },
   {
-    src: "/assets/images/brand-story/butter-paneer-masala-dosa.jpg",
+    src: "/assets/images/south-indian/butter-paneer-masala-dosa.jpg",
     alt: "Crisp Butter Paneer Masala Dosa served on banana leaf with sambar and coconut chutney",
     label: "Butter Paneer Masala Dosa",
     frame: {

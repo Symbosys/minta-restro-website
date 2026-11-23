@@ -23,7 +23,7 @@ export const brandStoryShowcaseDishes: BrandStoryShowcaseDish[] = [
     tagline: "Slow-dum fragrant basmati with rich spices & saffron aroma",
     rating: "4.9",
     badge: "🔥 Best Seller",
-    image: "/assets/images/brand-story/biryani-handi.jpg",
+    image: "/assets/images/biryanis/kolkata-chicken-biryani.jpg",
     objectPosition: "50% 50%",
   },
   {
@@ -33,7 +33,7 @@ export const brandStoryShowcaseDishes: BrandStoryShowcaseDish[] = [
     tagline: "Golden crisp crepe folded with spiced butter paneer filling",
     rating: "4.8",
     badge: "✨ Chef's Pick",
-    image: "/assets/images/brand-story/butter-paneer-masala-dosa.jpg",
+    image: "/assets/images/south-indian/butter-paneer-masala-dosa.jpg",
     objectPosition: "50% 35%",
   },
   {

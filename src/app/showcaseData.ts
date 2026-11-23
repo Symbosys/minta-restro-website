@@ -28,7 +28,7 @@ export const showcaseProducts: ShowcaseProduct[] = [
   {
     id: "prod-indianthali",
     name: "Homestyle Indian Thali",
-    image: "/assets/images/indianthali.png",
+    image: "/assets/images/indianthali.png?v=2",
   },
   {
     id: "prod-burger",
@@ -43,12 +43,12 @@ export const showcaseProducts: ShowcaseProduct[] = [
   {
     id: "prod-thali",
     name: "Royal Restro Thali",
-    image: "/assets/images/thali.png",
+    image: "/assets/images/thali.png?v=2",
   },
   {
-    id: "prod-rava",
-    name: "Crispy Rava Dosa",
-    image: "/assets/images/rava.png?v=3",
+    id: "prod-meat-rice",
+    name: "Traditional Meat Rice",
+    image: "/assets/images/meat-rice.png?v=2",
   },
   {
     id: "prod-cake",
